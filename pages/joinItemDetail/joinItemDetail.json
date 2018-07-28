@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "活动中的投票选项的详情页",
+    "usingComponents": {
+        "tab-bar": "../../components/tab/tab",
+        "auth-modal": "../../components/auth/auth"
+    }
+}

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "发起普通投票",
+  "usingComponents": {
+    "i-radio-group": "../../dist/radio-group/index",
+    "i-radio": "../../dist/radio/index",
+    "i-icon": "../../dist/icon/index"
+  }
+}

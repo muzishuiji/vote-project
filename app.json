@@ -1,0 +1,34 @@
+{
+  "pages":[
+    "pages/newNormal/newNormal",
+    "pages/index/index",
+    "pages/normalDetail/normalDetail",
+    
+
+    
+    "pages/voteDetail/voteDetail",
+    "pages/newActivity/newActivity",
+    
+    "pages/activity/activity",
+    
+    
+    "pages/mine/mine",
+    "pages/voteItemDetail/voteItemDetail",
+    "pages/joinItemDetail/joinItemDetail",
+    "pages/joinActivity/joinActivity",
+    
+    "pages/joinDetail/joinDetail",
+    
+    "pages/normal/normal",
+    "pages/logs/logs"
+    
+  ],
+
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black",
+    "withShareTicket": true
+  }
+}

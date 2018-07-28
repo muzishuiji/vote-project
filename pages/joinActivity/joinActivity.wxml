@@ -1,0 +1,23 @@
+<!--joinActivity.wxml-->
+<view class="container">
+    <view class="page__bd">
+        <view class="pick-cell">
+          <input class="pick-input" bindinput="bindTitleInput" data-name="title" maxlength="30" placeholder="参赛名称,不超过30字" style="width: 100%;" /> 
+        </view>
+        <view class="pick-cell">
+          <input class="pick-input" bindinput="bindTitleInput" data-name="slogon" maxlength="50" placeholder="slogan.一句话的简介,不超过50字" style="width: 100%;" /> 
+        </view>
+        <view class="pick-cell text-left" bindinput="bindTitleInput" data-name="imgSrc" >
+            <image class="activity-upload" src="/images/upload.png"></image>
+        </view>
+        <view class="pick-cell" wx:if="{{joinMess.imgSrc}}">
+            <image class="activity-avatar" src="{{joinMess.imgSrc}}"></image>
+        </view>
+        <view class="pick-cell">
+            <textarea class="pick-textarea" bindinput="bindTitleInput" data-name="detail" maxLength="500" placeholder="活动投票的详情,不超过500字" style="height: 5.0em" />
+        </view>
+        <view>
+            <view class="pick-submit" bindtap="sumitVote">参与该活动</view>
+        </view>
+    </view>
+</view>

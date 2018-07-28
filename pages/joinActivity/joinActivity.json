@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "参加活动评选",
+    "usingComponents": {
+        "tab-bar": "../../components/tab/tab",
+        "auth-modal": "../../components/auth/auth"
+    }
+}

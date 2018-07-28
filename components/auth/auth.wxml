@@ -1,0 +1,18 @@
+<!--authModal.wxml-->
+<view class="auth-container">
+    <view class="bg">
+        <view class="auth-modal">
+            <view class="auth-item">
+                <text >
+                    微信授权申请
+                </text>
+            </view>
+            <view class="auth-item gray">
+                提示: 需授权后才能参与活动
+            </view>
+            <view class="auth-item auth-line">
+                <button class="auth-btn" style="border: none !important;" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 同意申请 </button> 
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,65 @@
+<!--activity.wxml-->
+<view class="container">
+  <view >
+    <image class="activity-bg" src="/images/bg.jpg"></image>
+  </view>
+  <view class="activity-tab">
+    <view class="activity-tab-item {{activeIndex == '1' ? 'active' : ''}}" data-id="1" bind:tap="changeActiveTab">
+      <text>报名状态</text>
+    </view>
+    <view class="activity-tab-item {{activeIndex == '2' ? 'active' : ''}}" data-id="2" bind:tap="changeActiveTab">
+      <text>评选状态</text>
+    </view>
+  </view>
+  <view class="data-list" wx:if="{{activeIndex == '1'}}">
+    <view class='data-item' wx:for="{{voteList}}" wx:key="{{index}}" data-id="{{item._id}}" data-name="1" bind:tap="openDetail">
+        <view class='data-item-left'>
+          <image class="data-item-img" src="{{item.imgSrc}}"></image>
+        </view>
+        <view class='data-item-right'>
+          <view>
+            <text class='title'>{{item.title}}</text>
+            <text class='item-state blue' wx:if="{{item.state == '1'}}">进行中</text>
+            <text class='item-state warn' wx:if="{{item.state == '0'}}">活动截止</text>
+          </view>
+          <view class="data-item-mess">
+            <view class="data-item-mess-1">
+              <text class='gray'>距离结束</text>
+              <text class='blue blue1'> {{item.leftTime}}</text>
+            </view>
+            <view class="data-item-mess-2">
+              <text class='gray'>参与者</text>
+              <text class='blue blue1'> {{item.voteNum}}</text>
+            </view>
+          </view>
+        </view>
+    </view>
+  </view>
+  <view class="data-list" wx:if="{{activeIndex == '2'}}">
+    <view class='data-item' wx:for="{{activityList}}" wx:key="{{index}}" data-id="{{item._id}}" data-name="2" bind:tap="openDetail">
+        <view class='data-item-left'>
+          <image class="data-item-img" src="{{item.imgSrc}}"></image>
+        </view>
+        <view class='data-item-right'>
+          <view>
+            <text class='title'>{{item.title}}</text>
+            <text class='item-state blue' wx:if="{{item.state == '1'}}">进行中</text>
+            <text class='item-state warn' wx:if="{{item.state == '0'}}">活动截止</text>
+          </view>
+          <view class="data-item-mess">
+            <view class="data-item-mess-1">
+              <text class='gray'>距离结束</text>
+              <text class='blue blue1'> {{item.leftTime}}</text>
+            </view>
+            <view class="data-item-mess-2">
+              <text class='gray'>参与者</text>
+              <text class='blue blue1'> {{item.voteNum}}</text>
+            </view>
+          </view>
+        </view>
+    </view>
+  </view>
+  <view class="foot-bar btn-area">
+    <tab-bar activ-index="1"></tab-bar>
+  </view>
+</view>

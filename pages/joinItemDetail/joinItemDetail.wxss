@@ -1,0 +1,46 @@
+/**joinDetail.wxss**/
+
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+
+  overflow: hidden;
+  
+}
+.vote-title {
+  padding-left: 20px;
+  line-height: 30px;
+}
+
+.activity-bg {
+  width: 100vw;
+  height: 160px;
+}
+.item-state {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 12px;
+
+}
+.warn {
+  color: #FF9800;
+}
+.red {
+  color: #f55d54;
+}
+
+.warn-btn {
+  width: 45px;
+  height: 25px;
+  line-height: 25px;
+  background: #FF9800;
+  color: #ffffff;
+  border-radius: 20px;
+  font-size: 12px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  text-align: center;
+}

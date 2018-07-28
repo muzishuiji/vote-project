@@ -1,0 +1,58 @@
+<!--new.wxml-->
+<view class="container">
+    <view class="page__bd">
+        <view>
+            <i-panel title="投票类型">
+                <i-radio-group current="{{vote.voteType}}" bindchange="handleVoteType" >
+                    <i-radio wx:for="{{checkboxItems}}" position="left" wx:key="{{item.id}}" value="{{item.name}}" color="#0186fa">
+                    </i-radio>
+                </i-radio-group>
+            </i-panel>
+        </view>
+        <view class="pick-cell">
+            <textarea class="pick-textarea" bindinput="bindTitleInput" maxLength="100" placeholder="投票标题,不超过100字" style="height: 3.3em" />
+        </view>
+        <view class="pick-cell" wx:for="{{vote.selectList}}" wx:key="{{index}}">
+            <input class="pick-input" data-id="{{index}}" value="{{item.text}}" bindinput="bindKeyInput" placeholder="候选项" />
+            <view class="pick-delete" data-id="{{index}}" bind:tap="deleteSelect">
+                <text class="pick-delete-text">-</text>
+            </view> 
+        </view>
+        <view class="pick-btn">
+            <view  bind:tap="addSelect">
+                <view class="pick-add" bind:tap="addSelect">
+                    <i-icon type="add" size="25" color="#0186fa" />
+                </view>
+                <view style="margin-left: 10px;"> 添加选项</view>
+            </view>
+        </view>
+       <view class="pick-text">
+          <view class="pick-gray">
+            结束时间: 
+          </view>  
+          <view class="pick-gray">
+            <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange">
+                <view class="picker">
+                {{date}}
+                </view>
+            </picker>
+          </view> 
+          <view class="pick-gray">
+            <picker mode="time" value="{{time}}" start="00:01" end="23:59" bindchange="bindTimeChange">
+                <view class="picker">
+                {{time}}
+                </view>
+            </picker>
+          </view>    
+        </view>
+        <view class="pick-text">
+            <view class="pick-gray">是否发布到动态</view>
+            <view class="weui-cell__ft">
+                <switch checked="{{vote.isShared}}" />
+            </view>
+        </view>
+        <view>
+            <view class="pick-submit" bindtap="sumitVote">创建</view>
+        </view>
+    </view>
+</view>

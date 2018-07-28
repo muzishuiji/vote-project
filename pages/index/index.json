@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "投票",
+    "usingComponents": {
+        "tab-bar": "../../components/tab/tab",
+        "auth-modal": "../../components/auth/auth",
+        "i-icon": "../../dist/icon/index"
+    }
+}

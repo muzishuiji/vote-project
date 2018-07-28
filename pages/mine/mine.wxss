@@ -1,0 +1,119 @@
+.container {
+  padding-top: 10rpx;
+  background: #f1f1f1;
+}
+.insideBox {
+  height: 100vh;
+  overflow-y: auto;
+}
+.userinfo {
+  position: relative;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+ 
+}
+.speial-bg {
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100vw;
+  height: 150px;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%,from(#00d2ff), to(#0186fa));
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+}
+.userinfo-avatar { 
+  width: 64px;
+  height: 64px;
+  margin: 30px 20px 10px 20px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  z-index: 2;
+}
+
+.userinfo-nickname {
+  color: #fff;
+  z-index: 2;
+}
+.get-btn {
+  background:none;
+  font-size:14px;
+
+}
+
+.btn-group {
+  display: flex;
+  text-align: center;
+  background: #fff;
+}
+.btn-item{
+  flex: 1;
+  height: 100%;
+  
+  justify-content: center;
+}
+.btn-item-text {
+  color: #aaaaaa;
+  width: 80px;
+  margin:0 auto;
+  padding: 8px 0;
+  transition: all ease 0.5s;
+}
+.btn-active {
+  color:#0186fa;
+  border-bottom: 1px solid #0186fa;
+}
+.navigator-active {
+  color:#0186fa;
+}
+.data-list {
+  margin-bottom: 60px;
+}
+.create-list, .join-list  {
+  flex: 1;
+  margin: 10px;
+}
+
+.data-item,.null-item {
+  background: #fff;
+  box-shadow: 0px 0px 3px #eee;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+}
+.null-item {
+  color:#aaaaaa;
+}
+
+.data-item-line {
+  width: calc(100vw - 60px);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.data-item-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.gray {
+  font-size: 12px;
+  color: #ddd;
+}
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  line-height: 40px;
+}
+.blue {
+  color: #0186fa;
+}
+.big-size {
+  font-size: 18px;
+}

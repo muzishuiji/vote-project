@@ -1,0 +1,38 @@
+
+.page__bd {
+  height: 100vh;
+  padding: 10px 15px;
+  overflow-y: auto;
+}
+
+.pick-text {
+  margin: 10px 0;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px #eee;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+.pick-text-extral {
+  flex-direction: column;
+  padding: 10px 15px;
+}
+.line-height {
+  line-height: 35px;
+}
+.avatar-group {
+  display: flex;
+  flex-direction: row;
+}
+
+.data-item-img {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.list-container {
+  margin-bottom: 20px;
+}

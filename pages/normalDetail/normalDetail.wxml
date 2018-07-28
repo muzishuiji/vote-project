@@ -1,0 +1,42 @@
+<!--new.wxml-->
+<view class="container">
+    <view wx:if="{{hasUserInfo}}">
+        <auth-modal bind:hideModal="hideModal"></auth-modal>
+    </view>
+    <view class="page__bd">
+         <view>
+            <text>投票名称: </text>
+            <text class="blue">{{voteMess.leftTime}}</text>
+        </view>
+        <view>
+            <text>距离结束: </text>
+            <text class="blue">{{voteMess.leftTime}}</text>
+        </view>
+        <view class="pick-text pick-text-extral">
+            <view class="line-height">
+                <text>{{voteMess.title}}</text> 
+            </view>
+            <view class="line-height">
+                <text class="blue" wx:if="{{ voteMess.voteType == '1'}}">单选</text>
+                <text class="blue" wx:else>多选</text>
+            </view>
+        </view>  
+        <view wx:for="{{voteMess.selectList}}" wx:key="{{index}}" class="list-container">
+            <view class="pick-text" bind:tap="voteFor" data-id="{{index}}">
+                <view>
+                    <text style="margin-right: 20px">{{item.text}}</text>
+                    <i-icon wx:if="{{item.isSelected}}" type="success_fill" color="#f5cd19" size="35" />
+                </view>  
+                <view >
+                    {{item.voteNum}} 票
+                </view>   
+            </view>
+            <view class="avatar-group">
+              <view wx:for="{{item.voteUser}}"  wx:key="{{index}}" wx:for-item="childItem">
+                <image class="data-item-img"  src="{{childItem.imgSrc}}"></image>
+              </view>  
+            </view>
+            
+        </view>
+    </view>
+</view>

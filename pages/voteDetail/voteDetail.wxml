@@ -1,0 +1,44 @@
+<!--activity.wxml-->
+<view class="container">
+  <view class="vote-image">
+    <image class="activity-bg" src="/images/bg.jpg"></image>
+  </view>
+  <view class="activity-tab">
+    <text>
+      活动名称: {{voteMess.title}}
+    </text>
+    <text>
+        这里是活动的相关文字介绍
+        活动名称:
+        活动主题:
+        活动参与方式:
+        活动规则:
+        ...............
+        {{voteMess.content}}
+    </text>
+  </view>
+  <view class="data-list">
+    <view class="list-part">
+        排行榜
+    </view>
+    <view class='data-item' wx:for="{{voteMess.joinList}}" wx:key="{{index}}" data-id="{{item._id}}" data-name="1" >
+        <view class='data-item-index'>
+          <text>{{index + 1}}</text>
+        </view>
+        <view class='data-item-left'>
+          <image class="data-item-img" src="{{item.imgSrc}}"></image>
+        </view>
+        <view class='data-item-right'>
+          <view  class='title' style="font-size: 14px;">
+            <text>{{item.title}}</text>
+            <text class="red" style="margin-left: 20px;">{{item.voteNum}}个赞</text>
+          </view>
+          <view class="red">
+             {{item.description}}
+          </view>
+          <view class="warn-btn" bind:tap="openDetail">点赞</view>
+        </view>
+    </view>
+
+  </view>
+</view>

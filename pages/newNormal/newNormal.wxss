@@ -1,0 +1,122 @@
+.page__bd {
+  height: 100vh;
+  padding: 10px 15px;
+  overflow-y: auto;
+  font-size:14px;
+}
+checkbox-group {
+  display:flex;
+} 
+.weui-cell-co {
+  padding:10px 15px;
+  position: static;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+
+}
+
+.weui-cells {
+  margin: 10px;
+  
+}
+.weui-cell-item {
+  border-radius: 5px;
+  padding:10px 15px;
+  position: relative;
+}
+.pick-cell {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position:relative;
+}
+.pick-textarea, .pick-input {
+  width: 100%;
+  background: #ffffff;
+  margin: 10px 0;
+  padding: 10px 15px;
+  border-radius: 3px;
+  box-shadow: 0px 0px 5px #eee;
+  border: 1px solid #e2e2e2;
+}
+.pick-btn  {
+  background: #ffffff !important;
+  border-radius: 5px;
+  height: 2.6rem;
+  line-height: 2.6rem;
+  font-size: 14px;
+  margin: 10px 0;
+  position: relative;
+  box-shadow: 0px 0px 5px #eee;
+  text-align: center;
+}
+.pick-text {
+  margin: 10px 0;
+  background: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px #eee;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 15px;
+  border: 1px solid #e2e2e2;
+}
+.pick-gray {
+  color: #aaaaaa;
+  font-size: 14px;
+  flex: 1;
+}
+.pick-submit {
+  background:#0186fa;
+  color: #ffffff;
+  border-radius: 18px;
+  margin: 20px;
+  height: 36px;
+  line-height: 35px;
+  text-align: center;
+}
+
+.pick-delete {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ff5500;
+  position: absolute;
+  right: 15px;
+  top: 20px;
+  color: #ffffff;
+  z-index: 11;
+  text-align: center;
+}
+.pick-delete-text {
+  font-size: 52px;
+  line-height:16px;
+  font-weight:100;
+  
+}
+
+.pick-add {
+  width: 24px;
+  height: 24px;
+  line-height: 20px;
+  border: 2px solid #0186fa;
+  border-radius: 50%;
+  position: absolute;
+  top: 7px;
+  left: calc(50% - 60px);
+  z-index: 11;
+  text-align: center;
+  margin-right: 10px;
+}
+/* 修改ui框架的默认样式*/
+
+i-radio {
+  display: inline-block;
+}
+
+
+.radio-index--i-radio-cell::after {
+ content: '';
+ border: none !important;
+}

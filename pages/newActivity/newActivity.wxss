@@ -1,0 +1,154 @@
+.page__bd { 
+  height: 100vh;
+  overflow-y: auto;
+  font-size: 14px;
+  margin-left:15px;
+  margin-right: 15px;
+
+}
+checkbox-group {
+  display:flex;
+}
+.weui-cell-co {
+  padding:10px 15px;
+  position: static;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+
+}
+.activity-avatar {
+  width: 100px;
+  height: 100px;
+  
+}
+.pick-cell {
+  width: calc(100% - 40px);
+  margin: 0 20px 15px 20px;
+}
+
+.img-box {
+  background: #ffffff;
+  border-radius: 5px;
+  width: calc(100vw - 40px);
+  padding-top: 60%;
+  position: relative;
+  margin-bottom: 15px;
+  border: 1px solid #e2e2e2;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px #eee;
+}
+.activity-avatar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.upload-icon {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+}
+.pick-textarea {
+
+  min-height: 5.0rem;
+  height: auto;
+}
+.pick-btn  {
+  background: #ffffff !important;
+  border-radius: 3px;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  font-size: 14px;
+  margin: 10px 0;
+  position: relative;
+  text-align: center;
+}
+.pick-text {
+  background: #ffffff;
+  border: 1px solid #e2e2e2;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px #eee;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+}
+.pick-gray {
+  color: #aaaaaa;
+  font-size: 14px;
+  flex: 2;
+}
+.small-part {
+  flex: 1;
+}
+.pick-submit {
+  background:#0186fa;
+  color: #ffffff;
+  border-radius: 18px;
+  margin: 20px;
+  height: 36px;
+  line-height: 35px;
+  text-align: center;
+}
+
+
+.pick-delete {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ff5500;
+  position: absolute;
+  right: 20px;
+  top: 7px;
+  color: #ffffff;
+  z-index: 11;
+  text-align: center;
+}
+.pick-delete-text {
+  font-size: 52px;
+  line-height:16px;
+  font-weight:100;
+  
+}
+
+.pick-add {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #333333;
+  border-radius: 50%;
+  position: absolute;
+  top: 7px;
+  left: calc(50% - 60px);
+  color: #333333;
+  z-index: 11;
+  text-align: center;
+}
+.pick-add-text {
+  font-size:25px;
+  position:absolute;
+  top:-12px;
+  left: 1px;
+}
+
+
+
+/* 修改ui框架的默认样式*/
+
+i-radio {
+  display: inline-block;
+}
+
+
+i-cell, .radio-index--i-radio-cell, .i-cell {
+  background: #f1f1f1 !important;
+}
+

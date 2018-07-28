@@ -1,0 +1,44 @@
+
+/**index.wxss**/
+
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: #f1f1f1;
+  overflow: hidden;
+}
+.data-list {
+  height:calc(100vh - 60px);
+  overflow-y: auto;
+  background: #f1f1f1;
+  padding: 10px 15px;
+  margin-bottom:60px;
+}
+.data-item {
+  background: #fff;
+  box-shadow: 0px 0px 6px #ddd;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+}
+
+.data-item-line {
+  width: calc(100vw - 60px);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+.data-item-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+
+
+
+

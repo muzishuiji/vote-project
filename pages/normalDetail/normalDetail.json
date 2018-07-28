@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "文字投票详情",
+  "usingComponents": {
+    "i-icon": "../../dist/icon/index",
+    "i-modal": "../../dist/modal/index",
+    "auth-modal": "../../components/auth/auth"
+  }
+}

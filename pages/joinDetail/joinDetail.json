@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "活动报名详情",
+    "usingComponents": {
+        "tab-bar": "../../components/tab/tab",
+        "auth-modal": "../../components/auth/auth"
+    }
+}
