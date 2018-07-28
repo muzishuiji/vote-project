@@ -2,7 +2,7 @@
 <view class="container">
   <view wx:if="{{hasUserInfo}}">
     <auth-modal bind:hideModal="hideModal"></auth-modal>
-  </view>
+  </view> 
   <view class="index-header">
     <view class="tab-select">
       <view data-id="1" bind:tap="changeIndex" class="tab-select-item {{activeIndex == '1' ? 'active' : ''}}">活动投票</view>

@@ -1,10 +1,10 @@
 {
   "pages":[
-    "pages/newNormal/newNormal",
+    
     "pages/index/index",
     "pages/normalDetail/normalDetail",
     
-
+    "pages/newNormal/newNormal",
     
     "pages/voteDetail/voteDetail",
     "pages/newActivity/newActivity",

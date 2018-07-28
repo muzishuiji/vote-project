@@ -66,7 +66,7 @@ Page({
       userInfo: app.globalData.userInfo
     });
     
-    this.getDataList();
+    // this.getDataList();
     
   },
   getDataList: function() {

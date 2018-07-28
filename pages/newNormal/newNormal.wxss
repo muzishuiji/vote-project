@@ -15,26 +15,16 @@ checkbox-group {
   display:flex;
 
 }
-
-.weui-cells {
-  margin: 10px;
-  
-}
-.weui-cell-item {
-  border-radius: 5px;
-  padding:10px 15px;
-  position: relative;
-}
 .pick-cell {
   display: flex;
   flex-direction: row;
   justify-content: center;
   position:relative;
+  margin-bottom: 15px;
 }
 .pick-textarea, .pick-input {
   width: 100%;
   background: #ffffff;
-  margin: 10px 0;
   padding: 10px 15px;
   border-radius: 3px;
   box-shadow: 0px 0px 5px #eee;
@@ -46,13 +36,14 @@ checkbox-group {
   height: 2.6rem;
   line-height: 2.6rem;
   font-size: 14px;
-  margin: 10px 0;
   position: relative;
   box-shadow: 0px 0px 5px #eee;
   text-align: center;
+  border: 1px solid #e2e2e2;
+  margin-bottom: 15px;
 }
 .pick-text {
-  margin: 10px 0;
+  margin-bottom: 15px;
   background: #ffffff;
   border-radius: 5px;
   box-shadow: 0px 0px 5px #eee;
@@ -84,7 +75,7 @@ checkbox-group {
   background: #ff5500;
   position: absolute;
   right: 15px;
-  top: 20px;
+  top: 10px;
   color: #ffffff;
   z-index: 11;
   text-align: center;
