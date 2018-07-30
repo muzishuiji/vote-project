@@ -3,81 +3,24 @@
   <view wx:if="{{hasUserInfo}}">
     <auth-modal bind:hideModal="hideModal"></auth-modal>
   </view> 
-  <view class="index-header">
-    <view class="tab-select">
-      <view data-id="1" bind:tap="changeIndex" class="tab-select-item {{activeIndex == '1' ? 'active' : ''}}">活动投票</view>
-      <view data-id="2" bind:tap="changeIndex" class="tab-select-item {{activeIndex == '2' ? 'active' : ''}}">文字投票</view>
+  <view class="new-btn-group">
+    <view class="new-btn normal" data-id="1" bind:tap="openNew">
+      新建文字投票
+    </view>
+    <view class="new-btn yellow-bg" data-id="2" bind:tap="openNew">
+      新建活动投票
+    </view>
+    <view class="new-btn normal" style="width: 80px;margin: 0 auto;padding-left: 20px;padding-right: 20px;" bind:tap="getCode">
+        获取code
     </view>
   </view>
-  <view class="data-list" wx-if="{{activeIndex == '1'}}">
-    <view class='data-item' wx:for="{{voteList}}" wx:key="{{index}}" data-id="{{item._id}}" data-index="{{index}}" bind:tap="openDetail">
-        <view class='data-item-head'>
-          <image class="data-item-img" src="{{item.imgSrc}}"></image>
-          <text class='gray'>{{item.nickName}}</text>
-        </view>
-        <view class="data-item-body">
-          <view class='item-title'>{{item.title}}</view>
-          <view class="item-picture">
-            <image class="suoluetu" src="{{item.picture}}"></image>
-          </view>
-        </view>
-        <view class='data-item-line'>
-          <view>
-            <text class='gray'>距离结束:</text>
-            <text class='blue blue1'> {{item.leftTime}}</text>
-          </view>
-          <view>
-            <text class='gray'>参与人数:</text>
-            <text class='blue blue2'> {{item.voteNum}}</text>
-          </view>
-        </view>
-        <view class="small-label online" wx:if="{{item.state == '1'}}">
-          活动中
-        </view>
-        <view class="small-label warn" wx:if="{{item.state == '2'}}">
-          活动截止
-        </view>
-    </view>
+  
+  <view class="list-btn-group">
+    <view class="list-btn" data-id="1" bind:tap="openList">文字投票列表</view>
+    <view class="list-btn" data-id="2" bind:tap="openList">活动投票列表</view>
   </view>
-  <view class="data-list" wx-if="{{activeIndex == '2'}}">
-    <view class='data-item' wx:for="{{voteList}}" wx:key="{{index}}" data-id="{{item._id}}" data-index="{{index}}" bind:tap="openDetail">
-        <view class='data-item-head'>
-          <image class="data-item-img" src="{{item.imgSrc}}"></image>
-          <text class='gray'>{{item.nickName}}</text>
-        </view>
-        <view class="data-item-body">
-          <view class='item-title1'>{{item.title}}</view>
-        </view>
-        <view class='data-item-line'>
-          <view>
-            <text class='gray'>距离结束:</text>
-            <text class='blue blue1'> {{item.leftTime}}</text>
-          </view>
-          <view>
-            <text class='gray'>参与人数:</text>
-            <text class='blue blue2'> {{item.voteNum}}</text>
-          </view>
-        </view>
-        <view class="small-label online" wx:if="{{item.state == '1'}}">
-          活动中
-        </view>
-        <view class="small-label warn" wx:if="{{item.state == '2'}}">
-          活动截止
-        </view>
-    </view>
-  </view>
-  <view class="create-vote">
-    <view class="add-btn {{rotateSign ? 'rotate-btn' : ''}}" bind:tap="openBtns">
-      <i-icon type="add" size="32" color="#ffffff" />
-    </view>
-    <view class="hide {{rotateSign ? 'show' : ''}}">
-        <view class="btn-item {{rotateSign ? 'active wenzi' : ''}}" data-id="1" bind:tap="openNew">
-          <view class="flex-1"><i-icon type="document_fill" size="25" color="#ffffff" /></view>
-        </view>
-        <view class="btn-item {{rotateSign ? 'active huodong' : ''}}"  data-id="2" bind:tap="openNew">
-          <view class="flex-1"><i-icon type="task_fill" size="25" color="#ffffff" /></view>
-        </view>
-    </view>
+  <view class="gray-tip">
+    特殊活动请联系微信号: lj_de_wei_xin
   </view>
   <view class="foot-bar btn-area">
     <tab-bar activ-index="1"></tab-bar>

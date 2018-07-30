@@ -1,4 +1,4 @@
-<!--activity.wxml-->
+<!--voteItemDetail.wxml-->
 <view class="container">
 
   <view class="vote-title">
@@ -7,19 +7,17 @@
   <view class="vote-image">
     <view class="show-on-image">
       <view class="vote-item-title">选项的名称</view>
-      <view class="red">
+      <view class="linear-blue">
         <text class="mr-30">NO.1</text>
         <text >300个赞</text>
       </view>
       <view class="give-call">
         点赞
-      </view>
+      </view> 
     </view>
     <image class="activity-bg" src="/images/bg.jpg"></image>
   </view>
   <view class="activity-tab">
-    
-    <text>
         这里是活动的相关文字介绍
         活动名称:
         活动主题:
@@ -27,7 +25,6 @@
         活动规则:
         ...............
         {{voteMess.content}}
-    </text>
   </view>
   <view class="data-list">
     <view class="list-part">
@@ -42,7 +39,7 @@
             <view style="font-size: 12px;">
               {{item.nickName}}
             </view>
-            <view  style="font-size: 12px;">
+            <view  style="font-size: 12px;color: #aaa;">
               {{item.time}}
             </view>
           </view>
@@ -50,9 +47,9 @@
       <view class="comment-content"> 
         {{item.content}}
       </view>
-      <view class="text-right" style="height: 25px;">
-        <i-icon  wx:if="{{sign=='0'}}" type="praise" size="20" color="#80848f" />
-        <i-icon wx:if="{{sign=='1'}}"  type="praise_fill" size="20" color="#dddddd" />
+      <view class="text-right" style="height: 25px;" data-id="{{index}}" bind:tap="pickComment">
+        <i-icon  wx:if="{{item.pick}}" type="praise_fill" size="20" color="#0186fa" />
+        <i-icon wx:if="{{!item.pick}}"  type="praise_fill" size="20" color="#dddddd" />
         <text style="font-size: 12px;"> 200</text>
       </view>
     </view>

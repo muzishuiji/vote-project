@@ -1,0 +1,7 @@
+<!--progress.wxml-->
+<view class="self-progress">
+    <view class="self-progress-bar">
+        <view class="active-bar" style="width: '{{percent}}%';background-color:'{{backgroundColor}}' || '#0186fa'"></view>
+    </view>
+    <view class="self-progress-text">{{percent}}%</view>
+</view>

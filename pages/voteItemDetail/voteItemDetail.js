@@ -5,8 +5,8 @@ const app = getApp();
 Page({
   data: {
     activityName: ' 最美亲子照评选活动',
-    sign: '0',
     visible: false,
+    code: '',
     voteMess: {
       imgSrc: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132",
       nickName: "认真的雪",
@@ -20,12 +20,14 @@ Page({
           avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132",
           nickName: "选项名称",
           time: '刚刚',
+          pick: false,
           content: '如果你无法简洁的表达你的想法，那只说明你还不够了解它。-- 阿尔伯特·爱因斯坦',
         },
         {
           avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132",
           nickName: "选项名称",
           time: '刚刚',
+          pick: false,
           content: '如果你无法简洁的表达你的想法，那只说明你还不够了解它。-- 阿尔伯特·爱因斯坦',
         }
       ]
@@ -46,29 +48,21 @@ Page({
   onShow: function() {
     var that = this;
     // 请求投票信息的数据
-    // wx.request({
-    //   url: app.globalData.baseUrl + 'voteList', 
-    //   method: 'GET',
-    //   header: {
-    //   'content-type': 'application/json'
-    //   },
-    //   success: function(res) {
-    //     var voteList = res.data.data || [];
-    //     if(voteList.length != 0) {
-    //       voteList.forEach(function (item, index) {
-    //         item.leftTime = app.dealTime(item.deadline);
-    //       });
-    //     }
-    //     that.setData({
-    //       voteList: voteList
-    //     });
-    //     return true;
-    //   },
-    //   fail: function(err) {
-    //     console.log(err);
-    //     return false;
-    //   }
-    // });
+    wx.request({
+      url: 'https://lzx2005.com/normal/1', 
+      method: 'GET',
+      header: {
+      'content-type': 'application/json'
+      },
+      success: (res) => {
+        alert(res.code);
+        return true;
+      },
+      fail: function(err) {
+        console.log(err);
+        return false;
+      }
+    });
   },
   openDetail: function() {
     wx.navigateTo({
@@ -86,5 +80,13 @@ Page({
     this.setData({
         visible: false
     });
-},
+  },
+  pickComment:function (e) {
+    var index = e.currentTarget.dataset.id, voteMess = this.data.voteMess;
+    voteMess.commentList[index].pick = !voteMess.commentList[index].pick;
+    console.log(voteMess.commentList);
+    this.setData({
+      voteMess: voteMess
+    });
+  }
 })

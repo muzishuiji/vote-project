@@ -2,6 +2,7 @@
     "navigationBarTitleText": "活动投票列表",
     "usingComponents": {
         "tab-bar": "../../components/tab/tab",
-        "auth-modal": "../../components/auth/auth"
+        "auth-modal": "../../components/auth/auth",
+        "i-icon": "../../dist/icon/index"
     }
 }

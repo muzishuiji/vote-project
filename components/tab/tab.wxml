@@ -2,9 +2,9 @@
 <view class="tab-container">
     <navigator class='navigator-normal' url="/pages/index/index" open-type="navigate" hover-class="other-navigator-hover">
         <view class="nav-item">
-            <image class="tab-icon" wx-if="{{activIndex != '1'}}" src="/images/home.png" ></image>
-            <image class="tab-icon" wx-if="{{activIndex == '1'}}" src="/images/home-active.png"></image>
-            <view class="{{activIndex == '1' ? 'navigator-active' : ''}}">票圈</view>
+            <image class="tab-icon" wx-if="{{activIndex != '1'}}" src="/images/new.png" ></image>
+            <image class="tab-icon" wx-if="{{activIndex == '1'}}" src="/images/new-active.png"></image>
+            <view class="{{activIndex == '1' ? 'navigator-active' : ''}}">新建</view>
         </view>
     </navigator>
     <navigator class='navigator-normal' url="/pages/mine/mine" open-type="navigate" hover-class="other-navigator-hover">

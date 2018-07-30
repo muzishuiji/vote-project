@@ -1,61 +1,109 @@
-/**joinDetail.wxss**/
+/**voteDetail.wxss**/
 
 .container {
   position: relative;
   width: 100vw;
   height: 100vh;
+  font-size: 14px;
   overflow-y: auto;
 }
+.vote-image {
+ margin: 0 15px 0 15px;
+ padding-bottom: 10px;
+ border-bottom: 1px solid #eeeeee;
+}
+.activity-bg {
+  width: calc(100vw - 30px);
+  height: 160px;
+}
 .activity-tab {
-  width: 220px;
-  
-  margin:5px auto;
+  width: calc(100vw - 30px);
+  margin: 10px 15px;
+  border-bottom: 1px solid #eeeeee;
+  text-indent: 2em;
+  padding: 0 5px 20px 5px;
 }
 
 .data-list {
-  width: calc(100vw - 40px);
-  background: #f1f1f1;
+  width: calc(100vw - 30px);
   margin: 0 auto;
 }
-.list-part {
-  color: #f55d54;
-  font-style: italic;
+.list-title{
+  color: #0186fa;
+  height: 50px;
+  line-height: 50px;
   text-align: center;
   padding: 10px 0;
+  display: -webkit-flex;
+  display: flex;
+  margin: 0 10%;
+  position: relative;
 }
+.list-title-top {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%); 
+}
+.list-title-image {
+  width: 37px;
+  height: 32px;
+}
+.list-title-text {
+  flex: 1;
+  margin-top: 8px;
+}
+.list-title-line {
+  flex: 0 0 90px;
+  width: 100px;
+  height: 4px;
+  background: #0186fa;
+  margin-top: 13px;
+}
+.left {
+  background: -webkit-gradient(linear, 0% 0%, 100% 0%,from(#ffffff), to(#0186fa));
+}
+.right {
+ 
+  background: -webkit-gradient(linear, 0% 0%, 100% 0%,from(#0186fa), to(#ffffff));
+}
+
 .data-item {
   border-radius: 5px;
-  padding: 10px;
+  padding: 8px;
   margin-bottom: 15px;
   display: flex;
   position: relative;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #eeeeee;
+  box-shadow: 0 0 3px #dddddd;
 }
 .data-item:last-child {
   margin-bottom: 10px;
 }
 .data-item-index {
   flex: 0 0 20px;
-  line-height: 44px;
+  line-height: 80px;
   vertical-align: middle;
 }
 .data-item-left {
   flex: 1;
+  line-height: 80px;
+  
 }
 .data-item-right {
   flex: 4;
   vertical-align: middle;
+  margin-top: 10px;
 }
 .data-item-img {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+  width: 60px;
+  height: 60px;
   vertical-align: middle;
   margin-right: 10px;
 }
-.activity-bg {
-  width: 100vw;
-  height: 160px;
-}
+
 .item-state {
   position: absolute;
   top: 15px;
@@ -66,9 +114,11 @@
 .warn {
   color: #FF9800;
 }
-.red {
-  color: #f55d54;
+.pick-num {
+  color: #0186fa;
+  line-height: 25px;
   font-size: 12px;
+
 }
 
 .warn-btn {
@@ -81,7 +131,7 @@
   font-size: 12px;
   position: absolute;
   right: 10px;
-  top: 20px;
+  bottom: 20px;
   text-align: center;
 }
 .joinVote {

@@ -1,25 +1,26 @@
 <!--joinDetail.wxml-->
 <view class="container">
-  <view class="vote-image">
+ <view class="vote-image">
     <image class="activity-bg" src="/images/bg.jpg"></image>
   </view>
   <view class="activity-tab">
-    <text>
       活动名称: {{voteMess.title}}
-    </text>
-    <text>
-        这里是活动的相关文字介绍
-        活动名称:
-        活动主题:
-        活动参与方式:
-        活动规则:
-        ...............
-        {{voteMess.content}}
-    </text>
+      这里是活动的相关文字介绍
+      活动名称:
+      活动主题:
+      活动参与方式:
+      活动规则:
+      ...............
+      {{voteMess.content}}
   </view>
   <view class="data-list">
-    <view class="list-part">
-        参与榜
+    <view class="list-title">
+      <view class="list-title-top">
+        <image class="list-title-image" src="/images/join.png"></image>
+      </view>
+      <view class="list-title-line left"></view>
+      <view class="list-title-text">参与榜</view>  
+      <view class="list-title-line right"></view>  
     </view>
     <view class='data-item' wx:for="{{voteMess.joinList}}" wx:key="{{index}}" data-id="{{item._id}}" data-name="1" >
         <view class='data-item-index'>
@@ -29,17 +30,15 @@
           <image class="data-item-img" src="{{item.imgSrc}}"></image>
         </view>
         <view class='data-item-right'>
-          <view  class='title' style="font-size: 14px;">
-            {{item.title}}
+          <view style="font-size: 14px;">
+            <view style="height: 2.2rem;">{{item.title}}</view>
           </view>
-          <view class="red" style="font-size: 12px;">
+          <view class="pick-num">
              {{item.description}}
           </view>
-          <view class="warn-btn" bind:tap="openDetail">详情</view>
+         
         </view>
-    </view>
-    <view class='data-item' wx:if="{{voteMess.joinList.length == 0}}" bind:tap="openJoin">
-        <text class="gray">暂无参与活动的人员,快来报名参与吧~~~</text>
+        <view class="warn-btn" bind:tap="openDetail">详情</view>
     </view>
   </view>
   <view wx:if="{{voteMess.joinList.length <= voteMess.maxNum}}" class="joinVote" bind:tap="openJoin">

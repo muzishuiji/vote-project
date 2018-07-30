@@ -19,7 +19,7 @@
   padding: 10px 15px;
 }
 .line-height {
-  line-height: 35px;
+  line-height: 25px;
 }
 .avatar-group {
   display: flex;
@@ -33,6 +33,89 @@
   border-radius: 50%;
   margin-right: 5px;
 }
+.data-item-img1 {
+  width: 30px;
+  height: 30px;
+  margin-top: 7px;
+}
+.data-item-img2 {
+ width: 20px;
+  height: 20px;
+}
 .list-container {
   margin-bottom: 20px;
 }
+.join-line {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.join-box {
+  position: relative;
+}
+.icon-bg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #0186fa;
+  text-align: center;
+  line-height: 44px
+}
+.gray-badge {
+  position:absolute;
+  top:7px;
+  right:-110px;
+  background:#f1f1f1;
+  color:#9ea5b9;
+  padding:4px 8px 4px 15px;
+  width:100px;
+  text-align:center;
+  font-size:14px;
+  border-radius:20px;
+  z-index:-1;
+
+}
+
+.border {
+  width: 30px;
+  height: 30px;
+  margin-top: 7px;
+  line-height: 27px;
+  text-align: center;
+  border: 1px solid #0186fa;
+  border-radius: 50%;
+}
+.vote-title {
+  margin: 10px 0;
+}
+.base-mess-box {
+  border-bottom: 2px solid #dddddd;
+  padding-bottom: 10px;
+}
+.small-mess {
+  font-size:14px;color:#ddd;display: flex;justify-content: space-between;
+}
+.pick-box {
+  width: 28px;
+  height: 28px;
+  line-height: 32px;
+  text-align: center;
+  border: 1px solid #9ea5b9;
+  border-radius: 50%;
+  
+}
+.extral {
+  border: 1px solid #0186fa;
+}
+.define {
+  color: #0186fa !important;
+}
+.define.i-progress-show-info .i-progress-outer {
+  padding-right:36px !important;
+  margin-right:-30px !important;
+  
+}
+.i-progress-inner .i-progress-success .i-progress-bg {
+  background-color:#0186fa !important; 
+  }
+   

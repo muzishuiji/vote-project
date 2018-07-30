@@ -1,25 +1,24 @@
 {
   "pages":[
-    
     "pages/index/index",
-    "pages/normalDetail/normalDetail",
-    
-    "pages/newNormal/newNormal",
-    
-    "pages/voteDetail/voteDetail",
-    "pages/newActivity/newActivity",
-    
-    "pages/activity/activity",
-    
-    
-    "pages/mine/mine",
-    "pages/voteItemDetail/voteItemDetail",
-    "pages/joinItemDetail/joinItemDetail",
-    "pages/joinActivity/joinActivity",
-    
     "pages/joinDetail/joinDetail",
     
+    "pages/joinItemDetail/joinItemDetail",
+    "pages/voteDetail/voteDetail",
+    
+    "pages/joinActivity/joinActivity",
     "pages/normal/normal",
+    "pages/voteItemDetail/voteItemDetail",
+    "pages/normalDetail/normalDetail",
+    "pages/newNormal/newNormal",
+    
+    
+    "pages/newActivity/newActivity",
+    
+    "pages/activity/activity", 
+    
+    "pages/mine/mine",  
+    
     "pages/logs/logs"
     
   ],

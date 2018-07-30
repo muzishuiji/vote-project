@@ -5,7 +5,7 @@
 }
 .gray {
   font-size: 12px;
-  color: #ddd;
+  color: #aaaaaa;
 }
 .title {
   font-size: 16px;
@@ -16,6 +16,12 @@
 .blue {
   color: #0186fa;
   
+}
+.yellow {
+  color: #FF9800;
+}
+.yellow-bg {
+  background: #FF9800;
 }
 .blue2 {
   font-size: 14px;

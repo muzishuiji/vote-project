@@ -4,18 +4,32 @@
   position: relative;
   width: 100vw;
   height: 100vh;
-
+  font-size: 14px;
   overflow: hidden;
   
 }
 .vote-title {
-  padding-left: 20px;
+  padding-left: 15px;
+  height: 30px;
   line-height: 30px;
 }
-
+.vote-image { 
+  position: relative;
+  width: calc(100vw - 30px);
+  margin: 10px 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eeeeee; 
+}
 .activity-bg {
-  width: 100vw;
+  width: calc(100vw - 30px);
   height: 160px;
+}
+.activity-tab {
+  width: calc(100vw - 30px);
+  margin: 10px 15px;
+  border-bottom: 1px solid #eeeeee;
+  text-indent: 2em;
+  padding: 0 5px 20px 5px;
 }
 .item-state {
   position: absolute;
@@ -29,18 +43,4 @@
 }
 .red {
   color: #f55d54;
-}
-
-.warn-btn {
-  width: 45px;
-  height: 25px;
-  line-height: 25px;
-  background: #FF9800;
-  color: #ffffff;
-  border-radius: 20px;
-  font-size: 12px;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  text-align: center;
 }

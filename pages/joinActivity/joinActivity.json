@@ -1,7 +1,7 @@
 {
-    "navigationBarTitleText": "参加活动评选",
-    "usingComponents": {
-        "tab-bar": "../../components/tab/tab",
-        "auth-modal": "../../components/auth/auth"
-    }
+  "navigationBarTitleText": "报名活动投票",
+  "usingComponents": {
+    "i-radio-group": "../../dist/radio-group/index",
+    "i-radio": "../../dist/radio/index"
+  }
 }

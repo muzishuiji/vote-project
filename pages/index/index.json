@@ -1,5 +1,5 @@
 {
-    "navigationBarTitleText": "投票",
+    "navigationBarTitleText": "你来评我来选",
     "usingComponents": {
         "tab-bar": "../../components/tab/tab",
         "auth-modal": "../../components/auth/auth",

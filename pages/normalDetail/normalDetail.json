@@ -3,6 +3,8 @@
   "usingComponents": {
     "i-icon": "../../dist/icon/index",
     "i-modal": "../../dist/modal/index",
-    "auth-modal": "../../components/auth/auth"
+    "auth-modal": "../../components/auth/auth",
+    "i-progress": "../../dist/progress/index",
+    "self-progress": "../../components/progress/progress"
   }
 }

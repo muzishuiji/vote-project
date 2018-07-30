@@ -1,9 +1,10 @@
-.page__bd {
-  width: calc(100% - 30px);
-  margin: 0 auto;
+.page__bd { 
   height: 100vh;
-  padding: 10px 15px;
   overflow-y: auto;
+  font-size: 14px;
+  margin-left:15px;
+  margin-right: 15px;
+
 }
 checkbox-group {
   display:flex;
@@ -21,52 +22,65 @@ checkbox-group {
   height: 100px;
   
 }
-.weui-cells {
-  margin: 10px;
-  
-}
-.weui-cell-item {
-  border-radius: 5px;
-  padding:10px 15px;
-  position: relative;
-}
 .pick-cell {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 10px;
+  width: calc(100% - 40px);
+  margin: 0 20px 15px 20px;
 }
+
 .img-box {
-  background: #f1f1f1;
-  border-radius: 5px;
-  padding: 10px;
-}
-.pick-textarea, .pick-input {
   background: #ffffff;
-  margin: 10px 0;
-  padding: 8px 15px;
+  border-radius: 5px;
+  width: calc(100vw - 40px);
+  padding-top: 60%;
+  position: relative;
+  margin-bottom: 15px;
+  border: 1px solid #e2e2e2;
   border-radius: 5px;
   box-shadow: 0px 0px 5px #eee;
 }
+.activity-avatar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.upload-icon {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+}
+.pick-textarea {
+
+  min-height: 5.0rem;
+  height: auto;
+}
 .pick-btn  {
   background: #ffffff !important;
-  border-radius: 5px;
-  height: 2.6rem;
-  line-height: 2.6rem;
+  border-radius: 3px;
+  height: 2.5rem;
+  line-height: 2.5rem;
   font-size: 14px;
   margin: 10px 0;
   position: relative;
   text-align: center;
 }
 .pick-text {
-  margin: 10px 0;
   background: #ffffff;
+  border: 1px solid #e2e2e2;
   border-radius: 5px;
   box-shadow: 0px 0px 5px #eee;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   padding: 10px 15px;
+  margin-bottom: 15px;
 }
 .pick-gray {
   color: #aaaaaa;
@@ -77,8 +91,8 @@ checkbox-group {
   flex: 1;
 }
 .pick-submit {
-  background:#f5cd19;
-  color: #333333;
+  background:#0186fa;
+  color: #ffffff;
   border-radius: 18px;
   margin: 20px;
   height: 36px;
@@ -86,9 +100,7 @@ checkbox-group {
   text-align: center;
 }
 
-.input-item {
-  position:relative;
-}
+
 .pick-delete {
   width: 24px;
   height: 24px;
@@ -127,21 +139,7 @@ checkbox-group {
   left: 1px;
 }
 
-
-
-/* 修改ui框架的默认样式*/
-
-i-radio {
-  display: inline-block;
+.vote-title {
+  height: 35px;line-height: 35px;
+  padding-left: 5px;
 }
-
-
-i-cell, .radio-index--i-radio-cell, .i-cell {
-  background: #f1f1f1 !important;
-}
-.activity-upload {
-  width: 45px;
-  height: 45px;
-  
-}
-

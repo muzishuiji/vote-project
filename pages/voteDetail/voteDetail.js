@@ -15,7 +15,7 @@ Page({
       joinList:[
         {
           imgSrc: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132",
-          title: "选项名称",
+          title: "选项名称这是一个很长的名字,很长很长",
           content: '',
           description: '这是选项的简单描述',
           voteNum: 200
