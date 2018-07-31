@@ -66,7 +66,7 @@
   margin: 0 auto;
 }
 .list-part {
-  color: #0186fa;
+  color: #aaaaaa;
   padding: 10px;
 }
 .data-item {
@@ -119,9 +119,27 @@
 }
 
 
+.vote-top {
+  padding: 0 15px;
+  line-height: 30px; 
+  display: flex;
+  display: -webkit-flex;
+}
 .vote-title {
-  padding-left: 15px;
-  line-height: 30px;
+  flex: 1;
+}
+.share-btn {
+  flex: 0 0 30px;
+  width: 30px;
+  text-align: center;
+}
+.border {
+  width: 26px;
+  height: 26px;
+  line-height: 23px;
+  text-align: center;
+  border: 1px solid #0186fa;
+  border-radius: 50%;
 }
 .zan-icon {
   width: 20px;

@@ -1,6 +1,9 @@
-<!--new.wxml-->
+<!--normalDetail.wxml-->
 <view class="container">
-    <view class="page__bd">
+    <view wx:if="{{hasUserInfo}}">
+        <auth-modal bind:hideModal="hideModal"></auth-modal>
+    </view> 
+    <view class="page__bd"> 
         <view class="base-mess-box">
             <view class="join-line">
                 <view class="join-box">
@@ -11,11 +14,10 @@
                         参与人数: {{voteMess.voteNum}}
                     </view>
                 </view>
-                <view class="share-btn">
+                <view class="share-btn" bind:tap="handleOpen">
                     <view class="border">
-                    <i-icon type="share" size="25" color="#0186fa" /> 
-                    </view>
-                    
+                    <i-icon type="share" size="20" color="#0186fa" /> 
+                    </view> 
                 </view>
             </view>
             <view class="vote-title">
@@ -52,6 +54,6 @@
             </view>
             
         </view>
-        
+        <i-action-sheet  visible="{{ visible }}" actions="{{ actions }}" show-cancel bind:cancel="handleCancel" bind:click="handleClickItem" />
     </view>
 </view>

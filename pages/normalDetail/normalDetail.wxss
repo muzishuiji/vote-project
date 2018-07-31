@@ -34,13 +34,13 @@
   margin-right: 5px;
 }
 .data-item-img1 {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   margin-top: 7px;
 }
 .data-item-img2 {
- width: 20px;
-  height: 20px;
+ width: 18px;
+  height: 18px;
 }
 .list-container {
   margin-bottom: 20px;
@@ -77,10 +77,10 @@
 }
 
 .border {
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   margin-top: 7px;
-  line-height: 27px;
+  line-height: 22px;
   text-align: center;
   border: 1px solid #0186fa;
   border-radius: 50%;
@@ -96,9 +96,9 @@
   font-size:14px;color:#ddd;display: flex;justify-content: space-between;
 }
 .pick-box {
-  width: 28px;
-  height: 28px;
-  line-height: 32px;
+  width: 25px;
+  height: 25px;
+  line-height: 28px;
   text-align: center;
   border: 1px solid #9ea5b9;
   border-radius: 50%;

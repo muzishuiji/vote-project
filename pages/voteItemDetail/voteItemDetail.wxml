@@ -1,9 +1,17 @@
 <!--voteItemDetail.wxml-->
 <view class="container">
-
-  <view class="vote-title">
-    活动名称: {{activityName}}
+  <view wx:if="{{hasUserInfo}}">
+      <auth-modal bind:hideModal="hideModal"></auth-modal>
+  </view> 
+  <view class="vote-top">
+    <view class="vote-title">活动名称: {{activityName}}</view>
+    <view class="share-btn" bind:tap="handleOpen1">
+      <view class="border">
+        <i-icon type="share" size="20" color="#0186fa" /> 
+      </view> 
+    </view>
   </view>
+  
   <view class="vote-image">
     <view class="show-on-image">
       <view class="vote-item-title">选项的名称</view>
@@ -28,7 +36,7 @@
   </view>
   <view class="data-list">
     <view class="list-part">
-        打call榜 >>
+        打call榜 
     </view>
     <view class='data-item' wx:for="{{voteMess.commentList}}" wx:key="{{index}}">
       <view class="data-flex" >
@@ -74,4 +82,5 @@
       </view>
     </view>
   </view>
+  <i-action-sheet  visible="{{ sheetVisible }}" actions="{{ actions }}" show-cancel bind:cancel="handleCancel1" bind:click="handleClickItem1" />
 </view>

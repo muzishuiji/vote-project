@@ -3,6 +3,16 @@ const app = getApp();
 Page({
   data: {
     isSelected: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    hasUserInfo: false,
+    visible: false,
+    actions: [
+        {
+            name: '邀请朋友参与投票',
+            icon: 'share',
+            openType: 'share'
+        }
+    ],
     voteMess: {
       voteType: "",
       title: "",
@@ -22,6 +32,7 @@ Page({
     }
   },
   onLoad: function () {
+    app.authJudge(this);
     // this.getVoteDetail();
     let voteMess = app.globalData.voteMess || this.data.voteMess;
     voteMess.selectList.forEach(function (value,index) {
@@ -31,9 +42,34 @@ Page({
       voteMess: voteMess
     });
   }, 
-
+ 
   onShow: function() {
     
+  },
+  // 打开操作表
+  handleOpen () {
+    console.log("所发生的");
+      this.setData({
+          visible: true
+      });
+  },
+  // 关闭操作表
+  handleCancel () {
+      this.setData({
+          visible: false
+      });
+  },
+  // 处理选择
+  handleClickItem ({ detail }) {
+    const index = detail.index + 1;
+    if(index == 1) {
+      this.onShareAppMessage();
+    } else {
+      $Message({
+          content: '您点击了取消'
+      });
+    }
+      
   },
   // 参与投票
   voteFor: function(e) {
@@ -111,11 +147,11 @@ Page({
   // 分享
   onShareAppMessage: function(res){
     if(res.from === "button") {
-      console.log(res.target)
+      console.log(res.target);
     }
     return {
       title: this.data.vote.title,
-      path: '/pages/vote/voteDetail'
+      path: '/pages/normalDetail/normalDetail'
     }
   }
 });

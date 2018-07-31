@@ -5,6 +5,7 @@
     "i-modal": "../../dist/modal/index",
     "auth-modal": "../../components/auth/auth",
     "i-progress": "../../dist/progress/index",
-    "self-progress": "../../components/progress/progress"
+    "self-progress": "../../components/progress/progress",
+    "i-action-sheet": "../../dist/action-sheet/index"
   }
 }
