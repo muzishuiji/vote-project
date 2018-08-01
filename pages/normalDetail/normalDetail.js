@@ -13,45 +13,74 @@ Page({
             openType: 'share'
         }
     ],
-    voteMess: {
-      voteType: "",
-      title: "",
-      isShared: false,
-      deadline: 1,
-      selectList:[
-        {
-          text: "",
-          voteNum: 0,
-          voteUser: []
-        },
-        {
-          text: "",
-          voteNum: 0,
-          voteUser: []
-        }]
-    }
+    voteMess: {}
   },
-  onLoad: function () {
+  onLoad: function (options) {
     app.authJudge(this);
-    // this.getVoteDetail();
-    let voteMess = app.globalData.voteMess || this.data.voteMess;
-    voteMess.selectList.forEach(function (value,index) {
-      value.pickSign = false;
-    });
-    this.setData({
-      voteMess: voteMess
-    });
+    console.log(options);
+    this.getVoteDetail(options.id);
   }, 
  
   onShow: function() {
     
   },
+  getVoteDetail: function (id) {
+    wx.request({
+      url: app.globalData.baseUrl + 'normal/' + id, 
+      method: 'GET',
+      data: this.data.params,
+      header: {
+        'content-type': 'application/json',
+        'sessionId': app.globalData.sessionId
+      },
+      success: (res) => {
+        let response = res;
+        let voteMess = {};
+        let sign = false;
+        // console.log(res);
+        if(response.data.code == 200) {
+          voteMess = response.data.data;
+          voteMess.leftTime = app.dealTime(voteMess.endTime);
+          voteMess.items.forEach(element => {
+            element.percent = Math.round((element.voteSum / voteMess.joinedUserSum).toFixed(2) * 100);
+            element.canVote = true;
+            if(voteMess.multiple) {
+              if(element.voted) {
+                element.canVote = false;
+              }
+            } else {
+              if(element.voted) {
+                sign = true;
+              }
+            }
+          });
+          if(sign){
+            voteMess.items.forEach((value) => {
+              value.canVote = false;
+            })
+          }
+          this.setData({
+            voteMess: voteMess
+          });
+          return true;
+        }
+      },
+      fail: function(err) {
+        // console.log(err);
+        wx.showToast({
+          title: '失败了,请检查网络设置~',
+          icon: "none"
+        });
+        return false;
+      }
+    });
+  },
   // 打开操作表
   handleOpen () {
     console.log("所发生的");
-      this.setData({
-          visible: true
-      });
+    this.setData({
+        visible: true
+    });
   },
   // 关闭操作表
   handleCancel () {
@@ -74,67 +103,48 @@ Page({
   // 参与投票
   voteFor: function(e) {
     let voteMess = this.data.voteMess;
-    let index = e.currentTarget.dataset.id;
-    voteMess.selectList[index].pickSign = !voteMess.selectList[index].pickSign;
-    console.log(index,voteMess.selectList);
-    this.setData({
-      voteMess: voteMess
+    let id = e.currentTarget.dataset.id;
+    let index = e.currentTarget.dataset.index;
+    if(!voteMess.items[index].canVote) {
+      wx.showToast({
+        title: '你已经参与过该投票了~',
+        icon: "none"
+      });
+      return false;
+    }
+    wx.request({
+      url: app.globalData.baseUrl + 'normal/item/' + id +'/vote', 
+      method: 'POST',
+      data: {},
+      header: {
+        'content-type': 'application/json',
+        'sessionId': app.globalData.sessionId
+      },
+      success: (res) => {
+        let response = res;
+        // console.log(res);
+        if(response.data.code == 200) {
+          voteMess.items[index].voted = !voteMess.items[index].voted;
+          voteMess.joinedUserSum++;
+          voteMess.items[index].voteSum++;
+          voteMess.items.forEach(element => {
+            element.percent = Math.round((element.voteSum / voteMess.joinedUserSum).toFixed(2) * 100);
+          });
+          this.setData({
+            voteMess: voteMess
+          });
+          return true;
+        }
+      },
+      fail: function(err) {
+        // console.log(err);
+        wx.showToast({
+          title: '失败了,请检查网络设置~',
+          icon: "none"
+        });
+        return false;
+      }
     });
-    // var index = e.currentTarget.dataset.id, coteMess = this.data.vote;
-    // console.log(coteMess.selectList[index].canSelected);
-    // if(!coteMess.selectList[index].canSelected || (coteMess.isSelected && coteMess.voteType == "1")) {
-    //   wx.showToast({
-    //     title: '你已经参与过该投票啦~',
-    //     icon: "none"
-    //   });
-    //   return false;
-    // } else{
-    //   coteMess.selectList[index].voteUser.push({
-    //     nickName: app.globalData.userInfo.nickName,
-    //     imgSrc: app.globalData.userInfo.avatarUrl
-    //   });
-    //   coteMess.selectList[index].voteNum++;
-    //   coteMess.voteNum++;
-    //   var params = {
-    //     _id: coteMess._id,
-    //     selectList: coteMess.selectList,
-    //     voteNum: coteMess.voteNum
-    //   }
-    //   wx.request({
-    //     url: app.globalData.baseUrl + 'joinVote',
-    //     data: params,
-    //     method: 'POST',
-    //     header: {
-    //       'content-type': 'application/json'
-    //     },
-    //     success: (res) =>  {
-    //       var code = res.data.code;
-    //       if(code == 200) {
-    //         wx.showToast({
-    //           title: '投票成功,棒棒哒~',
-    //           icon: "none"
-    //         });
-    //         coteMess.selectList[index].canSelected = false;
-    //         coteMess.selectList[index].isSelected = true;
-    //         if(coteMess.voteType == "1") {
-    //           for(var i= 0; i < coteMess.selectList.length; i++){
-    //             coteMess.selectList[i].canSelected = false;
-    //           }
-    //         }
-    //         coteMess.isSelected = true;
-    //         console.log(coteMess.selectList);
-    //         this.setData({
-    //           vote: coteMess
-    //         });
-    //       }
-    //     },
-    //     fail: function(e) {
-    //       console.log(e);
-    //       return false;
-    //     }
-    //   })
-    // }
-    
   },
   // 时间处理函数
   dealTime: function(date) {
@@ -150,7 +160,7 @@ Page({
       console.log(res.target);
     }
     return {
-      title: this.data.vote.title,
+      title: this.data.voteMess.title,
       path: '/pages/normalDetail/normalDetail'
     }
   }

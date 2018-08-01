@@ -53,6 +53,7 @@ Page({
     let voteList = this.data.voteList;
     let _id = options.id;
     app.authJudge(this);
+    
   },
   onShow: function() {
     var that = this;

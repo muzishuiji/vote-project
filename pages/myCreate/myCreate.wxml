@@ -1,0 +1,72 @@
+<!--index.wxml-->
+<view class="container">
+  <view wx:if="{{hasUserInfo}}">
+    <auth-modal bind:hideModal="hideModal"></auth-modal>
+  </view> 
+  <view class="index-header">
+    <view class="tab-select">
+      <view data-id="1" bind:tap="changeIndex" class="tab-select-item {{activeIndex == '1' ? 'active' : ''}}">活动投票</view>
+      <view data-id="2" bind:tap="changeIndex" class="tab-select-item {{activeIndex == '2' ? 'active' : ''}}">文字投票</view>
+    </view>
+  </view>
+  <view class="data-list" wx-if="{{activeIndex == '1'}}">
+    <view class='data-item' wx:for="{{activityList}}" wx:key="{{index}}" >
+        <view class='data-item-head'>
+          <image class="data-item-img" src="{{item.avatarUrl}}"></image>
+          <text class='gray'>{{item.nickName}}</text>
+        </view>
+        <view class="data-item-body" data-id="{{item.id}}" data-index="{{index}}" bind:tap="openDetail">
+          <view class='item-picture'><image class="suoluetu" src="{{item.picture}}"></image></view>
+          <view class='item-title'>{{item.title}}</view>
+        </view>
+        <view class='data-item-line'>
+          <view>
+            <text class='gray'>距离报名结束:</text>
+            <text class='blue blue1'> {{item.leftTime}}</text>
+          </view>
+          <view>
+            <text class='gray'>参与人数:</text>
+            <text class='blue blue2'> {{item.joinedUserSum}}</text>
+          </view>
+        </view>
+        <view class="delete-icon" data-id="{{item.id}}" bind:tap="handleOpen">
+          <image class="delete-icon-img" src="/images/delete.png"></image>
+        </view>
+    </view>
+    <view class="null-item" wx:if="{{activityList.length == 0}}">
+      <image class="width-50" src="/images/empty.png"></image>
+      <view>没有更多了~</view>
+    </view>
+  </view>
+  <view class="data-list" wx-if="{{activeIndex == '2'}}">
+    <view class='data-item' wx:for="{{voteList}}" wx:key="{{index}}" >
+        <view class='data-item-head'>
+          <image class="data-item-img" src="{{item.avatarUrl}}"></image>
+          <text class='gray'>{{item.nickName}}</text>
+        </view>
+        <view class="data-item-body1" data-id="{{item.id}}" data-index="{{index}}" bind:tap="openDetail">
+          <view class='item-title'>{{item.title}}</view>
+        </view>
+        <view class='data-item-line'>
+          <view>
+            <text class='gray'>距离报名结束:</text>
+            <text class='blue blue1'> {{item.leftTime}}</text>
+          </view>
+          <view>
+            <text class='gray'>参与人数:</text>
+            <text class='blue blue2'> {{item.joinedUserSum}}</text>
+          </view>
+        </view>
+        <view class="delete-icon" data-id="{{item.id}}" bind:tap="handleOpen">
+          <image class="delete-icon-img" src="/images/delete.png"></image>
+        </view>
+    </view>
+    <view class="null-item" wx:if="{{voteList.length == 0}}">
+      <image class="width-50" src="/images/empty.png"></image>
+      <view>没有更多了~</view>
+    </view>
+  </view>
+  <i-modal title="删除确认" visible="{{ visible }}" actions="{{ actions }}" bind:click="handleClick">
+    <view>删除后无法恢复哦</view>
+  </i-modal>
+</view>

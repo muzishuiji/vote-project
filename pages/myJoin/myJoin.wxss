@@ -7,6 +7,7 @@
   height: 100vh;
   overflow: hidden;
   background: #f1f1f1;
+  color: #333333;
 }
 .index-header {
   box-sizing: border-box;
@@ -23,6 +24,7 @@
   border: 1px solid #0186fa;
   border-radius: 20px;
 }
+
 .tab-select-item {
   flex: 1;
   text-align: center;
@@ -58,7 +60,7 @@
   height:calc(100vh - 60px);
   overflow-y: auto;
   background: #f1f1f1;
-  padding: 10px 15px;
+  padding: 10px;
   margin-bottom:60px;
 }
 .data-item {
@@ -83,24 +85,26 @@
   vertical-align: middle;
   margin-right: 10px;
 }
-.data-item-body {
+.data-item-body, .data-item-body1 {
   display: flex;
   justify-content: space-around;
   padding-top: 8px;
 }
-
+.data-item-body1 {
+  padding-bottom: 5px;
+}
 .item-picture{
-  flex: 1;
+  flex: 0 0 60px;
 } 
 .suoluetu {
-  width: 60px;height: 60px;
+  width: 60px;
+  height: 45px;
   margin-right: 10px;
 }
-.item-title1{
-  flex:4;
-  text-indent: 2;
-  font-size: 15px;
-  line-height: 28px;
+.item-title {
+  flex: 1;
+  font-size: 14px;
+  line-height: 22px;
 }
 .small-label {
   padding: 5px 10px 5px 20px;

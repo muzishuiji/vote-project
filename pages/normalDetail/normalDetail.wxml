@@ -11,7 +11,7 @@
                         <image class="data-item-img1"  src="/images/many.png"></image>
                     </view>
                     <view class="gray-badge">
-                        参与人数: {{voteMess.voteNum}}
+                        参与人数: {{voteMess.joinedUserSum}}
                     </view>
                 </view>
                 <view class="share-btn" bind:tap="handleOpen">
@@ -25,31 +25,31 @@
             </view>
             <view class="small-mess">
                 <view>距离结束: {{voteMess.leftTime}}</view>
-                <view class="blue" wx:if="{{ voteMess.voteType == '1'}}">单选</view>
+                <view class="blue" wx:if="{{!voteMess.multiple}}">单选</view>
                 <view class="blue" wx:else>多选</view>
             </view>
         </view>
-        <view wx:for="{{voteMess.selectList}}" wx:key="{{index}}" class="list-container">
+        <view wx:for="{{voteMess.items}}" wx:key="{{index}}" class="list-container">
             <view data-id="{{index}}">
                 <view style="display: flex;justify-content:space-between;margin-top: 10px;">
                     <view style="margin-right: 20px;line-height: 30px;">
-                        <text>{{item.text}} </text>
-                        <text style="color: #ddd;"> {{item.voteNum}} 票</text>
+                        <text>{{item.content}} </text>
+                        <text style="color: #ddd;"> {{item.voteSum}} 票</text>
                     </view>
-                    <view wx:if="{{!item.pickSign}}"  data-id="{{index}}" class="pick-box" bind:tap="voteFor">
+                    <view wx:if="{{!item.voted}}" data-index="{{index}}"  data-id="{{item.id}}" class="pick-box" bind:tap="voteFor">
                       <image class="data-item-img2"  src="/images/pick.png"></image>  
                     </view>  
-                    <view wx:if="{{item.pickSign}}" data-id="{{index}}" class="pick-box extral" bind:tap="voteFor">
+                    <view wx:if="{{item.voted}}" data-index="{{index}}" data-id="{{item.id}}" class="pick-box extral" bind:tap="voteFor">
                       <image class="data-item-img2"  src="/images/pick-active.png"></image>  
                     </view> 
-                </view>  
+                </view>   
                 <view>
-                    <self-progress percent="80" color="#0186fa"></self-progress>
+                    <self-progress percent="{{item.percent}}" color="#0186fa"></self-progress>
                 </view>  
             </view>
             <view class="avatar-group">
-              <view wx:for="{{item.voteUser}}"  wx:key="{{index}}" wx:for-item="childItem">
-                <image class="data-item-img"  src="{{childItem.imgSrc}}"></image>
+              <view wx:for="{{item.users}}"  wx:key="{{index}}" wx:for-item="childItem">
+                <image class="data-item-img"  src="{{childItem.avatarUrl}}"></image>
               </view>  
             </view>
             

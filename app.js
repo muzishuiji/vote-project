@@ -1,29 +1,30 @@
 //app.js
 App({
+  globalData: {
+    userInfo: null,
+    vote:{},
+    _id: '',
+    // baseUrl: 'http://lzx2005.com:3000',
+    baseUrl: 'https://www.lzx2005.com/',
+    sessionId: null
+  },
   onLaunch: function () {
+    // appid: wx4a96dbab66a34495
+    // appSecret:00dff3bcddf0896db2f86631ebf2bfde
     // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        // appid: wx4a96dbab66a34495
-        // appSecret:00dff3bcddf0896db2f86631ebf2bfde
-        console.log(res.code);
-      }
-    })
+    var logs = wx.getStorageSync('logs') || [];
+    logs.unshift(Date.now());
+    wx.setStorageSync('logs', logs);
+    const app = getApp();
    
     // 获取用户信息
     wx.getSetting({
       success: res => {
-        console.log(res);
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             withCredentials: true,
             success: res => {
-              console.log(res);
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
@@ -32,7 +33,7 @@ App({
                 this.userInfoReadyCallback(res);
               }
             }
-          })
+          });
         } else {
           this.userInfoReadyCallback(res);
         }
@@ -74,19 +75,47 @@ App({
       });
     }
   },
-  globalData: {
-    userInfo: null,
-    vote:{},
-    _id: '',
-    // baseUrl: 'http://lzx2005.com:3000',
-    baseUrl: 'http://lzx2005.com/',
+  loginIn: function(info) {
+    const app = getApp();
+    wx.login({
+      success: res => {
+        let params = {
+          code: res.code, 
+          avatarUrl: info.avatarUrl,
+          city: info.city, 
+          country: info.country, 
+          language: info.language, 
+          nickName: info.nickName, 
+          province: info.province
+        };
+        wx.request({
+          url: this.globalData.baseUrl + 'auth/getSession', 
+          method: 'GET',
+          data: params,
+          header: {
+          'content-type': 'application/json'
+          },
+          success: (res) => {
+            if(res.data.code == 200) {
+              app.globalData.sessionId = res.data.data.sessionId;
+            }    
+          },
+          fail: (err) => {
+            console.log(err);
+            return false;
+          }
+        });
+      }
+    })
   },
+  // 用户授权
   authJudge: function(self) {
     const app = getApp();
     if (app.globalData.userInfo) {
       self.setData({
         hasUserInfo: false
       });
+      app.loginIn(app.globalData.userInfo);
     } else if (self.data.canIUse){
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
@@ -95,11 +124,11 @@ App({
           self.setData({
             hasUserInfo: true
           });
-          console.log(self.data.hasUserInfo)
         } else {
           self.setData({
             hasUserInfo: false
           });
+          app.loginIn(app.globalData.userInfo);
         }
       }
     } else {
@@ -113,5 +142,7 @@ App({
         }
       })
     }
+
   }
+  
 })

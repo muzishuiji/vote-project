@@ -81,24 +81,24 @@ checkbox-group {
   text-align: center;
 }
 .pick-delete-text {
-  font-size: 52px;
+  font-size: 46px;
   line-height:16px;
   font-weight:100;
   
 }
 
 .pick-add {
-  width: 24px;
-  height: 24px;
-  line-height: 20px;
-  border: 2px solid #0186fa;
-  border-radius: 50%;
-  position: absolute;
-  top: 7px;
-  left: calc(50% - 60px);
-  z-index: 11;
-  text-align: center;
-  margin-right: 10px;
+  width:20px;
+  height:20px;
+  line-height:20px;
+  border:2px solid #0186fa;
+  border-radius:50%;
+  position:absolute;
+  top:8px;
+  left:calc(50% - 55px);
+  z-index:11;
+  text-align:center;
+  margin-right:10px;
 }
 /* 修改ui框架的默认样式*/
 

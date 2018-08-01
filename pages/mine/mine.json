@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "我的",
   "usingComponents": {
-      "tab-bar": "../../components/tab/tab"
+      "tab-bar": "../../components/tab/tab",
+      "i-icon": "../../dist/icon/index"
   }
 }

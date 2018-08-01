@@ -1,4 +1,4 @@
-//tab.js
+//auth.js
 const app = getApp();
 
 Component({
@@ -13,11 +13,10 @@ Component({
     },
     // 获取用户信息
     getUserInfo: function(e) {
-      console.log(e);
       if(e.detail.userInfo) {
-        app.globalData.userInfo = e.detail.userInfo;
-        console.log(app.globalData.userInfo);
         this.triggerEvent("hideModal", true);
+        app.globalData.userInfo = e.detail.userInfo;
+        app.loginIn(e.detail.userInfo);
       } 
     }
   }

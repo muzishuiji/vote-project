@@ -2,7 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/joinDetail/joinDetail",
-    
+    "pages/myJoin/myJoin",
+    "pages/myCreate/myCreate",
     "pages/joinItemDetail/joinItemDetail",
     "pages/voteDetail/voteDetail",
     

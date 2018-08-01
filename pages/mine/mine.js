@@ -14,7 +14,7 @@ Page({
   bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
-    })
+    }) 
   },
   // 打开投票详情页
   openDetail:function(e) {
@@ -68,6 +68,18 @@ Page({
     
     // this.getDataList();
     
+  },
+  openList: function (e) {
+    let id = e.currentTarget.dataset.id;
+    if(id === "1") {
+      wx.navigateTo({
+        url: '../../pages/myCreate/myCreate'
+      });   
+    } else {
+      wx.navigateTo({
+        url: '../../pages/myJoin/myJoin'
+      });
+    }
   },
   getDataList: function() {
     var nickName = this.data.userInfo.nickName;

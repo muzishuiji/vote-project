@@ -8,66 +8,17 @@
         <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
         <text class="userinfo-nickname">{{userInfo.nickName}}</text>
       </block>
-       
     </view>
     <view class='btn-group'>
-      <view class='btn-item' data-id="1" bindtap="changeTab">
-        <view class='btn-item-text {{activeIndex == "1" ? "btn-active": ""}}'>我的创建</view>
-      </view>
-      <view class='btn-item' data-id="2"  bindtap="changeTab">
-        <view class='btn-item-text {{activeIndex == "2" ? "btn-active":"" }}'>我的投票</view>
-      </view>
     </view>
-    <view class='data-list'>
-      <view class='create-list' wx:if="{{activeIndex ==='1'}}">
-        <view class='data-item' wx:for="{{createList}}" 
-          data-id="{{item._id}}" wx:key="{{index}}" data-index="{{index}}" data-name="1" bindtap="openDetail" >
-          <view class='data-item-head'>
-            <image class="data-item-img" src="{{item.imgSrc}}"></image>
-            <text class='gray'>{{item.nickName}}</text>
-          </view>
-          <view>
-            <text class='title'>{{item.title}}</text>
-          </view>
-          <view class='data-item-line'>
-            <view>
-              <text class='gray'>距离结束</text>
-              <text class='blue blue1'> {{item.leftTime}}</text>
-            </view>
-            <view>
-              <text class='gray'>参与人数</text>
-              <text class='blue blue2'> {{item.voteNum}}</text>
-            </view>
-          </view>
-        </view>
-        <view class='null-item' wx:if="{{createList.length <= 0}}" wx:key="{{item.id}}">
-          快去创建投票吧~
-        </view>
+    <view class="data-list">
+      <view class="list-item" data-id="1" bind:tap="openList">
+          <image class="list-item-img" src="/images/create.png"></image>
+          <view>我创建的投票</view>
       </view>
-      <view class='join-list'  wx:if="{{activeIndex ==='2'}}">
-        <view class='data-item' wx:for="{{joinList}}" 
-          data-id="{{item._id}}" wx:key="{{index}}" data-index="{{index}}" data-name="2" bindtap="openDetail">
-          <view class='data-item-head'>
-            <image class="data-item-img" src="{{item.imgSrc}}"></image>
-            <text class='gray'>{{item.nickName}}</text>
-          </view>
-          <view>
-            <text class='title'>{{item.title}}</text>
-          </view>
-          <view class='data-item-line'>
-            <view>
-              <text class='gray'>距离结束</text>
-              <text class='blue blue1'> {{item.leftTime}}</text>
-            </view>
-            <view>
-              <text class='gray'>参与人数</text>
-              <text class='blue blue2'> {{item.voteNum}}</text>
-            </view>
-          </view>
-        </view>
-        <view class='null-item' wx:if="{{joinList.length <= 0}}" wx:key="{{item.id}}">
-          你还没有参与过投票奥~
-        </view>
+      <view class="list-item" data-id="1" bind:tap="openList">
+          <image class="list-item-img" src="/images/joinIn.png"></image>
+          <view>我参与的投票</view>
       </view>
     </view>
   </view>

@@ -10,9 +10,6 @@
     <view class="new-btn yellow-bg" data-id="2" bind:tap="openNew">
       新建活动投票
     </view>
-    <view class="new-btn normal" style="width: 80px;margin: 0 auto;padding-left: 20px;padding-right: 20px;" bind:tap="getCode">
-        获取code
-    </view>
   </view>
   
   <view class="list-btn-group">

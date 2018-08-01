@@ -8,6 +8,14 @@
   overflow: hidden;
   background: #f1f1f1;
 }
+.loading-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  margin-top:10px;
+}
 .index-header {
   height: 50px;
   background: #ffffff;
@@ -54,11 +62,9 @@
 }
 
 .data-list {
-  height:calc(100vh - 60px);
-  overflow-y: auto;
+  height: 100vh;
   background: #f1f1f1;
   padding: 10px 15px;
-  margin-bottom:60px;
 }
 .data-item {
   background: #fff;
@@ -102,7 +108,7 @@
   line-height: 25px;
 }
 .item-title1 {
- flex: 1;
+ flex: 1; 
 }
 .small-label {
   padding: 5px 10px 5px 20px;

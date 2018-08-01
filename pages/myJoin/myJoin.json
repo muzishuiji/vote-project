@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "我参与的投票列表",
+    "usingComponents": {
+        "tab-bar": "../../components/tab/tab",
+        "auth-modal": "../../components/auth/auth",
+        "i-icon": "../../dist/icon/index"
+    }
+}

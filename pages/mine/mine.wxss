@@ -1,6 +1,7 @@
 .container {
-  padding-top: 10rpx;
   background: #f1f1f1;
+  font-size: 14px;
+  color: #666666;
 }
 .insideBox {
   height: 100vh;
@@ -48,6 +49,7 @@
   display: flex;
   text-align: center;
   background: #fff;
+  height: 30px;
 }
 .btn-item{
   flex: 1;
@@ -70,22 +72,52 @@
   color:#0186fa;
 }
 .data-list {
-  margin-bottom: 60px;
+  margin: 10px 0;
 }
 .create-list, .join-list  {
   flex: 1;
-  margin: 10px;
+  margin: 0 10px;
 }
-
-.data-item,.null-item {
+.list-title{
+  width: calc(100vw - 30px);
+  color: #FF9800;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  padding: 10px 0;
+  display: -webkit-flex;
+  display: flex;
+  margin: 0 15px;
+  position: relative;
+}
+.list-title-text {
+  flex:0 0 90px;
+}
+.list-title-line {
+  flex:1;
+  width: 100px;
+  height: 2px;
+  margin-top: 17px;
+}
+.list-title-line:first-child {
+  background: #FF9800;
+}
+.list-title-line:last-child{
+ 
+  background: #0186fa;
+}
+.data-item {
   background: #fff;
   box-shadow: 0px 0px 3px #eee;
   border-radius: 5px;
-  padding: 10px 20px;
+  padding: 10px 15px;
   margin-bottom: 15px;
 }
 .null-item {
   color:#aaaaaa;
+  width: 100vw;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .data-item-line {
@@ -116,4 +148,19 @@
 }
 .big-size {
   font-size: 18px;
+}
+
+.list-item {
+  background:#fff;
+  display:flex;
+  margin-bottom:10px;
+  padding:10px 15px;
+  line-height:30px;
+  
+}
+.list-item-img {
+  width: 30px;
+  height: 30px;
+  
+  margin-right: 10px;
 }

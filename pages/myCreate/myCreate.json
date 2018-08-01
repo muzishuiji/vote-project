@@ -1,12 +1,10 @@
 {
-    "navigationBarTitleText": "文字投票列表",
+    "navigationBarTitleText": "我创建的投票列表",
     "usingComponents": {
         "tab-bar": "../../components/tab/tab",
         "auth-modal": "../../components/auth/auth",
         "i-icon": "../../dist/icon/index",
-        "i-spin": "../../dist/spin/index"
-    },
-    "window": {
-        "enablePullDownRefresh": true
+        "i-modal": "../../dist/modal/index",
+        "i-message": "../../dist/message/index"
     }
 }

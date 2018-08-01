@@ -1,4 +1,4 @@
-//min.js
+//newNormal.js
 const app = getApp();
 Page({
   data: {
@@ -6,30 +6,19 @@ Page({
       { name: '单选', id: '1', checked: true },
       { name: '多选', id: '2' }
     ],
+    voteType: '单选',
     startDate: '',
     endDate: '2020-01-01',
     date: '2016-09-01',
     time: '12:01',
-    vote: {
-      voteType: "1",
-      title: "",
-      isShared: false,
-      deadline: 1,
-      nickName: '',
-      selectList:[
-        {
-          text: "",
-          voteNum: 0,
-          voteUser: []
-        },
-        {
-          text: "",
-          voteNum: 0,
-          voteUser: []
-        }
-      ],
-      voteNum: 0
-    } 
+    voteMess: {
+      anonymous: false,
+      endTime: new Date().getTime(),
+      items: ['',''],
+      publish: true,
+      title: '',
+      multiple: false
+    }
   }, 
   onLoad: function () {
     let startDate = new Date().getFullYear()+ '-' +((new Date().getMonth() + 1) < 10 ? ("0" + (new Date().getMonth() + 1)) : (new Date().getMonth() + 1))+ '-' + new Date().getDate() + '';
@@ -39,113 +28,122 @@ Page({
   },
   // 更新输入
   bindKeyInput: function(e) {
-    var voteMess = this.data.vote;
-    voteMess.selectList[e.target.dataset.id].text = e.detail.value;
+    var voteMess = this.data.voteMess;
+    voteMess.items[e.target.dataset.id] = e.detail.value;
     this.setData({
-      vote: voteMess
+      voteMess: voteMess
     });
   },
   bindTitleInput: function (e) {
-    var voteMess = this.data.vote;
+    var voteMess = this.data.voteMess;
     voteMess.title = e.detail.value;
     this.setData({
-      vote: voteMess
+      voteMess: voteMess
     });
   },
   // 删除选项
   deleteSelect: function (e) {
-    var voteMess = this.data.vote;
-    voteMess.selectList.length > 1 ? voteMess.selectList.splice(e.target.dataset.id, 1) : wx.showToast({
+    var voteMess = this.data.voteMess;
+    voteMess.items.length > 1 ? voteMess.items.splice(e.target.dataset.id, 1) : wx.showToast({
       title: '不能再少了奥~',
       icon: "none"
     });
     this.setData({
-      vote: voteMess
+      voteMess: voteMess
     });
   },
   // 新增选项
   addSelect: function() {
-    var voteMess = this.data.vote;
-    var flag = true;
-    voteMess.selectList.forEach(element => {
-      if(!element.text) {
+    let voteMess = this.data.voteMess;
+    let flag = true;
+    for(let i = 0; i < voteMess.items.length; i++) {
+      if(voteMess[i] == '') {
         flag = false;
+        wx.showToast({
+          title: '还有空白选项奥~',
+          icon: "none"
+        });
+        return false;
       }
-    });
-    if(flag) {
-      voteMess.selectList[voteMess.selectList.length] = {
-        text: "",
-        voteNum: 0,
-        voteUser: []
-      }
-      this.setData({
-        vote: voteMess
-      });
-    } else {
-      wx.showToast({
-        title: '还有空白选项奥~',
-        icon: "none"
-      });
     }
+    voteMess.items[voteMess.items.length] = '';
+    this.setData({
+      voteMess: voteMess
+    });
   },
   // 提交投票信息
-  sumitVote: function() {
-    if(!this.data.vote.title) {
+  submitVote: function() {
+    var voteMess = this.data.voteMess;
+    if(!voteMess.title) {
       wx.showToast({
         title: '投票标题必填奥~',
         icon: "none"
       });
       return false;
     }
-    if(!(this.data.vote.selectList[0].text && this.data.vote.selectList[1].text)) {
+    for(let i = 0; i < voteMess.items.length; i++) {
+      if(voteMess[i] == '') {
+        voteMess.items.splice(i,1);
+      }
+    }
+    if(voteMess.items.length < 2){
       wx.showToast({
         title: '请至少填写两个选项奥~',
         icon: "none"
       });
       return false;
     }
-    var voteMess = this.data.vote;
-    voteMess.deadline = +new Date(this.data.date + ' ' + this.data.time);
-    voteMess.nickName  = app.globalData.userInfo.nickName;
-    voteMess.imgSrc  = app.globalData.userInfo.avatarUrl;
+    voteMess.endTime = +new Date(this.data.date + ' ' + this.data.time);
+    let nowDate = +new Date();
+    if(voteMess.deadline <= nowDate) {
+      wx.showToast({
+        title: '结束时间需晚于当前时间奥~',
+        icon: "none"
+      });
+      return false;
+    }
+    voteMess.multiple = this.data.voteType == '单选' ? false : true;
     wx.request({
-      url: app.globalData.baseUrl + 'addVote',
-      data: voteMess,
+      url: app.globalData.baseUrl + 'normal', 
       method: 'POST',
+      data: voteMess,
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'sessionId': app.globalData.sessionId
       },
-      success: function(res) {
-        var code = res.data.code;
-        if(code == 200) {
-          wx.showToast({
-            title: '添加成功~',
-            icon: "none"
-          });
-          wx.navigateTo({
-            url: '../index/index'
-          })
-          return true;
-        } else {
-          wx.showToast({
-            title: '添加失败,请重试~',
-            icon: "none"
-          });
-          return false;
+      success: (res) => {
+        let response = res;
+        console.log(res);
+        if(response.data.message == '请求成功') {
+          if(voteMess.publish) {
+            wx.redirectTo({
+              url: '../normal/normal'
+            })
+          } else {
+            wx.redirectTo({
+              url: '../mine/mine'
+            })
+          }
         }
+        return true;
       },
-      fail: function(e) {
-        console.log(e);
+      fail: function(err) {
+        console.log(err);
+        wx.showToast({
+          title: '失败了,请检查网络设置~',
+          icon: "none"
+        });
+        return false;
       }
     });
   },
   // 选择投票类型
-  handleVoteType({ detail = {} }) {
-    var voteMess = this.data.vote;
-    voteMess.voteType = detail.value;
-      this.setData({
-          vote: voteMess
-      });
+  handlevoteType({ detail = {} }) {
+    let voteType= detail.value;
+    console.log(voteType);
+    this.setData({
+      voteType:voteType 
+    });
   },
   // 日期改变
   bindDateChange: function(e) {
@@ -158,5 +156,22 @@ Page({
     this.setData({
       time: e.detail.value
     })
-  }
+  },
+  // 切换switch开关
+  switchChange: function(event){
+    let detail = event.detail;
+    let voteMess = this.data.voteMess;
+    voteMess.anonymous = event.detail.value;
+    this.setData({
+      voteMess : voteMess
+    });
+  },
+  switchChange1: function(event){
+    let detail = event.detail;
+    let voteMess = this.data.voteMess;
+    voteMess.publish = event.detail.value;
+    this.setData({
+      voteMess : voteMess
+    });
+  },
 });
