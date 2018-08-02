@@ -1,4 +1,4 @@
-<!--index.wxml-->
+<!--activity.wxml-->
 <view class="container">
   <view wx:if="{{hasUserInfo}}">
     <auth-modal bind:hideModal="hideModal"></auth-modal>
@@ -10,13 +10,13 @@
     </view>
   </view>
   <view class="data-list" wx-if="{{activeIndex == '1'}}">
-    <view class='data-item' wx:for="{{voteList}}" wx:key="{{index}}" data-id="{{item._id}}" data-index="{{index}}" bind:tap="openDetail">
+    <view class='data-item' wx:for="{{voteList}}" wx:key="{{index}}" data-id="{{item.id}}" data-index="{{index}}" bind:tap="openDetail">
         <view class='data-item-head'>
-          <image class="data-item-img" src="{{item.imgSrc}}"></image>
+          <image class="data-item-img" src="{{item.avatarUrl}}"></image>
           <text class='gray'>{{item.nickName}}</text>
         </view>
         <view class="data-item-body">
-          <view class='item-picture'><image class="suoluetu" src="{{item.imgSrc}}"></image></view>
+          <view class='item-picture'><image class="suoluetu" src="{{item.imageUrl}}"></image></view>
           <view class='item-title1'>{{item.title}}</view>
         </view>
         <view class='data-item-line'>
@@ -26,7 +26,7 @@
           </view>
           <view>
             <text class='gray'>参与人数:</text>
-            <text class='blue blue2'> {{item.voteNum}}</text>
+            <text class='blue blue2'> {{item.joinSum}}</text>
           </view>
         </view>
         <view class="small-label online" wx:if="{{item.state == '1'}}">
@@ -34,17 +34,17 @@
         </view>
         <view class="small-label warn" wx:if="{{item.state == '2'}}">
           活动截止
-        </view>
+        </view> 
     </view>
   </view>
   <view class="data-list" wx-if="{{activeIndex == '2'}}">
-    <view class='data-item' wx:for="{{voteList}}" wx:key="{{index}}" data-id="{{item._id}}" data-index="{{index}}" bind:tap="openDetail">
+    <view class='data-item' wx:for="{{voteList}}" wx:key="{{index}}" data-id="{{item.id}}" data-index="{{index}}" bind:tap="openDetail">
         <view class='data-item-head'>
-          <image class="data-item-img" src="{{item.imgSrc}}"></image>
+          <image class="data-item-img" src="{{item.avatarUrl}}"></image>
           <text class='gray'>{{item.nickName}}</text>
         </view>
         <view class="data-item-body">
-          <view class='item-picture'><image class="suoluetu" src="{{item.imgSrc}}"></image></view>
+          <view class='item-picture'><image class="suoluetu" src="{{item.imageUrl}}"></image></view>
           <view class='item-title1'>{{item.title}}</view>
         </view>
         <view class='data-item-line'>
@@ -54,7 +54,7 @@
           </view>
           <view>
             <text class='gray'>参与人数:</text>
-            <text class='blue blue2'> {{item.voteNum}}</text>
+            <text class='blue blue2'> {{item.joinSum}}</text>
           </view>
         </view>
         <view class="small-label online" wx:if="{{item.state == '1'}}">

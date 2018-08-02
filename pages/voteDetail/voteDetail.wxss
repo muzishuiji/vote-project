@@ -20,7 +20,6 @@
   width: calc(100vw - 30px);
   margin: 10px 15px;
   border-bottom: 1px solid #eeeeee;
-  text-indent: 2em;
   padding: 0 5px 20px 5px;
 }
 
@@ -78,6 +77,12 @@
   border-radius: 10px;
   border: 1px solid #eeeeee;
   box-shadow: 0 0 3px #dddddd;
+}
+.null-item {
+  border-radius: 5px;
+  padding: 8px;
+  margin-bottom: 15px;
+  text-align: center;
 }
 .data-item:last-child {
   margin-bottom: 10px;

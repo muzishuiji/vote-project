@@ -3,21 +3,22 @@
   <view class="vote-title">
     活动名称: {{activityName}}
   </view>
+  <view class="vote-title">
+      参赛作品名称: {{voteMess.title}}
+  </view>
 
   <view class="vote-image">
-    <image class="activity-bg" src="/images/bg.jpg"></image>
+    <image class="activity-bg" src="{{voteMess.imageUrl}}"></image>
 
   </view>
   <view class="activity-tab">
-      这里是活动的相关文字介绍
-      活动名称:
-      活动主题:
-      活动参与方式:
-      活动规则:
-      ...............
       {{voteMess.content}}
   </view>
-  <view class="text-center">
+  <view class="vote-title">
+    活动的最大参与人数: {{voteMess.maxJoin}}
+  </view>
+
+  <view class="text-center" style="margin-top: 10px;">
     <text class="gray">活动投票暂未开始,请耐心等待奥~</text>
   </view>
 </view>

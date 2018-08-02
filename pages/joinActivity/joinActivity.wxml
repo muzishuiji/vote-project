@@ -1,16 +1,16 @@
 <!--joinActivity.wxml-->
 <view class="container">
     <view class="page__bd">
-        <view class="vote-title">活动名称: {{voteMess.title}}</view>
+        <view class="vote-title">活动名称: {{activityTitle}}</view>
         <view class="pick-text">
-             <input bindinput="bindNumInput" maxlength="30" placeholder="参赛作品名称,不超过30字" style="width: 100%;min-height: 1.0;height:auto;"/>
+             <input bindinput="bindTitleInput" maxlength="30" placeholder="参赛作品名称,不超过30字" style="width: 100%;min-height: 1.0;height:auto;"/>
         </view>
         <view class="pick-text">
-             <input bindinput="bindNumInput" maxlength="30" placeholder="一句话简单描述,不超过50字" maxLength="50" style="width: 100%;min-height: 1.0;height:auto;" />
+             <input bindinput="bindSloganInput" maxlength="30" placeholder="一句话简单描述,不超过50字" maxLength="50" style="width: 100%;min-height: 1.0;height:auto;" />
         </view>
         <view class="img-box" bind:tap="uploadImg">
-            <image  wx:if="{{!imgSrc}}" class="upload-icon" src="/images/upload.png"></image>
-            <image class="activity-avatar" src="{{imgSrc}}"></image>
+            <image  wx:if="{{!imageUrl}}" class="upload-icon" src="/images/upload.png"></image>
+            <image class="activity-avatar" src="{{imageUrl}}"></image>
         </view>
         
         <view class="pick-text">

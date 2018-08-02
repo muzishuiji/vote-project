@@ -31,7 +31,7 @@ Page({
       success: (res) => {
         let response = res;
         let voteList = this.data.voteList;
-        console.log(res);
+        // console.log(res);
         if(response.data.code == 200) {
           if(response.data.data.records.length > 0) {
             voteList = voteList.concat(response.data.data.records,response.data.data.records);

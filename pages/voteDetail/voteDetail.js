@@ -1,34 +1,12 @@
-//index.js
+//voteDetail.js
 //获取应用实例 
 const app = getApp();
 
 Page({
   data: {
-    voteMess: {
-      imgSrc: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132",
-      nickName: "认真的雪",
-      address: "浙江 温州",
-      deadline: 1535155200000,
-      maxNum: 223,
-      title: "异性时间投票",
-      voteType: "1",
-      joinList:[
-        {
-          imgSrc: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132",
-          title: "选项名称这是一个很长的名字,很长很长",
-          content: '',
-          description: '这是选项的简单描述',
-          voteNum: 200
-        },
-        {
-          imgSrc: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132",
-          title: "选项名称",
-          content: '',
-          description: '这是选项的简单描述',
-          voteNum: 300
-        }
-      ]
-    }
+    voteMess: {},
+    itemList: [],
+    id: ''
   },
   //事件处理函数
   bindViewTap: function() {
@@ -38,40 +16,82 @@ Page({
   },
   // 加载事件
   onLoad: function (options) {
-    let voteList = this.data.voteList;
     let _id = options.id;
-  
+    this.setData({
+      id: _id
+    });
+    this.getDataList(_id);
+  },
+  // 获取投票详情
+  getDataList: function(_id) {
+    wx.request({
+      url: app.globalData.baseUrl + 'activity/' + _id, 
+      method: 'GET',
+      header: {
+      'content-type': 'application/json',
+      'sessionId': app.globalData.sessionId
+      },
+      success: (res) => {
+        let response = res;
+        let voteMess = {};
+        // console.log(res);
+        if(response.data.code == 200) {
+          voteMess = response.data.data;
+          voteMess.leftTime = app.dealTime(voteMess.signEndTime);
+          this.setData({
+            voteMess: voteMess
+          });
+        }
+      },
+      fail: function(err) {
+        console.log(err);
+        wx.showToast({
+          title: '失败了,请检查网络设置~',
+          icon: "none"
+        });
+        return false;
+      }
+    });
+  },
+  // 获取投票参与者列表
+  getItemList: function (_id) {
+    let _param = this.data.params;
+    _param.activityId = _id;
+    wx.request({
+      url: app.globalData.baseUrl + 'activity/item/list', 
+      method: 'GET',
+      data: _param,
+      header: {
+      'content-type': 'application/json',
+      'sessionId': app.globalData.sessionId
+      },
+      success: (res) => {
+        let response = res;
+        let itemList = [];
+        console.log(res);
+        if(response.data.code == 200) {
+          itemList = response.data.data.records;
+          this.setData({
+            itemList: itemList
+          });
+        }
+      },
+      fail: function(err) {
+        console.log(err);
+        wx.showToast({
+          title: '失败了,请检查网络设置~',
+          icon: "none"
+        });
+        return false;
+      }
+    });
   },
   onShow: function() {
     var that = this;
-    // 请求投票信息的数据
-    // wx.request({
-    //   url: app.globalData.baseUrl + 'voteList', 
-    //   method: 'GET',
-    //   header: {
-    //   'content-type': 'application/json'
-    //   },
-    //   success: function(res) {
-    //     var voteList = res.data.data || [];
-    //     if(voteList.length != 0) {
-    //       voteList.forEach(function (item, index) {
-    //         item.leftTime = app.dealTime(item.deadline);
-    //       });
-    //     }
-    //     that.setData({
-    //       voteList: voteList
-    //     });
-    //     return true;
-    //   },
-    //   fail: function(err) {
-    //     console.log(err);
-    //     return false;
-    //   }
-    // });
   },
   openDetail: function() {
     wx.navigateTo({
-      url: '../voteItemDetail/voteItemDetail'
+      url: '../voteItemDetail/voteItemDetail?id=' +  this.data.id + '&title=' + this.data.voteMess.title
     })
   }
 })

@@ -1,17 +1,12 @@
 <!--voteDetail.wxml-->
 <view class="container">
   <view class="vote-image">
-    <image class="activity-bg" src="/images/bg.jpg"></image>
+    <image class="activity-bg" src="{{voteMess.imageUrl}}"></image>
   </view>
   <view class="activity-tab">
-      活动名称: {{voteMess.title}}
-      这里是活动的相关文字介绍
-      活动名称:
-      活动主题:
-      活动参与方式:
-      活动规则:
-      ...............
-      {{voteMess.content}}
+    <view class="mess-item">活动名称: {{voteMess.title}}</view>
+    <view class="mess-item">活动详情: {{voteMess.content}}</view>
+    <view class="mess-item">活动的最大参与人数: {{voteMess.maxJoin}}</view>
   </view>
   <view class="data-list">
     <view class="list-title">
@@ -22,12 +17,12 @@
       <view class="list-title-text">点赞榜</view>  
       <view class="list-title-line right"></view>  
     </view>
-    <view class='data-item' wx:for="{{voteMess.joinList}}" wx:key="{{index}}" data-id="{{item._id}}" data-name="1" >
+    <view class='data-item' wx:for="{{itemList}}" wx:key="{{index}}" data-id="{{item._id}}" data-name="1" bind:tap="">
         <view class='data-item-index'>
           <text>{{index + 1}}</text>
         </view>
         <view class='data-item-left'>
-          <image class="data-item-img" src="{{item.imgSrc}}"></image>
+          <image class="data-item-img" src="{{item.imageUrl}}"></image>
         </view>
         <view class='data-item-right'>
           <view style="font-size: 14px;">
@@ -39,6 +34,9 @@
          
         </view>
         <view class="warn-btn" bind:tap="openDetail">点赞</view>
+    </view>
+    <view class='null-item'  wx:if="{{itemList.length == 0}}">
+        无人参与该投票╮（╯＿╰）╭
     </view>
   </view>
 </view>

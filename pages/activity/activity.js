@@ -5,7 +5,10 @@ const app = getApp();
 Page({
   data: {
     activeIndex: '1',
-
+    params: {
+      page: 1,
+      pageSize: 10
+    },
     activityList: [
       {
         imgSrc: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132",
@@ -19,86 +22,16 @@ Page({
     ],
     voteList:[
       {
-        imgSrc: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132",
+        avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132",
         nickName: "认真的雪",
-        address: "浙江 温州",
-        deadline: 1535155200000,
-        voteNum: 223,
+        electEndTime: 1535155200000,
+        signEndTime: 1535155200000,
+        maxJoin: 223,
         title: "夏季来啦,我们举行一个最美青路泳装大赛如何?",
         voteType: "1",
         picture: "/images/picture.jpg",
         selectList: [
-          {
-            text: "8:00",
-            voteNum: 60,
-            voteUser: [{
-              nickName: '功成名就',
-              imgSrc: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132"
-            },
-            {
-              nickName: '中华',
-              imgSrc: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132"
-            },
-            {
-              nickName: '小明',
-              imgSrc: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132"
-            }
-            ]
-          },
-          {
-            text: "8:20",
-            voteNum: 23,
-            voteUser: [
-              {
-                nickName: '功成名就',
-                imgSrc: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132"
-              },
-              {
-                nickName: '中华',
-                imgSrc: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132"
-              },
-              {
-                nickName: '小明',
-                imgSrc: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132"
-              }
-            ]
-          },
-          {
-            text: "9:00",
-            voteNum: 40,
-            voteUser: [
-              {
-                nickName: '功成名就',
-                imgSrc: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132"
-              },
-              {
-                nickName: '中华',
-                imgSrc: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132"
-              },
-              {
-                nickName: '小明',
-                imgSrc: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132"
-              }
-            ]
-          },
-          {
-            text: "都可以",
-            voteNum: 100,
-            voteUser: [
-              {
-                nickName: '功成名就',
-                imgSrc: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132"
-              },
-              {
-                nickName: '中华',
-                imgSrc: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132"
-              },
-              {
-                nickName: '小明',
-                imgSrc: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132"
-              }
-            ]
-          }
+         
         ]
       }
     ]
@@ -116,6 +49,7 @@ Page({
   },
   // 加载事件
   onLoad: function () {
+    this.getDataList();
     var voteList = this.data.voteList || [];
     voteList.forEach(function (item, index) {
       item.leftTime = app.dealTime(item.deadline);
@@ -154,12 +88,71 @@ Page({
     console.log(e.currentTarget.dataset);
     this.setData({
       activeIndex: e.currentTarget.dataset.id
-    })
+    });
     
   },
+  // 获取投票数据列表
+  getDataList: function(e) {
+    wx.request({
+      url: app.globalData.baseUrl + 'activity/list', 
+      method: 'GET',
+      data: this.data.params,
+      header: {
+      'content-type': 'application/json',
+      'sessionId': app.globalData.sessionId
+      },
+      success: (res) => {
+        let response = res;
+        let voteList = this.data.voteList;
+        let activityList = this.data.activityList;
+        // console.log(res);
+        if(response.data.code == 200) {
+          if(response.data.data.records.length > 0) {
+            voteList = response.data.data.records;
+            activityList = response.data.data.records;
+            voteList.forEach((item) => {
+              item.leftTime = app.dealTime(item.electEndTime);
+              if(item.leftTime!= "投票截止") {
+                item.state = "1"
+              } else{
+                item.state = "2"
+              }
+            });
+            activityList.forEach((item) => {
+              item.leftTime = app.dealTime(item.signEndTime);
+              if(item.leftTime!= "投票截止") {
+                item.state = "1"
+              } else{
+                item.state = "2"
+              }
+            });
+            this.setData({
+              voteList: voteList,
+              hasRefesh: false
+            });
+            return true;
+          } else {
+            wx.showToast({
+              title: '没有更多了',
+              icon: "none"
+            });
+            return false;
+          }
+          
+        }
+      },
+      fail: function(err) {
+        console.log(err);
+        wx.showToast({
+        title: '失败了,请检查网络设置~',
+        icon: "none"
+        });
+        return false;
+      }
+    });
+  },
   // 获取投票详情
-  openDetail:function(e) {
-    
+  openDetail:function(e) {  
     let index = e.currentTarget.dataset.index, that = this, _id = e.currentTarget.dataset.id;
     app.globalData.voteMess = this.data.voteList[index];
     if(this.data.voteList[index].item == "2") {

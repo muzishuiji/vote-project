@@ -1,7 +1,6 @@
 .page__bd {
   height: 100vh;
   padding: 10px 15px;
-  overflow-y: auto;
   font-size:14px;
 }
 checkbox-group {

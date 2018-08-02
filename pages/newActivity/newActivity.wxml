@@ -5,8 +5,8 @@
             <textarea class="pick-textarea" bindinput="bindTitleInput" maxLength="100" style="min-height: 2.6rem;" placeholder="活动投票的名称,不超过100字" ></textarea>
         </view>
         <view class="img-box" bind:tap="uploadImg">
-            <image  wx:if="{{!imgSrc}}" class="upload-icon" src="/images/upload.png"></image>
-            <image class="activity-avatar" src="{{imgSrc}}"></image>
+            <image wx:if="{{!imageUrl}}" class="upload-icon" src="/images/upload.png"></image>
+            <image class="activity-avatar" src="{{imageUrl}}"></image>
         </view>
         
         <view class="pick-text">
@@ -17,14 +17,14 @@
             报名截止日期: 
           </view>   
           <view class="pick-gray">
-            <picker mode="date" value="{{joinDate}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange">
+            <picker mode="date" value="{{joinDate}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange1">
                 <view class="picker">
                 {{joinDate}}
                 </view>
             </picker>
           </view> 
           <view class="pick-gray small-part">
-            <picker mode="time" value="{{joinTime}}" start="00:01" end="23:59" bindchange="bindTimeChange">
+            <picker mode="time" value="{{joinTime}}" start="00:01" end="23:59" bindchange="bindTimeChange1">
                 <view class="picker">
                 {{joinTime}}
                 </view>
@@ -36,14 +36,14 @@
             评选截止日期: 
           </view>  
           <view class="pick-gray">
-            <picker mode="date" value="{{voteDate}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange">
+            <picker mode="date" value="{{voteDate}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange2">
                 <view class="picker">
                 {{voteDate}}
                 </view>
             </picker>
           </view> 
           <view class="pick-gray small-part">
-            <picker mode="time" value="{{voteTime}}" start="00:01" end="23:59" bindchange="bindTimeChange">
+            <picker mode="time" value="{{voteTime}}" start="00:01" end="23:59" bindchange="bindTimeChange2">
                 <view class="picker">
                 {{voteTime}}
                 </view>
@@ -54,7 +54,7 @@
             <input type="number" bindinput="bindNumInput" placeholder="活动最大参与人数,默认50" style="width: 100%;" /> 
         </view>
         <view>
-            <view class="pick-submit" bindtap="sumitVote">创建</view>
+            <view class="pick-submit" bindtap="sumitVote" >创建</view>
         </view>
     </view>
 </view>
