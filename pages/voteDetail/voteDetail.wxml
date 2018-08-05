@@ -29,11 +29,11 @@
             <view style="height: 2.2rem;">{{item.title}}</view>
           </view>
           <view class="pick-num">
-             {{item.voteNum}}个赞
+             {{item.upSum}}个赞
           </view>
          
         </view>
-        <view class="warn-btn" bind:tap="openDetail">点赞</view>
+        <view class="warn-btn" data-index="{{index + 1}}" bind:tap="openDetail">点赞</view>
     </view>
     <view class='null-item'  wx:if="{{itemList.length == 0}}">
         无人参与该投票╮（╯＿╰）╭

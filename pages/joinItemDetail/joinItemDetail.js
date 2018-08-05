@@ -16,15 +16,16 @@ Page({
   }, 
   // 加载事件
   onLoad: function (options) {
+    app.authJudge(this);
     let _id = options.id;
     let title = options.title;
     this.setData({
       activityName: title,
       id: _id
     })
-    this.getDataList(_id);
+    this.getData(_id);
   }, 
-  getDataList: function(_id) {
+  getData: function(_id) {
     wx.request({
       url: app.globalData.baseUrl + 'activity/' + _id, 
       method: 'GET',

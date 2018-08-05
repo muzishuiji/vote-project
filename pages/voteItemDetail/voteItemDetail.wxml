@@ -14,31 +14,25 @@
   
   <view class="vote-image">
     <view class="show-on-image">
-      <view class="vote-item-title">选项的名称</view>
+      <view class="vote-item-title">{{voteMess.title}}</view>
       <view class="linear-blue">
-        <text class="mr-30">NO.1</text>
-        <text >300个赞</text>
+        <text class="mr-30">NO.{{paiming}}</text>
+        <text >{{voteMess.upSum}}个赞</text>
       </view>
       <view class="give-call">
         点赞
       </view> 
     </view>
-    <image class="activity-bg" src="/images/bg.jpg"></image>
+    <image class="activity-bg" src="{{voteMess.imageUrl}}"></image>
   </view>
   <view class="activity-tab">
-        这里是活动的相关文字介绍
-        活动名称:
-        活动主题:
-        活动参与方式:
-        活动规则:
-        ...............
         {{voteMess.content}}
   </view>
   <view class="data-list">
     <view class="list-part">
         打call榜 
     </view>
-    <view class='data-item' wx:for="{{voteMess.commentList}}" wx:key="{{index}}">
+    <view class='data-item' wx:for="{{callList}}" wx:key="{{index}}">
       <view class="data-flex" >
           <view class='data-item-left'>
             <image class="data-item-img" src="{{item.avatarUrl}}"></image>
@@ -75,10 +69,10 @@
         </view>
       </view>
       <view class="add-mar">
-        <textarea class="action-input" placeholder="10字以上为他(她)打call" />
+        <textarea class="action-input" bindinput="setCallContent" placeholder="10字以上为他(她)打call" />
       </view>
       <view class="btn-right">
-        <view class="extra" bind:tap="handleCancel">发表</view>
+        <view class="extra" bind:tap="callFor">发表</view>
       </view>
     </view>
   </view>

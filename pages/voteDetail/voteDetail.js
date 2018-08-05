@@ -6,7 +6,12 @@ Page({
   data: {
     voteMess: {},
     itemList: [],
-    id: ''
+    id: '',
+    params: {
+      page: 1,
+      pageSize: 10,
+      activityId: null
+    },
   },
   //事件处理函数
   bindViewTap: function() {
@@ -21,6 +26,7 @@ Page({
       id: _id
     });
     this.getDataList(_id);
+    this.getItemList(_id);
   },
   // 获取投票详情
   getDataList: function(_id) {
@@ -89,9 +95,10 @@ Page({
   onShow: function() {
     var that = this;
   },
-  openDetail: function() {
+  openDetail: function(e) {
+    let index = e.currentTarget.dataset.index;
     wx.navigateTo({
-      url: '../voteItemDetail/voteItemDetail?id=' +  this.data.id + '&title=' + this.data.voteMess.title
-    })
+      url: '../voteItemDetail/voteItemDetail?id=' +  this.data.id + '&title=' + this.data.voteMess.title + '&paiming=' + index
+    });
   }
 })

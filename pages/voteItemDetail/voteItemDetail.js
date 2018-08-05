@@ -16,31 +16,18 @@ Page({
             openType: 'share'
         }
     ],
-    voteMess: {
-      imgSrc: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132",
-      nickName: "认真的雪",
-      address: "浙江 温州",
-      deadline: 1535155200000,
-      voteNum: 223,
-      title: "异性时间投票",
-      voteType: "1",
-      commentList:[
-        {
-          avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132",
-          nickName: "选项名称",
-          time: '刚刚',
-          pick: false,
-          content: '如果你无法简洁的表达你的想法，那只说明你还不够了解它。-- 阿尔伯特·爱因斯坦',
-        },
-        {
-          avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/4HiaHHeHoricmKu7aXK3X0Z93wevSEicOt9HVbm0yp3L9GkyicPmNkc7KBuvN5d1rrWWxrEcHRzbsL7KzDslrTJeJg/132",
-          nickName: "选项名称",
-          time: '刚刚',
-          pick: false,
-          content: '如果你无法简洁的表达你的想法，那只说明你还不够了解它。-- 阿尔伯特·爱因斯坦',
-        }
-      ]
-    }
+    voteMess: {},
+    activityName: '',
+    voteMess: {},
+    id: '',
+    paiming: 1,
+    params: {
+      page: 1,
+      pageSize: 10,
+      itemId: null
+    },
+    callList: [],
+    callContent: ''
   },
   //事件处理函数
   bindViewTap: function() {
@@ -50,35 +37,130 @@ Page({
   },
   // 加载事件
   onLoad: function (options) {
-    let voteList = this.data.voteList;
-    let _id = options.id;
     app.authJudge(this);
-    
+    let _id = options.id;
+    let title = options.title;
+    this.setData({
+      id: _id,
+      activityName: title
+    })
+    this.getData(_id);
+    this.getCallList(_id);
   },
   onShow: function() {
     var that = this;
-    // 请求投票信息的数据
-    // wx.request({
-    //   url: 'https://lzx2005.com/normal/1', 
-    //   method: 'GET',
-    //   header: {
-    //   'content-type': 'application/json'
-    //   },
-    //   success: (res) => {
-    //     alert(res.code);
-    //     return true;
-    //   },
-    //   fail: function(err) {
-    //     console.log(err);
-    //     return false;
-    //   }
-    // });
+  },
+  getData: function(_id) {
+    wx.request({
+      url: app.globalData.baseUrl + 'activity/' + _id, 
+      method: 'GET',
+      header: {
+      'content-type': 'application/json',
+      'sessionId': app.globalData.sessionId
+      },
+      success: (res) => {
+        let response = res;
+        let voteMess = {};
+        console.log(res);
+        if(response.data.code == 200) {
+          voteMess = response.data.data;
+          voteMess.leftTime = app.dealTime(voteMess.signEndTime);
+          this.setData({
+            voteMess: voteMess
+          });
+        }
+      },
+      fail: function(err) {
+        console.log(err);
+        wx.showToast({
+          title: '失败了,请检查网络设置~',
+          icon: "none"
+        });
+        return false;
+      }
+    });
+  },
+  getCallList: function(_id) {
+    let _params = this.data.params;
+    _params.itemId = _id;
+    wx.request({
+      url: app.globalData.baseUrl + 'activity/call/list', 
+      method: 'GET',
+      data: _params,
+      header: {
+      'content-type': 'application/json',
+      'sessionId': app.globalData.sessionId
+      },
+      success: (res) => {
+        let response = res;
+        console.log(res);
+        let callList = [];
+        if(response.data.code == 200) {
+          callList = response.data.data.records;
+        }
+        this.setData({
+          callList: callList
+        });
+      },
+      fail: function(err) {
+        console.log(err);
+        wx.showToast({
+          title: '失败了,请检查网络设置~',
+          icon: "none"
+        });
+        return false;
+      }
+    });
   },
   // 打开操作表
-  handleOpen1 () {
+  handleOpen1 () { 
       this.setData({
         sheetVisible: true
       });
+  },
+  setCallContent: function(e) {
+    let callContent = e.detail.value;
+    this.setData({
+      callContent: callContent
+    });
+  },
+  // 为参与者打call
+  callFor: function () {
+    let _param = {
+      content: this.data.callContent,
+      itemId: this.data.id
+    }
+    wx.request({
+      url: app.globalData.baseUrl + 'activity/call', 
+      method: 'POST',
+      data: _param,
+      header: {
+      'content-type': 'application/json',
+      'sessionId': app.globalData.sessionId
+      },
+      success: (res) => {
+        let response = res;
+        console.log(res);
+        let callList = [];
+        if(response.data.code == 200) {
+          wx.showToast({
+            title: '打call成功~',
+            icon: "success"
+          });
+        }
+        this.setData({
+          callList: callList
+        });
+      },
+      fail: function(err) {
+        console.log(err);
+        wx.showToast({
+          title: '失败了,请检查网络设置~',
+          icon: "none"
+        });
+        return false;
+      }
+    });
   },
   // 关闭操作表
   handleCancel1 () {
@@ -124,7 +206,7 @@ Page({
     this.setData({
       voteMess: voteMess
     });
-  },
+  }, 
   // 分享
   onShareAppMessage: function(res){
     if(res.from === "button") {
