@@ -3,6 +3,7 @@
   "usingComponents": {
     "i-radio-group": "../../dist/radio-group/index",
     "i-radio": "../../dist/radio/index",
-    "i-icon": "../../dist/icon/index"
+    "i-icon": "../../dist/icon/index",
+    "i-switch": "../../dist/switch/index"
   }
 }

@@ -95,7 +95,7 @@ Page({
     }
     voteMess.endTime = +new Date(this.data.date + ' ' + this.data.time);
     let nowDate = +new Date();
-    if(voteMess.deadline <= nowDate) {
+    if(voteMess.endTime <= nowDate) {
       wx.showToast({
         title: '结束时间需晚于当前时间奥~',
         icon: "none"

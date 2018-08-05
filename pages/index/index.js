@@ -67,8 +67,6 @@ Page({
         // appid: wx4a96dbab66a34495
         // appSecret:00dff3bcddf0896db2f86631ebf2bfde
         console.log(res.code);
-
-
       }
     })
   }

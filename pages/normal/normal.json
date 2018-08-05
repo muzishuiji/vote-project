@@ -1,12 +1,9 @@
 {
     "navigationBarTitleText": "文字投票列表",
+    "enablePullDownRefresh": true,
     "usingComponents": {
-        "tab-bar": "../../components/tab/tab",
         "auth-modal": "../../components/auth/auth",
         "i-icon": "../../dist/icon/index",
         "i-spin": "../../dist/spin/index"
-    },
-    "window": {
-        "enablePullDownRefresh": true
     }
 }

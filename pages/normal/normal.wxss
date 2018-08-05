@@ -4,8 +4,7 @@
 .container {
   position: relative;
   width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+
   background: #f1f1f1;
 }
 .loading-box {
@@ -62,7 +61,6 @@
 }
 
 .data-list {
-  height: 100vh;
   background: #f1f1f1;
   padding: 10px 15px;
 }
@@ -74,7 +72,33 @@
   margin-bottom: 15px;
   position: relative;
 }
-
+.list-title{
+  color:#aaa;
+  height:30px;
+  line-height: 26px;
+  text-align:center;
+  display:-webkit-flex;
+  display:flex;
+  margin:0 10%;
+  position:relative;
+  font-size: 14px;
+}
+.list-title-top {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%); 
+}
+.list-title-text {
+  flex: 0 0 100px;
+}
+.list-title-line {
+  flex: 1;
+  width: 100px;
+  height: 1px;
+  background: #ddd;
+  margin-top: 13px;
+}
 .data-item-line {
   width: calc(100vw - 60px);
   display: flex;
