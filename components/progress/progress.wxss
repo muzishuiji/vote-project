@@ -5,20 +5,21 @@
   line-height: 30px;
 }
 .self-progress-bar {
-  flex: 6;
-  height:8px;
-  border-radius:5px;
+  flex: 1;
+  height:5px;
+  border-radius: 6px;
   background:#f1f1f1;
-  margin-top: 7px;
+  margin-top: 13px;
 }
 .active-bar {
   background: #0186fa;
   width: 60%;
-  height: 8px;
-  border-radius: 5px;
+  height: 5px;
+  border-radius: 6px;
 }
 .self-progress-text {
-  flex: 1;
+  flex: 0 0 50px;
+  width: 50px;
   font-size: 14px;
   text-align: right;
 }

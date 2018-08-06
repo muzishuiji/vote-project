@@ -27,6 +27,9 @@ Page({
   },
   // 加载事件
   onLoad: function () {
+    wx.showLoading({
+      title: '努力加载中',
+    });
     app.authJudge(this);
   },
   // 获取用户信息

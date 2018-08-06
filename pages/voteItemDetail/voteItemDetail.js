@@ -10,11 +10,11 @@ Page({
     hasUserInfo: false,
     sheetVisible: false,
     actions: [
-        {
-            name: '邀请朋友一起pick',
-            icon: 'share',
-            openType: 'share'
-        }
+      {
+          name: '邀请朋友一起pick',
+          icon: 'share',
+          openType: 'share'
+      }
     ],
     voteMess: {},
     activityName: '',
@@ -26,8 +26,9 @@ Page({
       pageSize: 10,
       itemId: null
     },
-    callList: [],
-    callContent: ''
+    callList: [], 
+    callContent: '',
+    hasPicked: false
   },
   //事件处理函数
   bindViewTap: function() {
@@ -40,19 +41,26 @@ Page({
     app.authJudge(this);
     let _id = options.id;
     let title = options.title;
+    let _itemId = options.itemId;
     this.setData({
       id: _id,
+      itemId:_itemId,
       activityName: title
     })
-    this.getData(_id);
-    this.getCallList(_id);
+    this.getData(_itemId);
+    this.getCallList(_itemId);
   },
   onShow: function() {
     var that = this;
   },
+  // 获取详情
   getData: function(_id) {
+    // 显示加载图标
+    wx.showLoading({
+      title: '努力加载中',
+    });
     wx.request({
-      url: app.globalData.baseUrl + 'activity/' + _id, 
+      url: app.globalData.baseUrl + 'activity/item/' + _id, 
       method: 'GET',
       header: {
       'content-type': 'application/json',
@@ -61,7 +69,8 @@ Page({
       success: (res) => {
         let response = res;
         let voteMess = {};
-        console.log(res);
+        // console.log(res);
+        wx.hideLoading();
         if(response.data.code == 200) {
           voteMess = response.data.data;
           voteMess.leftTime = app.dealTime(voteMess.signEndTime);
@@ -71,7 +80,8 @@ Page({
         }
       },
       fail: function(err) {
-        console.log(err);
+        // console.log(err);
+        wx.hideLoading();
         wx.showToast({
           title: '失败了,请检查网络设置~',
           icon: "none"
@@ -80,6 +90,22 @@ Page({
       }
     });
   },
+  // 事件转换函数
+  formatTime: function(timestamp) {
+    let time = new Date(timestamp);
+    let month = time.getMonth()+1;
+    if(month < 10) {
+      month = '0' + month;
+    }
+    let date = time.getDate();
+    if(date < 10) {
+      date = '0' + date;
+    }
+    let hours = time.getHours();
+    let minutes = time.getMinutes();
+    return month + '-' + date + ' ' + hours + ':' + minutes;
+  },
+  // 获取打call列表
   getCallList: function(_id) {
     let _params = this.data.params;
     _params.itemId = _id;
@@ -97,6 +123,29 @@ Page({
         let callList = [];
         if(response.data.code == 200) {
           callList = response.data.data.records;
+          callList.forEach(item => {
+            let last = item.createdTime - +new Date();
+            switch(last) {
+              case last <= 600000:
+                item.leftTime = '刚刚';
+                break;
+              case last <= 3600000:
+                item.leftTime = Math.ceil(last / 60000) + '分钟前';
+                break;
+              case last <= 12000000:
+                item.leftTime = Math.ceil(last / 3600000) + '小时前';
+                break; 
+              case last <= 86400000:
+                item.leftTime = '今天 ' + parseInt((last % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) + parseInt((last % (1000 * 60 * 60)) / (1000 * 60));
+                break; 
+              case last <= 86400000:
+                item.leftTime = '今天 ' + parseInt((last % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) + parseInt((last % (1000 * 60 * 60)) / (1000 * 60));
+                break; 
+              default:
+                item.leftTime = this.formatTime(item.createdTime);
+                break;   
+            }
+          });
         }
         this.setData({
           callList: callList
@@ -112,6 +161,53 @@ Page({
       }
     });
   },
+  // 点赞
+  pickVote: function() {
+    if(this.data.hasPicked) {
+      wx.showToast({
+        title: '你已经点过赞了',
+        icon: "none"
+      });
+    }
+    wx.request({
+      url: app.globalData.baseUrl + 'activity/item/' + this.data.itemId + '/up', 
+      method: 'POST',
+      data: {},
+      header: {
+      'content-type': 'application/json',
+      'sessionId': app.globalData.sessionId
+      },
+      success: (res) => {
+        let response = res;
+        let voteMess = this.data.voteMess;
+        if(response.data.code == 200) {
+          wx.showToast({
+            title: '点赞成功',
+            icon: "success"
+          });
+          voteMess.upSum++;
+        } else if(response.data.code == 10011) {
+          wx.showToast({
+            title: '你已经点过赞了',
+            icon: "none"
+          });
+        }
+        this.setData({
+          hasPicked: true,
+          voteMess: voteMess
+        }); 
+      },
+      fail: function(err) {
+        console.log(err);
+        wx.showToast({
+          title: '失败了,请检查网络设置~',
+          icon: "none"
+        });
+        return false;
+      }
+    });
+  },
+  
   // 打开操作表
   handleOpen1 () { 
       this.setData({
@@ -128,7 +224,7 @@ Page({
   callFor: function () {
     let _param = {
       content: this.data.callContent,
-      itemId: this.data.id
+      itemId: this.data.itemId
     }
     wx.request({
       url: app.globalData.baseUrl + 'activity/call', 
@@ -147,13 +243,18 @@ Page({
             title: '打call成功~',
             icon: "success"
           });
+          this.getCallList(this.data.itemId);
         }
         this.setData({
-          callList: callList
+          callList: callList,
+          visible: false
         });
       },
       fail: function(err) {
         console.log(err);
+        this.setData({
+          visible: false
+        });
         wx.showToast({
           title: '失败了,请检查网络设置~',
           icon: "none"
@@ -200,11 +301,38 @@ Page({
   },
   // 给评论点赞
   pickComment:function (e) {
-    var index = e.currentTarget.dataset.id, voteMess = this.data.voteMess;
-    voteMess.commentList[index].pick = !voteMess.commentList[index].pick;
-    console.log(voteMess.commentList);
-    this.setData({
-      voteMess: voteMess
+    var id = e.currentTarget.dataset.id,
+        index = e.currentTarget.dataset.index,
+        callList = this.data.callList;
+    if(callList[index].uped) {
+      return false;
+    }
+    wx.request({
+      url: app.globalData.baseUrl + 'activity/call/' + this.data.itemId + '/up', 
+      method: 'POST',
+      data: {},
+      header: {
+      'content-type': 'application/json',
+      'sessionId': app.globalData.sessionId
+      },
+      success: (res) => {
+        let response = res;
+        if(response.data.code == 200) {
+          callList[index].uped = true;
+          callList[index].upSum++;
+          this.setData({
+            callList: callList
+          });
+        }
+      },
+      fail: function(err) {
+        // console.log(err);
+        wx.showToast({
+          title: '失败了,请检查网络设置~',
+          icon: "none"
+        });
+        return false;
+      }
     });
   }, 
   // 分享

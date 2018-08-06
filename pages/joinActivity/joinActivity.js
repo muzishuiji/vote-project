@@ -13,7 +13,7 @@ Page({
     activityTitle: ''
   },
   onLoad: function (options) {
-    console.log(options);
+    // console.log(options);
     let activityVote = this.data.activityVote;
     activityVote.activityId = options.id
     let activityTitle = options.title;

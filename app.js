@@ -77,72 +77,80 @@ App({
   },
   loginIn: function(info) {
     const app = getApp();
-    wx.login({
-      success: res => {
-        let params = {
-          code: res.code, 
-          avatarUrl: info.avatarUrl,
-          city: info.city, 
-          country: info.country, 
-          language: info.language, 
-          nickName: info.nickName, 
-          province: info.province
-        };
-        wx.request({
-          url: this.globalData.baseUrl + 'auth/getSession', 
-          method: 'GET',
-          data: params,
-          header: {
-          'content-type': 'application/json'
-          },
-          success: (res) => {
-            if(res.data.code == 200) {
-              app.globalData.sessionId = res.data.data.sessionId;
-            }    
-          },
-          fail: (err) => {
-            console.log(err);
-            return false;
-          }
-        });
-      }
-    })
-  },
-  // 用户授权
-  authJudge: function(self) {
-    const app = getApp();
-    if (app.globalData.userInfo) {
-      self.setData({
-        hasUserInfo: false
-      });
-      app.loginIn(app.globalData.userInfo);
-    } else if (self.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        if(res.authSetting) {
-          self.setData({
-            hasUserInfo: true
-          });
-        } else {
-          self.setData({
-            hasUserInfo: false
-          });
-          app.loginIn(app.globalData.userInfo);
-        }
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
+    return new Promise((resolve,reject) => {
+      wx.login({
         success: res => {
-          app.globalData.userInfo = res.userInfo;
-          self.setData({
-            hasUserInfo: false
+          let params = {
+            code: res.code, 
+            avatarUrl: info.avatarUrl,
+            city: info.city, 
+            country: info.country, 
+            language: info.language, 
+            nickName: info.nickName, 
+            province: info.province
+          };
+          wx.request({
+            url: this.globalData.baseUrl + 'auth/getSession', 
+            method: 'GET',
+            data: params,
+            header: {
+            'content-type': 'application/json'
+            },
+            success: (res) => {
+              wx.hideLoading();
+              if(res.data.code == 200) {
+                app.globalData.sessionId = res.data.data.sessionId;   
+              }   
+              resolve(res); 
+            },
+            fail: (err) => {
+              wx.hideLoading();
+              // console.log(err);
+              reject("请求失败,请检查网络设置");
+              return false;
+            }
           });
         }
       })
-    }
-
+    })
+  },
+  // 用户授权
+  authJudge: function(self,cb) {
+    const app = getApp();
+    return new Promise((resolve,reject) => {
+      if (app.globalData.userInfo) {
+        self.setData({
+          hasUserInfo: false
+        });
+        resolve(app.loginIn(app.globalData.userInfo));
+      } else if (self.data.canIUse){
+        // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+        // 所以此处加入 callback 以防止这种情况
+        app.userInfoReadyCallback = res => {
+          if(res.authSetting) {
+            self.setData({
+              hasUserInfo: true
+            });
+          } else {
+            self.setData({
+              hasUserInfo: false
+            });
+            resolve(app.loginIn(app.globalData.userInfo));
+          }
+        }
+      } else {
+        // 在没有 open-type=getUserInfo 版本的兼容处理
+        wx.getUserInfo({
+          success: res => {
+            app.globalData.userInfo = res.userInfo;
+            self.setData({
+              hasUserInfo: false
+            });
+          }
+        });
+        resolve(app.globalData.userInfo);
+      }
+    })
   }
   
 })

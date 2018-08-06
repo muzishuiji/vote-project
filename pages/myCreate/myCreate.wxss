@@ -130,18 +130,19 @@
 .delete-icon {
   position:absolute;
   right:10px;
-  top:5px;
+  top:8px;
   width:34px;
   height:34px;
   text-align:center;
-  line-height:40px;
+  line-height:38px;
   background:#f1f1f1;
   border-radius:50%;
 
+
 }
 .delete-icon-img {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 .online {
   background: #0186fa;

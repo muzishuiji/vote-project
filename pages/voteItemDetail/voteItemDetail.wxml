@@ -19,7 +19,7 @@
         <text class="mr-30">NO.{{paiming}}</text>
         <text >{{voteMess.upSum}}个赞</text>
       </view>
-      <view class="give-call">
+      <view class="give-call" bind:tap="pickVote">
         点赞
       </view> 
     </view>
@@ -42,17 +42,17 @@
               {{item.nickName}}
             </view>
             <view  style="font-size: 12px;color: #aaa;">
-              {{item.time}}
+              {{item.leftTime}}
             </view>
           </view>
       </view>
       <view class="comment-content"> 
         {{item.content}}
       </view>
-      <view class="text-right" style="height: 25px;" data-id="{{index}}" bind:tap="pickComment">
-        <i-icon  wx:if="{{item.pick}}" type="praise_fill" size="20" color="#0186fa" />
-        <i-icon wx:if="{{!item.pick}}"  type="praise_fill" size="20" color="#dddddd" />
-        <text style="font-size: 12px;"> 200</text>
+      <view class="text-right" style="height: 25px;" data-index="{{index}}" data-id="{{item.id}}" bind:tap="pickComment">
+        <i-icon  wx:if="{{item.uped}}" type="praise_fill" size="20" color="#0186fa" />
+        <i-icon wx:if="{{!item.uped}}"  type="praise_fill" size="20" color="#dddddd" />
+        <text style="font-size: 12px;"> {{item.upSum}}</text>
       </view>
     </view>
     <view class="call-for" bind:tap="handleOpen">

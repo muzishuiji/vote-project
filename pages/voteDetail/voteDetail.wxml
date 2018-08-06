@@ -17,7 +17,7 @@
       <view class="list-title-text">点赞榜</view>  
       <view class="list-title-line right"></view>  
     </view>
-    <view class='data-item' wx:for="{{itemList}}" wx:key="{{index}}" data-id="{{item._id}}" data-name="1" bind:tap="">
+    <view class='data-item' wx:for="{{itemList}}" wx:key="{{index}}" data-id="{{item.id}}" data-name="1" bind:tap="">
         <view class='data-item-index'>
           <text>{{index + 1}}</text>
         </view>
@@ -25,15 +25,15 @@
           <image class="data-item-img" src="{{item.imageUrl}}"></image>
         </view>
         <view class='data-item-right'>
-          <view style="font-size: 14px;">
-            <view style="height: 2.2rem;">{{item.title}}</view>
+          <view style="font-size: 12px;">
+            <view style="height: 32px;">{{item.title}}</view>
           </view>
           <view class="pick-num">
              {{item.upSum}}个赞
           </view>
          
         </view>
-        <view class="warn-btn" data-index="{{index + 1}}" bind:tap="openDetail">点赞</view>
+        <view class="warn-btn" data-index="{{index + 1}}" data-id="{{item.id}}" bind:tap="openDetail">点赞</view>
     </view>
     <view class='null-item'  wx:if="{{itemList.length == 0}}">
         无人参与该投票╮（╯＿╰）╭

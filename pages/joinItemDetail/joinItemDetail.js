@@ -26,6 +26,9 @@ Page({
     this.getData(_id);
   }, 
   getData: function(_id) {
+    wx.showLoading({
+      title: '努力加载中',
+    });
     wx.request({
       url: app.globalData.baseUrl + 'activity/' + _id, 
       method: 'GET',
@@ -37,6 +40,7 @@ Page({
         let response = res;
         let voteMess = {};
         // console.log(res);
+        wx.hideLoading();
         if(response.data.code == 200) {
           voteMess = response.data.data;
           voteMess.leftTime = app.dealTime(voteMess.signEndTime);
@@ -46,6 +50,7 @@ Page({
         }
       },
       fail: function(err) {
+        wx.hideLoading();
         console.log(err);
         wx.showToast({
           title: '失败了,请检查网络设置~',

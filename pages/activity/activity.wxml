@@ -5,12 +5,12 @@
   </view> 
   <view class="index-header">
     <view class="tab-select">
-      <view data-id="1" bind:tap="changeIndex" class="tab-select-item {{activeIndex == '1' ? 'active' : ''}}">活动评选中</view>
-      <view data-id="2" bind:tap="changeIndex" class="tab-select-item {{activeIndex == '2' ? 'active' : ''}}">活动报名中</view>
+      <view data-id="2" bind:tap="changeIndex" class="tab-select-item {{activeIndex == '2' ? 'active' : ''}}">活动评选中</view>
+      <view data-id="1" bind:tap="changeIndex" class="tab-select-item {{activeIndex == '1' ? 'active' : ''}}">活动报名中</view>
     </view>
   </view>
-  <view class="data-list" wx-if="{{activeIndex == '1'}}">
-    <view class='data-item' wx:for="{{voteList}}" wx:key="{{index}}" data-id="{{item.id}}" data-index="{{index}}" bind:tap="openDetail">
+  <view class="data-list" wx-if="{{activeIndex == '2'}}">
+    <view class='data-item' wx:for="{{activityList}}" wx:key="{{index}}" data-id="{{item.id}}" data-index="{{index}}" bind:tap="openDetail">
         <view class='data-item-head'>
           <image class="data-item-img" src="{{item.avatarUrl}}"></image>
           <text class='gray'>{{item.nickName}}</text>
@@ -36,8 +36,13 @@
           活动截止
         </view> 
     </view>
+    <view class="list-title" wx:if="{{!hasData1}}">
+      <view class="list-title-line"></view>
+      <view class="list-title-text">没有更多了</view>  
+      <view class="list-title-line"></view>  
+    </view>
   </view>
-  <view class="data-list" wx-if="{{activeIndex == '2'}}">
+  <view class="data-list" wx-if="{{activeIndex == '1'}}">
     <view class='data-item' wx:for="{{voteList}}" wx:key="{{index}}" data-id="{{item.id}}" data-index="{{index}}" bind:tap="openDetail">
         <view class='data-item-head'>
           <image class="data-item-img" src="{{item.avatarUrl}}"></image>
@@ -63,6 +68,11 @@
         <view class="small-label warn" wx:if="{{item.state == '2'}}">
           活动截止
         </view>
+    </view>
+    <view class="list-title" wx:if="{{!hasData2}}">
+      <view class="list-title-line"></view>
+      <view class="list-title-text">没有更多了</view>  
+      <view class="list-title-line"></view>  
     </view>
   </view>
 </view>

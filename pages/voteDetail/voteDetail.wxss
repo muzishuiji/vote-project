@@ -5,7 +5,7 @@
   width: 100vw;
   height: 100vh;
   font-size: 14px;
-  overflow-y: auto;
+  
 }
 .vote-image {
  margin: 0 15px 0 15px;
@@ -15,6 +15,7 @@
 .activity-bg {
   width: calc(100vw - 30px);
   height: 160px;
+  margin-top:10px;
 }
 .activity-tab {
   width: calc(100vw - 30px);
@@ -89,22 +90,22 @@
 }
 .data-item-index {
   flex: 0 0 20px;
-  line-height: 80px;
+  line-height: 65px;
   vertical-align: middle;
 }
 .data-item-left {
-  flex: 1;
-  line-height: 80px;
+  flex: 0 0 80px;
+  line-height: 65px;
   
 }
 .data-item-right {
-  flex: 4;
+  flex: 1;
   vertical-align: middle;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 .data-item-img {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 50px;
   vertical-align: middle;
   margin-right: 10px;
 }
@@ -136,7 +137,7 @@
   font-size: 12px;
   position: absolute;
   right: 10px;
-  bottom: 20px;
+  bottom: 8px;
   text-align: center;
 }
 .joinVote {

@@ -16,15 +16,18 @@ Page({
     voteMess: {}
   },
   onLoad: function (options) {
-    app.authJudge(this);
-    console.log(options);
-    this.getVoteDetail(options.id);
+    app.authJudge(this).then(() => {
+      this.getVoteDetail(options.id);
+    });
   }, 
  
   onShow: function() {
     
   },
   getVoteDetail: function (id) {
+    wx.showLoading({
+      title: '努力加载中',
+    });
     wx.request({
       url: app.globalData.baseUrl + 'normal/' + id, 
       method: 'GET',
@@ -38,17 +41,14 @@ Page({
         let voteMess = {};
         let sign = false;
         // console.log(res);
+        wx.hideLoading();
         if(response.data.code == 200) {
           voteMess = response.data.data;
           voteMess.leftTime = app.dealTime(voteMess.endTime);
           voteMess.items.forEach(element => {
             element.percent = Math.round((element.voteSum / voteMess.joinedUserSum).toFixed(2) * 100);
             element.canVote = true;
-            if(voteMess.multiple) {
-              if(element.voted) {
-                element.canVote = false;
-              }
-            } else {
+            if(!voteMess.multiple) {
               if(element.voted) {
                 sign = true;
               }
@@ -67,6 +67,7 @@ Page({
       },
       fail: function(err) {
         // console.log(err);
+        wx.hideLoading();
         wx.showToast({
           title: '失败了,请检查网络设置~',
           icon: "none"
@@ -77,7 +78,7 @@ Page({
   },
   // 打开操作表
   handleOpen () {
-    console.log("所发生的");
+    // console.log("所发生的");
     this.setData({
         visible: true
     });
@@ -105,7 +106,8 @@ Page({
     let voteMess = this.data.voteMess;
     let id = e.currentTarget.dataset.id;
     let index = e.currentTarget.dataset.index;
-    if(!voteMess.items[index].canVote) {
+    console.log(voteMess.items[index].canVote);
+    if(voteMess.items[index].voted || !voteMess.items[index].canVote) {
       wx.showToast({
         title: '你已经参与过该投票了~',
         icon: "none"
@@ -124,6 +126,10 @@ Page({
         let response = res;
         // console.log(res);
         if(response.data.code == 200) {
+          wx.showToast({
+            title: '投票成功',
+            icon: "success"
+          });
           voteMess.items[index].voted = !voteMess.items[index].voted;
           voteMess.joinedUserSum++;
           voteMess.items[index].voteSum++;

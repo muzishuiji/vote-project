@@ -5,7 +5,8 @@
   width: 100vw;
   height: 100vh;
   font-size: 14px;
-  overflow-y: auto;
+  padding-top:10px;
+
 }
 .vote-image {
  margin: 0 15px 0 15px;

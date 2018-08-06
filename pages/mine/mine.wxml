@@ -16,7 +16,7 @@
           <image class="list-item-img" src="/images/create.png"></image>
           <view>我创建的投票</view>
       </view>
-      <view class="list-item" data-id="1" bind:tap="openList">
+      <view class="list-item" data-id="2" bind:tap="openList">
           <image class="list-item-img" src="/images/joinIn.png"></image>
           <view>我参与的投票</view>
       </view>

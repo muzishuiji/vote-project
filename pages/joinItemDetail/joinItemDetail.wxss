@@ -5,8 +5,8 @@
   width: 100vw;
   height: 100vh;
   font-size: 14px;
-  overflow: hidden;
-  
+  padding-top:10px;
+
 }
 .vote-title {
   padding-left: 15px;

@@ -25,11 +25,16 @@ Page({
     this.setData({
       id: _id
     });
-    this.getDataList(_id);
-    this.getItemList(_id);
+    app.authJudge(this).then(() => {
+      this.getDataList(_id);
+      this.getItemList(_id);
+    });
   },
   // 获取投票详情
   getDataList: function(_id) {
+    wx.showLoading({
+      title: '努力加载中',
+    });
     wx.request({
       url: app.globalData.baseUrl + 'activity/' + _id, 
       method: 'GET',
@@ -41,6 +46,7 @@ Page({
         let response = res;
         let voteMess = {};
         // console.log(res);
+        wx.hideLoading();
         if(response.data.code == 200) {
           voteMess = response.data.data;
           voteMess.leftTime = app.dealTime(voteMess.signEndTime);
@@ -48,9 +54,11 @@ Page({
             voteMess: voteMess
           });
         }
+        return true;
       },
       fail: function(err) {
-        console.log(err);
+        // console.log(err);
+        wx.hideLoading();
         wx.showToast({
           title: '失败了,请检查网络设置~',
           icon: "none"
@@ -96,9 +104,20 @@ Page({
     var that = this;
   },
   openDetail: function(e) {
+    let _id = e.currentTarget.dataset.id;
     let index = e.currentTarget.dataset.index;
     wx.navigateTo({
-      url: '../voteItemDetail/voteItemDetail?id=' +  this.data.id + '&title=' + this.data.voteMess.title + '&paiming=' + index
+      url: '../voteItemDetail/voteItemDetail?id=' +  this.data.id + '&title=' + this.data.voteMess.title + '&paiming=' + index + '&itemId=' + _id
     });
+  },
+  // 分享
+  onShareAppMessage: function(res){
+    if(res.from === "button") {
+      console.log(res.target);
+    }
+    return {
+      title: this.data.voteMess.title,
+      path: '/pages/normalDetail/normalDetail'
+    }
   }
 })

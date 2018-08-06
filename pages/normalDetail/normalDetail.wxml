@@ -34,7 +34,7 @@
                 <view style="display: flex;justify-content:space-between;margin-top: 10px;">
                     <view style="margin-right: 20px;line-height: 30px;">
                         <text>{{item.content}} </text>
-                        <text style="color: #ddd;"> {{item.voteSum}} 票</text>
+                        <text style="color: #ddd;margin-left: 10px;"> {{item.voteSum}} 票</text>
                     </view>
                     <view wx:if="{{!item.voted}}" data-index="{{index}}"  data-id="{{item.id}}" class="pick-box" bind:tap="voteFor">
                       <image class="data-item-img2"  src="/images/pick.png"></image>  

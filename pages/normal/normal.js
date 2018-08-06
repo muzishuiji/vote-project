@@ -15,6 +15,10 @@ Page({
   },
   // 加载事件
   onLoad: function () {
+    // 显示加载图标
+    wx.showLoading({
+      title: '努力加载中',
+    });
     this.getDataList();
   },
   // 获取投票数据列表
@@ -30,136 +34,7 @@ Page({
       success: (res) => {
         let response = res;
         let voteList = this.data.voteList;
-        // console.log(res);
-        if(response.data.code == 200) {
-          if(response.data.data.records.length > 0) {
-            voteList = voteList.concat(response.data.data.records);
-            voteList.forEach((item) => {
-              item.leftTime = app.dealTime(item.endTime);
-              if(item.leftTime!= "投票截止") {
-                item.state = "1"
-              } else{
-                item.state = "2"
-              }
-            });
-            if(response.data.data.records.length < this.data.params.pageSize) {
-              this.setData({
-                voteList: voteList
-              });
-              return true;
-            } else {
-              this.setData({
-                voteList: voteList
-              });
-              return true;
-            } 
-          }
-          
-        }
-      },
-      fail: function(err) {
-        wx.showToast({
-          title: '失败了,请检查网络设置~',
-          icon: "none"
-        });
-        return false;
-      }
-    });
-  },
-  // 上拉触底加载
-  onReachBottom: function () {  
-    console.log(this.data.hasData);
-    if(this.data.hasData){
-      // 显示加载图标
-      wx.showLoading({
-        title: '玩命加载中',
-      });
-
-      let params = this.data.params;
-      params.page++;
-      this.setData({
-        params: params
-      });
-      wx.request({
-        url: app.globalData.baseUrl + 'normal/list', 
-        method: 'GET',
-        data: this.data.params,
-        header: {
-        'content-type': 'application/json',
-        'sessionId': app.globalData.sessionId
-        },
-        success: (res) => {
-          let response = res;
-          let voteList = this.data.voteList;
-          wx.hideLoading();
-          // console.log(res);
-          if(response.data.code == 200) {
-            if(response.data.data.records.length > 0) {
-              voteList = voteList.concat(response.data.data.records);
-              voteList.forEach((item) => {
-                item.leftTime = app.dealTime(item.endTime);
-                if(item.leftTime!= "投票截止") {
-                  item.state = "1"
-                } else{
-                  item.state = "2"
-                }
-              });
-              if(response.data.data.records.length < this.data.params.pageSize) {
-                this.setData({
-                  voteList: voteList,
-                  hasData: false
-                });
-                wx.showToast({
-                  title: '没有更多了',
-                  icon: "none"
-                });
-                return true;
-              } else {
-                this.setData({
-                  voteList: voteList,
-                  hasData: true
-                });
-                return true;
-              } 
-            }
-            
-          }
-        },
-        fail: (err) => {
-          this.setData({
-            voteList: voteList,
-            hasData: true
-          });
-          wx.showToast({
-            title: '失败了,请检查网络设置~',
-            icon: "none"
-          });
-          return false;
-        }   
-     })
-    }
-  },
-  // 下拉刷新事件
-  onPullDownRefresh: function () {
-    let _params = this.data.params;
-    _params.page = 1;
-    console.log(_params.page)
-    this.setData({
-      voteList: [],
-      params: _params,
-      hasRefesh: true
-    });
-    wx.request({
-      url: app.globalData.baseUrl + 'normal/list', 
-      method: 'GET',
-      data: this.data.params,
-      header: {
-      'content-type': 'application/json',
-      'sessionId': app.globalData.sessionId
-      },
-      success: (res) => {
-        let response = res;
-        let voteList = this.data.voteList;
+        wx.hideLoading();
         // console.log(res);
         if(response.data.code == 200) {
           if(response.data.data.records.length > 0) {
@@ -175,26 +50,22 @@ Page({
             if(response.data.data.records.length < this.data.params.pageSize) {
               this.setData({
                 voteList: voteList,
-                hasData: true
+                hasData: false
               });
-              wx.showToast({
-                title: '没有更多了',
-                icon: "none"
-              });
-              return true;
             } else {
               this.setData({
                 voteList: voteList,
                 hasData: true
               });
-              return true;
             } 
-          }
-          
+          } 
         }
+        return true;
       },
       fail: (err) => {
+        wx.hideLoading();
         this.setData({
+          voteList: voteList,
           hasData: true
         });
         wx.showToast({
@@ -202,8 +73,38 @@ Page({
           icon: "none"
         });
         return false;
-      }
-    })
+      },
+      complete: () => {
+        // complete
+        wx.stopPullDownRefresh() //停止下拉刷新
+        return true;
+      } 
+    });
+  },
+  // 上拉触底加载
+  onReachBottom: function () {  
+    if(this.data.hasData){
+      // 显示加载图标
+      wx.showLoading({
+        title: '努力加载中',
+      });
+      let params = this.data.params;
+      params.page++;
+      this.setData({
+        params: params
+      });
+      this.getDataList();
+    }
+  },
+  // 下拉刷新事件
+  onPullDownRefresh: function () {
+    let _params = this.data.params;
+    _params.page = 1;
+    this.setData({
+      voteList: [],
+      params: _params
+    });
+    this.getDataList();
   },  
   // 获取用户信息
   getUserInfo: function(e) {

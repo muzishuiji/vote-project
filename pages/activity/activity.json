@@ -1,5 +1,6 @@
 {
     "navigationBarTitleText": "活动投票列表",
+    "enablePullDownRefresh": true,
     "usingComponents": {
         "tab-bar": "../../components/tab/tab",
         "auth-modal": "../../components/auth/auth",

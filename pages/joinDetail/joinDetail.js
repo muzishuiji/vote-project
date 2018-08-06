@@ -25,10 +25,15 @@ Page({
     this.setData({
       id: _id
     });
-    this.getDataList(_id);
-    this.getItemList(_id);
+    app.authJudge(this).then(() => {
+      this.getDataList(_id);
+      this.getItemList(_id);
+    }); 
   },
   getDataList: function(_id) {
+    wx.showLoading({
+      title: '努力加载中',
+    });
     wx.request({
       url: app.globalData.baseUrl + 'activity/' + _id, 
       method: 'GET',
@@ -39,6 +44,7 @@ Page({
       success: (res) => {
         let response = res;
         let voteMess = {};
+        wx.hideLoading();
         // console.log(res);
         if(response.data.code == 200) {
           voteMess = response.data.data;
@@ -49,6 +55,7 @@ Page({
         }
       },
       fail: function(err) {
+        wx.hideLoading();
         console.log(err);
         wx.showToast({
           title: '失败了,请检查网络设置~',
@@ -58,6 +65,7 @@ Page({
       }
     });
   },
+  
   getItemList: function (_id) {
     let _param = this.data.params;
     _param.activityId = _id;
@@ -108,5 +116,15 @@ Page({
     wx.navigateTo({
       url: '../joinActivity/joinActivity'
     });
+  },
+  // 分享
+  onShareAppMessage: function(res){
+    if(res.from === "button") {
+      console.log(res.target);
+    }
+    return {
+      title: this.data.voteMess.title,
+      path: '/pages/normalDetail/normalDetail'
+    }
   }
 })
