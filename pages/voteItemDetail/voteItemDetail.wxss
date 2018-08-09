@@ -183,18 +183,9 @@
 .action-input {
   flex: 1;
   background: #f1f1f1;
-  height: 3.5rem;
   margin-top: 5px;
   border-radius: 5px;
-  padding: 0 20px;
-}
-textarea::placeholder {
-  padding-left: 10px;
-  padding-top: 10px;
-}
-textarea::-webkit-input-placeholder {
-  padding-left: 10px;
-  padding-top: 10px;
+  padding: 10px;
 }
 
 .btn-right {                   
@@ -214,4 +205,25 @@ textarea::-webkit-input-placeholder {
   position: absolute;
   right: 20px;
   bottom: -26px;
+}
+.list-title{
+  color:#aaa;
+  height:30px;
+  line-height: 26px;
+  text-align:center;
+  display:-webkit-flex;
+  display:flex;
+  margin:0 10%;
+  position:relative;
+  font-size: 14px;
+}
+.list-title-text {
+  flex: 0 0 100px;
+}
+.list-title-line {
+  flex: 1;
+  width: 100px;
+  height: 1px;
+  background: #ddd;
+  margin-top: 13px;
 }

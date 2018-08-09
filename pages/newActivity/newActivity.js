@@ -12,11 +12,12 @@ Page({
       content: "",
       electEndTime: null,  // 评选截止时间
       imageUrl: "",
-      maxJoin: 0,
+      maxJoin: 0, 
       signEndTime: null, // 报名截止时间
       title: ""
     },
-    imageUrl: ''
+    imageUrl: '',
+    uploadUrl: ''
   },
   onLoad: function () {
     let startDate = new Date().getFullYear()+ '-' +((new Date().getMonth() + 1) < 10 ? ("0" + (new Date().getMonth() + 1)) : (new Date().getMonth() + 1))+ '-' + new Date().getDate() + '';
@@ -81,8 +82,8 @@ Page({
     let activityVote = this.data.activityVote;
     activityVote.signEndTime = +new Date(this.data.joinDate + ' ' + this.data.joinTime);
     activityVote.electEndTime = +new Date(this.data.voteDate + ' ' + this.data.voteTime);
-    activityVote.imageUrl = this.data.imageUrl;
-    wx.request({
+    activityVote.imageUrl = this.data.uploadUrl;
+    wx.request({ 
       url: app.globalData.baseUrl + 'activity', 
       method: 'POST',
       data: activityVote,
@@ -115,32 +116,20 @@ Page({
       }
     });
   },
-   // 上传图片
+   // 选择图片
    uploadImg: function() {
     let self = this;
     wx.chooseImage({
       count: 1, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: (res) => {
-        console.log(res);
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        wx.uploadFile({
-          url: app.globalData.baseUrl + 'image/activity/upload', 
-          filePath: res.tempFilePaths[0],
-          name: 'file',
-          success: (res) => {
-            let response = res;
-            response.data = JSON.parse(response.data);
-            if(response.data.code == 200) {
-              let imageUrl = response.data.data.url;
-              self.setData({
-                imageUrl: imageUrl
-              });
-            }
-          },
-        
-        })
+        // console.log(res);
+        self.setData({
+          imageUrl: res.tempFilePaths[0]
+        });
+        // 上传图片
+        this.uploadPicture(res.tempFilePaths[0]);
       },
       fail: (err) => {
         console.log(err);
@@ -150,6 +139,24 @@ Page({
         });
         return false;
       }
+    })
+  },
+  uploadPicture: function (path) {
+    wx.uploadFile({
+      url: app.globalData.baseUrl + 'image/activity/upload', 
+      filePath: path,
+      name: 'file',
+      success: (res) => {
+        let response = res;
+        response.data = JSON.parse(response.data);
+        if(response.data.code == 200) {
+          let imageUrl = response.data.data.url;
+          this.setData({
+            uploadUrl: imageUrl
+          });
+        }
+      },
+    
     })
   },
   // 报名日期改变

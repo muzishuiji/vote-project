@@ -26,7 +26,7 @@
           </view>
           <view>
             <text class='gray'>参与人数:</text>
-            <text class='blue blue2'> {{item.joinedUserSum}}</text>
+            <text class='blue blue2'> {{item.joinSum}}</text>
           </view>
         </view>
         <view class="small-label online" wx:if="{{item.state == '1'}}">

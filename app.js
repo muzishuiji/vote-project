@@ -77,6 +77,9 @@ App({
   },
   loginIn: function(info) {
     const app = getApp();
+    wx.showLoading({
+      title: '努力加载中',
+    });
     return new Promise((resolve,reject) => {
       wx.login({
         success: res => {
@@ -97,14 +100,12 @@ App({
             'content-type': 'application/json'
             },
             success: (res) => {
-              wx.hideLoading();
               if(res.data.code == 200) {
                 app.globalData.sessionId = res.data.data.sessionId;   
               }   
               resolve(res); 
             },
             fail: (err) => {
-              wx.hideLoading();
               // console.log(err);
               reject("请求失败,请检查网络设置");
               return false;

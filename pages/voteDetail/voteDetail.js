@@ -127,7 +127,7 @@ Page({
         wx.hideLoading();
         if(response.data.code == 200) {
           itemList = itemList.concat(response.data.data.records);
-          if(itemList.length < this.data.params.pageSize) {
+          if(response.data.data.records.length < this.data.params.pageSize) {
             this.setData({
               itemList: itemList,
               hasData: false

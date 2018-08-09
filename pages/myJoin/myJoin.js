@@ -37,7 +37,7 @@ Page({
       success: (res) => {
         let response = res;
         wx.hideLoading();
-        console.log(res);
+        // console.log(res);
         if(response.data.code == 200) {
           let dataList = flag == '1' ? [].concat(this.data.activityList, response.data.data.records) : [].concat(this.data.voteList, response.data.data.records);
           dataList.forEach((item) => {
@@ -48,7 +48,7 @@ Page({
               item.state = "2"
             }
           });
-          if(dataList.length < this.data.params1.pageSize) {
+          if(response.data.data.records.length < this.data.params1.pageSize) {
             if(flag == '1') {
               this.setData({
                 activityList: dataList,

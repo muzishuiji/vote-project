@@ -13,10 +13,14 @@ Page({
             openType: 'share'
         }
     ],
+    id: '',
     voteMess: {}
   },
   onLoad: function (options) {
-    app.authJudge(this).then(() => {
+    this.setData({
+      id: options.id
+    });
+    app.authJudge(this).then((res) => {
       this.getVoteDetail(options.id);
     });
   }, 
@@ -25,9 +29,6 @@ Page({
     
   },
   getVoteDetail: function (id) {
-    wx.showLoading({
-      title: '努力加载中',
-    });
     wx.request({
       url: app.globalData.baseUrl + 'normal/' + id, 
       method: 'GET',
@@ -169,12 +170,10 @@ Page({
   },
   // 分享
   onShareAppMessage: function(res){
-    if(res.from === "button") {
-      console.log(res.target);
-    }
+    this.handleCancel();
     return {
       title: this.data.voteMess.title,
-      path: '/pages/normalDetail/normalDetail'
+      path: '/pages/normalDetail/normalDetail?id=' + this.data.id
     }
   }
-});
+}); 

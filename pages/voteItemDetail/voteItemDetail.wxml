@@ -56,7 +56,7 @@
       </view>
     </view>
     <view class="call-for" bind:tap="handleOpen">
-      为他打call
+      为他(她)打call
     </view>
     <view class='text-center gray' wx:if="{{voteMess.commentList.length == 0}}">
         暂无评论,快快为喜欢的他(她)打call吧~~~
@@ -68,8 +68,8 @@
           <i-icon type="unfold" size="20" color="#80848f" />
         </view>
       </view>
-      <view class="add-mar">
-        <textarea class="action-input" bindinput="setCallContent" placeholder="10字以上为他(她)打call" />
+      <view class="add-mar"> 
+        <textarea class="action-input"  auto-height bindinput="setCallContent" placeholder="10字以上为他(她)打call" ></textarea>
       </view>
       <view class="btn-right">
         <view class="extra" bind:tap="callFor">发表</view>

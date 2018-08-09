@@ -6,6 +6,7 @@ Page({
     activityName: ' 最美亲子照评选活动',
     visible: false,
     code: '',
+    paiming: '',
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     hasUserInfo: false,
     sheetVisible: false,
@@ -23,12 +24,13 @@ Page({
     paiming: 1,
     params: {
       page: 1,
-      pageSize: 10,
+      pageSize: 15,
       itemId: null
     },
     callList: [], 
     callContent: '',
-    hasPicked: false
+    hasPicked: false,
+    hasData: true
   },
   //事件处理函数
   bindViewTap: function() {
@@ -38,27 +40,27 @@ Page({
   },
   // 加载事件
   onLoad: function (options) {
-    app.authJudge(this);
+    
     let _id = options.id;
     let title = options.title;
     let _itemId = options.itemId;
     this.setData({
       id: _id,
       itemId:_itemId,
-      activityName: title
+      activityName: title,
+      paiming: options.paiming
+    });
+    app.authJudge(this).then((res) => {
+      this.getData(_itemId);
+      this.getCallList(_itemId);
     })
-    this.getData(_itemId);
-    this.getCallList(_itemId);
+    
   },
   onShow: function() {
     var that = this;
   },
   // 获取详情
   getData: function(_id) {
-    // 显示加载图标
-    wx.showLoading({
-      title: '努力加载中',
-    });
     wx.request({
       url: app.globalData.baseUrl + 'activity/item/' + _id, 
       method: 'GET',
@@ -120,9 +122,9 @@ Page({
       success: (res) => {
         let response = res;
         console.log(res);
-        let callList = [];
+        let callList = this.data.callList;
         if(response.data.code == 200) {
-          callList = response.data.data.records;
+          callList = callList.concat(response.data.data.records);
           callList.forEach(item => {
             let last = item.createdTime - +new Date();
             switch(last) {
@@ -146,10 +148,19 @@ Page({
                 break;   
             }
           });
+          if(response.data.data.records.length < this.data.params.pageSize) {
+            this.setData({
+              callList: callList,
+              hasData: false
+            });
+          } else {
+            this.setData({
+              callList: callList,
+              hasData: true
+            });
+          }
         }
-        this.setData({
-          callList: callList
-        });
+        
       },
       fail: function(err) {
         console.log(err);
@@ -328,7 +339,7 @@ Page({
             callList: callList
           });
         }
-      },
+      }, 
       fail: function(err) {
         // console.log(err);
         wx.showToast({
@@ -341,12 +352,10 @@ Page({
   }, 
   // 分享
   onShareAppMessage: function(res){
-    if(res.from === "button") {
-      console.log(res.target);
-    }
+    this.handleCancel1();
     return {
       title: this.data.voteMess.title,
-      path: '/pages/normalDetail/normalDetail'
+      path: '/pages/normalDetail/normalDetail?id=' +  this.data.id + '&title=' + this.data.activityName + '&paiming=' + this.data.paiming + '&itemId=' + this.data.itemId
     }
   }
 })

@@ -37,27 +37,25 @@ Page({
         wx.hideLoading();
         // console.log(res);
         if(response.data.code == 200) {
-          if(response.data.data.records.length > 0) {
-            voteList = voteList.concat(response.data.data.records);
-            voteList.forEach((item) => {
-              item.leftTime = app.dealTime(item.endTime);
-              if(item.leftTime!= "投票截止") {
-                item.state = "1"
-              } else{
-                item.state = "2"
-              }
+          voteList = voteList.concat(response.data.data.records);
+          voteList.forEach((item) => {
+            item.leftTime = app.dealTime(item.endTime);
+            if(item.leftTime!= "投票截止") {
+              item.state = "1"
+            } else{
+              item.state = "2"
+            }
+          });
+          if(response.data.data.records.length < this.data.params.pageSize) {
+            this.setData({
+              voteList: voteList,
+              hasData: false
             });
-            if(response.data.data.records.length < this.data.params.pageSize) {
-              this.setData({
-                voteList: voteList,
-                hasData: false
-              });
-            } else {
-              this.setData({
-                voteList: voteList,
-                hasData: true
-              });
-            } 
+          } else {
+            this.setData({
+              voteList: voteList,
+              hasData: true
+            });
           } 
         }
         return true;

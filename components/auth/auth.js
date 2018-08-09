@@ -16,7 +16,9 @@ Component({
       if(e.detail.userInfo) {
         this.triggerEvent("hideModal", true);
         app.globalData.userInfo = e.detail.userInfo;
-        app.loginIn(e.detail.userInfo);
+        app.loginIn(e.detail.userInfo).then((res) => {
+          wx.hideLoading();
+        });
       } 
     }
   }

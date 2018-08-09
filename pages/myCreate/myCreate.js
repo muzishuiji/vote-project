@@ -112,7 +112,7 @@ Page({
               item.state = "2"
             }
           });
-          if(dataList.length < this.data.params1.pageSize) {
+          if(response.data.data.records.length < this.data.params1.pageSize) {
             if(flag == '1') {
               this.setData({
                 activityList: dataList,
