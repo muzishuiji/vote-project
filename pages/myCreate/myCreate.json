@@ -1,5 +1,6 @@
 {
     "navigationBarTitleText": "我创建的投票列表",
+    "enablePullDownRefresh": true,
     "usingComponents": {
         "tab-bar": "../../components/tab/tab",
         "auth-modal": "../../components/auth/auth",

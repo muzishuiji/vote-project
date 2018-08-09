@@ -99,8 +99,9 @@
 }
 .item-title1{
   flex: 1;
+
   text-indent: 2;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 28px;
 }
 .list-title{

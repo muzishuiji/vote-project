@@ -90,28 +90,30 @@
   padding: 8px;
   margin-bottom: 15px;
   text-align: center;
+  color: #aaaaaa;
 }
 .data-item:last-child {
   margin-bottom: 10px;
 }
 .data-item-index {
   flex: 0 0 20px;
-  line-height: 80px;
+  line-height: 50px;
   vertical-align: middle;
 }
 .data-item-left {
-  flex: 1;
-  line-height: 80px;
-  
+  flex: 0 0 76px;
+  width: 76px;
+  line-height: 50px;
 }
 .data-item-right {
-  flex: 4;
+  flex: 1;
   vertical-align: middle;
-  margin-top: 10px;
+  margin-top: 5px;
+  margin-left: 6px;
 }
 .data-item-img {
-  width: 60px;
-  height: 60px;
+  width: 75px;
+  height: 45px;
   vertical-align: middle;
   margin-right: 10px;
 }
@@ -130,7 +132,7 @@
 }
 
 .warn-btn {
-  width: 45px;
+  width: 40px;
   height: 25px;
   line-height: 25px;
   background: #FF9800;
@@ -139,7 +141,7 @@
   font-size: 12px;
   position: absolute;
   right: 10px;
-  top: 20px;
+  bottom: 10px;
   text-align: center;
 }
 .joinVote {

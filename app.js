@@ -5,7 +5,7 @@ App({
     vote:{},
     _id: '',
     // baseUrl: 'http://lzx2005.com:3000',
-    baseUrl: 'https://www.lzx2005.com/',
+    baseUrl: 'https://api.lzx2005.com/',
     sessionId: null
   },
   onLaunch: function () {

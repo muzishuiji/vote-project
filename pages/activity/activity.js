@@ -8,12 +8,12 @@ Page({
     params1: {
       page: 1,
       pageSize: 10,
-      status: '2'
+      statuss: '2,3'
     },
     params2: {
       page: 1,
       pageSize: 10,
-      status: '1'
+      statuss: '1'
     },
     activityList: [],
     voteList:[],
@@ -53,7 +53,6 @@ Page({
   },
   // 切换index
   changeIndex:function (e) {
-    console.log(e.currentTarget.dataset);
     this.setData({
       activeIndex: e.currentTarget.dataset.id
     });
@@ -77,14 +76,13 @@ Page({
         if(response.data.code == 200) {
           let dataList = flag == '2' ? [].concat(this.data.activityList, response.data.data.records) : [].concat(this.data.voteList, response.data.data.records);
           dataList.forEach((item) => {
-            item.leftTime = app.dealTime(item.electEndTime);
+            item.leftTime =flag == '2' ? app.dealTime(item.electEndTime) : app.dealTime(item.signEndTime) ;
             if(item.leftTime!= "投票截止") {
               item.state = "1"
             } else{
               item.state = "2"
             }
           });
-          console.log(dataList, flag);
           if(dataList.length < this.data.params1.pageSize) {
             if(flag == '2') {
               this.setData({
@@ -132,7 +130,7 @@ Page({
         wx.stopPullDownRefresh() //停止下拉刷新
         return true;
       } 
-    });
+    }); 
   },
   // 上拉触底加载
   onReachBottom: function () {

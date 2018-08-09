@@ -12,7 +12,7 @@
             <image  wx:if="{{!imageUrl}}" class="upload-icon" src="/images/upload.png"></image>
             <image class="activity-avatar" src="{{imageUrl}}"></image>
         </view>
-        
+        <view style="font-size: 12px;color: #ccc;margin-bottom:15px;">为保证良好的展示效果,请保证活动海报的长宽比为5:3</view>
         <view class="pick-text">
             <textarea class="pick-textarea" bindinput="bindContentInput" maxLength="500" placeholder="参赛作品的详情,不超过500字" ></textarea>
         </view> 

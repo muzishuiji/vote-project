@@ -33,7 +33,6 @@ checkbox-group {
   width: calc(100vw - 40px);
   padding-top: 60%;
   position: relative;
-  margin-bottom: 15px;
   border: 1px solid #e2e2e2;
   border-radius: 5px;
   box-shadow: 0px 0px 5px #eee;

@@ -4,8 +4,6 @@
 .container {
   position: relative;
   width: 100vw;
-  height: 100vh;
-  overflow: hidden;
   background: #f1f1f1;
   color: #333333;
 }
@@ -16,7 +14,7 @@
   box-shadow: 0 0 3px #dddddd;
   padding-top: 10px;
 }
-.tab-select {
+.tab-select { 
   width: 240px;
   line-height: 28px;
   margin: 0 auto;
@@ -57,11 +55,8 @@
 }
 
 .data-list {
-  height:calc(100vh - 60px);
-  overflow-y: auto;
   background: #f1f1f1;
   padding: 10px;
-  margin-bottom:60px;
 }
 .data-item {
   background: #fff;
@@ -124,3 +119,24 @@
   background: #f08f01;
 }
 
+.list-title{
+  color:#aaa;
+  height:30px;
+  line-height: 26px;
+  text-align:center;
+  display:-webkit-flex;
+  display:flex;
+  margin:0 10%;
+  position:relative;
+  font-size: 14px;
+}
+.list-title-text {
+  flex: 0 0 100px;
+}
+.list-title-line {
+  flex: 1;
+  width: 100px;
+  height: 1px;
+  background: #ddd;
+  margin-top: 13px;
+}

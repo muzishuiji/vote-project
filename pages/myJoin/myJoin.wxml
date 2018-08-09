@@ -1,4 +1,4 @@
-<!--index.wxml-->
+<!--myJoin.wxml-->
 <view class="container">
   <view wx:if="{{hasUserInfo}}">
     <auth-modal bind:hideModal="hideModal"></auth-modal>
@@ -16,7 +16,7 @@
           <text class='gray'>{{item.nickName}}</text>
         </view>
         <view class="data-item-body1">
-          <view class='item-picture'><image class="suoluetu" src="{{item.picture}}"></image></view>
+          <view class='item-picture'><image class="suoluetu" src="{{item.imageUrl}}"></image></view>
           <view class='item-title'>{{item.title}}</view>
         </view>
         <view class='data-item-line'>
@@ -35,6 +35,11 @@
         <view class="small-label warn" wx:if="{{item.state == '2'}}">
           活动截止
         </view>
+    </view>
+    <view class="list-title" wx:if="{{!hasData1}}">
+      <view class="list-title-line"></view>
+      <view class="list-title-text">没有更多了</view>  
+      <view class="list-title-line"></view>  
     </view>
   </view>
   <view class="data-list" wx-if="{{activeIndex == '2'}}">
@@ -62,6 +67,11 @@
         <view class="small-label warn" wx:if="{{item.state == '2'}}">
           活动截止
         </view>
+    </view>
+    <view class="list-title" wx:if="{{!hasData2}}">
+      <view class="list-title-line"></view>
+      <view class="list-title-text">没有更多了</view>  
+      <view class="list-title-line"></view>  
     </view>
   </view>
   

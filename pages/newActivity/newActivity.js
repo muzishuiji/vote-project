@@ -71,7 +71,7 @@ Page({
       });
       return false;
     }
-    if(+new Date(this.data.joinDate) <= +new Date(this.data.voteDate) && +new Date(this.data.joinDate) < +new Date()) {
+    if(+new Date(this.data.joinDate) >= +new Date(this.data.voteDate) && +new Date(this.data.joinDate) < +new Date()) {
       wx.showToast({
         title: '时间选择不合理奥~',
         icon: "none"

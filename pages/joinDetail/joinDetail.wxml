@@ -27,19 +27,17 @@
         <view class='data-item-right'>
           <view style="font-size: 14px;">
             <view style="height: 2.2rem;">{{item.title}}</view>
-          </view>
-          <view class="pick-num">
-             {{item.slogan}}
-          </view>
-         
+          </view>         
         </view>
-        <view class="warn-btn" bind:tap="openDetail">详情</view>
+        <view class="warn-btn" bind:tap="openDetail">
+          详情
+        </view>
+    </view> 
+    <view class="null-item" wx:if="{{!itemList.length}}">
+      暂时还无人参与奥,快来报名加入吧~
     </view>
-    <view class='null-item'  wx:if="{{itemList.length == 0}}">
-        <view>暂时还没有人报名参加奥,快快报名参与吧~</view>
-    </view>
-  </view>
-  <view wx:if="{{itemList.length <= voteMess.maxJoin}}" class="joinVote" bind:tap="openJoin">
+  </view> 
+  <view wx:if="{{itemList.length < voteMess.maxJoin}}" class="joinVote" bind:tap="openJoin">
     报名参加
   </view>
 </view>

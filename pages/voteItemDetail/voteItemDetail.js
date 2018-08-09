@@ -305,10 +305,14 @@ Page({
         index = e.currentTarget.dataset.index,
         callList = this.data.callList;
     if(callList[index].uped) {
+      wx.showToast({
+        title: '不可重复点赞奥~',
+        icon: "none"
+      });
       return false;
     }
     wx.request({
-      url: app.globalData.baseUrl + 'activity/call/' + this.data.itemId + '/up', 
+      url: app.globalData.baseUrl + 'activity/call/' + id + '/up', 
       method: 'POST',
       data: {},
       header: {

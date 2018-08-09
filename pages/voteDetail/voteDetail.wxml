@@ -10,14 +10,14 @@
   </view>
   <view class="data-list">
     <view class="list-title">
-      <view class="list-title-top">
+      <view class="list-title-top"> 
         <image class="list-title-image" src="/images/list.png"></image>
       </view>
       <view class="list-title-line left"></view>
       <view class="list-title-text">点赞榜</view>  
       <view class="list-title-line right"></view>  
     </view>
-    <view class='data-item' wx:for="{{itemList}}" wx:key="{{index}}" data-id="{{item.id}}" data-name="1" bind:tap="">
+    <view class='data-item' wx:for="{{itemList}}" wx:key="{{index}}" data-id="{{item.id}}" data-name="1">
         <view class='data-item-index'>
           <text>{{index + 1}}</text>
         </view>

@@ -11,7 +11,8 @@ Page({
       pageSize: 10,
       activityId: null
     },
-    id: ''
+    id: '',
+    hasData: true
   },
   //事件处理函数
   bindViewTap: function() {
@@ -79,17 +80,28 @@ Page({
       },
       success: (res) => {
         let response = res;
-        let itemList = [];
+        let itemList = this.data.itemList;
         console.log(res);
+        wx.hideLoading();
         if(response.data.code == 200) {
-          itemList = response.data.data.records;
-          this.setData({
-            itemList: itemList
-          });
+          itemList = itemList.concat(response.data.data.records);
+          if(itemList.length < this.data.params.pageSize) {
+            this.setData({
+              itemList: itemList,
+              hasData: false
+            });
+          } else {
+            this.setData({
+              itemList: itemList,
+              hasData: true
+            });
+          }
+          return true;
         }
       },
-      fail: function(err) {
+      fail: (err) => {
         console.log(err);
+        wx.hideLoading();
         wx.showToast({
           title: '失败了,请检查网络设置~',
           icon: "none"
@@ -97,6 +109,20 @@ Page({
         return false;
       }
     });
+  },
+  // 上拉触底加载
+  onReachBottom: function () {
+    if(this.data.hasData) {
+      wx.showLoading({
+        title: '努力加载中',
+      });
+      let _params = this.data.params;
+      _params.page++;
+      this.setData({
+        params: _params
+      });
+      this.getItemList(this.data.id);
+    }
   },
   onShow: function() {
     var that = this;
@@ -121,7 +147,7 @@ Page({
   onShareAppMessage: function(res){
     if(res.from === "button") {
       console.log(res.target);
-    }
+    } 
     return {
       title: this.data.voteMess.title,
       path: '/pages/normalDetail/normalDetail'

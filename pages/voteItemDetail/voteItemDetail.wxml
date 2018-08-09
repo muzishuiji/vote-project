@@ -48,7 +48,7 @@
       </view>
       <view class="comment-content"> 
         {{item.content}}
-      </view>
+      </view> 
       <view class="text-right" style="height: 25px;" data-index="{{index}}" data-id="{{item.id}}" bind:tap="pickComment">
         <i-icon  wx:if="{{item.uped}}" type="praise_fill" size="20" color="#0186fa" />
         <i-icon wx:if="{{!item.uped}}"  type="praise_fill" size="20" color="#dddddd" />

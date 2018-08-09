@@ -103,6 +103,13 @@ Page({
   },
   // 参与投票
   voteFor: function(e) {
+    if(this.data.voteMess.leftTime == "投票截止") {
+      wx.showToast({
+        title: '投票已截止',
+        icon: "none"
+      });
+      return false;
+    }
     let voteMess = this.data.voteMess;
     let id = e.currentTarget.dataset.id;
     let index = e.currentTarget.dataset.index;

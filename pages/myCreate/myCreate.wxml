@@ -16,7 +16,7 @@
           <text class='gray'>{{item.nickName}}</text>
         </view>
         <view class="data-item-body" data-id="{{item.id}}" data-index="{{index}}" bind:tap="openDetail">
-          <view class='item-picture'><image class="suoluetu" src="{{item.picture}}"></image></view>
+          <view class='item-picture'><image class="suoluetu" src="{{item.imageUrl}}"></image></view>
           <view class='item-title'>{{item.title}}</view>
         </view>
         <view class='data-item-line'>
@@ -33,9 +33,10 @@
           <image class="delete-icon-img" src="/images/delete.png"></image>
         </view>
     </view>
-    <view class="null-item" wx:if="{{activityList.length == 0}}">
-      <image class="width-50" src="/images/empty.png"></image>
-      <view>没有更多了~</view>
+    <view class="list-title" wx:if="{{!hasData1}}">
+      <view class="list-title-line"></view>
+      <view class="list-title-text">没有更多了</view>  
+      <view class="list-title-line"></view>  
     </view>
   </view>
   <view class="data-list" wx-if="{{activeIndex == '2'}}">
@@ -61,9 +62,10 @@
           <image class="delete-icon-img" src="/images/delete.png"></image>
         </view>
     </view>
-    <view class="null-item" wx:if="{{voteList.length == 0}}">
-      <image class="width-50" src="/images/empty.png"></image>
-      <view>没有更多了~</view>
+    <view class="list-title" wx:if="{{!hasData2}}">
+      <view class="list-title-line"></view>
+      <view class="list-title-text">没有更多了</view>  
+      <view class="list-title-line"></view>  
     </view>
   </view>
   <i-modal title="删除确认" visible="{{ visible }}" actions="{{ actions }}" bind:click="handleClick">

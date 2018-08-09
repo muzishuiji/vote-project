@@ -24,7 +24,7 @@ Page({
       id: _id
     })
     this.getData(_id);
-  }, 
+  },  
   getData: function(_id) {
     wx.showLoading({
       title: '努力加载中',

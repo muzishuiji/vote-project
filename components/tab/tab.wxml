@@ -1,17 +1,17 @@
 <!--tab.wxml-->
 <view class="tab-container">
-    <navigator class='navigator-normal' url="/pages/index/index" open-type="navigate" hover-class="other-navigator-hover">
-        <view class="nav-item">
+    <view class='navigator-normal' hover-class="other-navigator-hover">
+        <view class="nav-item" data-id="1"  bind:tap="openPage">
             <image class="tab-icon" wx-if="{{activIndex != '1'}}" src="/images/new.png" ></image>
             <image class="tab-icon" wx-if="{{activIndex == '1'}}" src="/images/new-active.png"></image>
             <view class="{{activIndex == '1' ? 'navigator-active' : ''}}">新建</view>
         </view>
-    </navigator>
-    <navigator class='navigator-normal' url="/pages/mine/mine" open-type="navigate" hover-class="other-navigator-hover">
-        <view class="nav-item">
+    </view>
+    <view class='navigator-normal' hover-class="other-navigator-hover">
+        <view class="nav-item" data-id="2"  bind:tap="openPage">
             <image class="tab-icon" wx-if="{{activIndex != '2'}}" src="/images/mine.png"></image>
             <image class="tab-icon" wx-if="{{activIndex == '2'}}"  src="/images/mine-active.png"></image>
             <view class="{{ activIndex == '2' ? 'navigator-active' : '' }}">我的</view>
         </view>
-    </navigator>
+    </view>
 </view>
