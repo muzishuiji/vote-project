@@ -2,7 +2,7 @@
 <view class="container">
     <view class="page__bd">
         <view class="pick-text">
-            <textarea class="pick-textarea" bindinput="bindTitleInput" maxLength="100" style="min-height: 2.6rem;" placeholder="活动投票的名称,不超过100字" ></textarea>
+            <textarea class="pick-textarea" bindinput="bindTitleInput" bindblur="confirmTitle" maxLength="100" style="min-height: 2.6rem;" placeholder="活动投票的名称,不超过100字" ></textarea>
         </view>
         <view class="img-box" bind:tap="uploadImg">
             <image wx:if="{{!imageUrl}}" class="upload-icon" src="/images/upload.png"></image>
@@ -10,10 +10,10 @@
         </view>
         <view style="font-size: 12px;color: #ccc;margin-bottom:15px;">为保证良好的展示效果,请保证活动海报的长宽比为5:3</view>
         <view class="pick-text">
-            <textarea class="pick-textarea" bindinput="bindContentInput" maxLength="500" placeholder="活动投票的详情,不超过500字" ></textarea>
+            <textarea class="pick-textarea" bindinput="bindContentInput" bindblur="confirmContent" maxLength="500" placeholder="活动投票的详情,不超过500字" ></textarea>
         </view>
        <view class="pick-text">
-          <view class="pick-gray">
+          <view class="pick-gray"> 
             报名截止日期: 
           </view>   
           <view class="pick-gray">

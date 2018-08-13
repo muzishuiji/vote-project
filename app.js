@@ -6,11 +6,11 @@ App({
     _id: '',
     // baseUrl: 'http://lzx2005.com:3000',
     baseUrl: 'https://api.lzx2005.com/',
+    textUrl: 'https://api.lzx2005.com/sensitive/api/query?appId=uc96eb93050359f81a',
     sessionId: null
   },
   onLaunch: function () {
-    // appid: wx4a96dbab66a34495
-    // appSecret:00dff3bcddf0896db2f86631ebf2bfde
+ 
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || [];
     logs.unshift(Date.now());
@@ -39,6 +39,14 @@ App({
         }
       }
     })
+  },
+  onShow: function (options) {
+    console.log(options);
+    let scene = options.scene;
+    if(scene == 1044) {
+      let shareTicket = options.shareTicket;
+
+    }
   },
   // 时间处理函数
   dealTime: function(date) {

@@ -10,10 +10,10 @@
             </i-panel>
         </view>
         <view class="pick-cell">
-            <textarea class="pick-textarea" bindinput="bindTitleInput" maxLength="100" placeholder="投票标题,不超过100字" style="height: 3.3em" />
+            <textarea class="pick-textarea" bindinput="bindTitleInput" bindblur="confirmTitle" maxLength="50" placeholder="投票标题,不超过50字" style="height: 3.3em" />
         </view>
         <view class="pick-cell" wx:for="{{voteMess.items}}" wx:key="{{index}}">
-            <input class="pick-input" data-id="{{index}}" value="{{item}}" bindinput="bindKeyInput" placeholder="候选项" />
+            <input class="pick-input" data-id="{{index}}" value="{{item}}" bindblur="confirmItem" bindinput="bindKeyInput" placeholder="候选项" />
             <view class="pick-delete" data-id="{{index}}" bind:tap="deleteSelect">
                 <text class="pick-delete-text">-</text>
             </view> 

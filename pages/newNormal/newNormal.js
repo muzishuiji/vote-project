@@ -11,6 +11,7 @@ Page({
     endDate: '2020-01-01',
     date: '2016-09-01',
     time: '12:01',
+    tempValue:'',
     voteMess: {
       anonymous: false,
       endTime: new Date().getTime(),
@@ -38,8 +39,72 @@ Page({
     var voteMess = this.data.voteMess;
     voteMess.title = e.detail.value;
     this.setData({
-      voteMess: voteMess
+      voteMess: voteMess,
+      tempValue: e.detail.value
     });
+  },
+  // 验证活动投票的名称
+  confirmTitle: function(e) {
+    let voteMess = this.data.voteMess;
+    this.confirm(e.detail.value).then((res) => {
+      if(res == '2') {
+        voteMess.title = '';
+        this.setData({
+          voteMess: voteMess
+        });
+        return false;
+      }
+      return true;
+    });
+  },
+  // 验证活动投票的详情
+  confirmDetail: function (e) {
+    let index = e.detail.dataset.id,
+        voteMess = this.data.voteMess;
+    this.confirm(e.detail.value).then((res) => {
+      if(res == '2') {
+        voteMess.items[index] = '';
+      }
+      this.setData({
+        voteMess: voteMess
+      });
+      return false;
+    });
+    return true;
+  },
+  // 验证请求
+  confirm: function(content) {
+    return new Promise((resolve, reject) => {
+      wx.request({ 
+        url: app.globalData.textUrl + '&s=' + content, 
+        method: 'GET',
+        header: {
+        'content-type': 'application/json',
+        'sessionId': app.globalData.sessionId
+        },
+        success: (res) => {
+          let response = res;
+          // console.log(res);
+          if(response.data.code == 200 && response.data.data.hits.length == 0) {
+            resolve("1");
+            return true;
+          } else {
+            wx.showToast({
+              title: '所填内容涉及敏感词汇',
+              icon: "none"
+            });
+            resolve("2");
+            return false;
+          }
+        },
+        fail: function(err) {
+          reject("3");
+          console.log(err);
+          return false;
+        }
+      });
+    })
+    
   },
   // 删除选项
   deleteSelect: function (e) {
@@ -76,7 +141,7 @@ Page({
     var voteMess = this.data.voteMess;
     if(!voteMess.title) {
       wx.showToast({
-        title: '投票标题必填奥~',
+        title: '投票标题不合法奥',
         icon: "none"
       });
       return false;
@@ -86,7 +151,7 @@ Page({
         voteMess.items.splice(i,1);
       }
     }
-    if(voteMess.items.length < 2){
+    if(!voteMess.items[0] || !voteMess.items[1]){
       wx.showToast({
         title: '请至少填写两个选项奥~',
         icon: "none"

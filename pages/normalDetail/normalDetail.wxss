@@ -75,7 +75,14 @@
   z-index:-1;
 
 }
-
+.share-btn::before {
+  content: '';
+  border: none;
+}
+.share-btn::after {
+  content: '';
+  border: none;
+}
 .border {
   width: 26px;
   height: 26px;

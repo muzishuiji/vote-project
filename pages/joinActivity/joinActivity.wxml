@@ -3,10 +3,10 @@
     <view class="page__bd">
         <view class="vote-title">活动名称: {{activityTitle}}</view>
         <view class="pick-text">
-             <input bindinput="bindTitleInput" maxlength="30" placeholder="参赛作品名称,不超过30字" style="width: 100%;min-height: 1.0;height:auto;"/>
+             <input bindinput="bindTitleInput" maxlength="30" bindblur="confirmTitle" placeholder="参赛作品名称,不超过30字" style="width: 100%;min-height: 1.0;height:auto;"/>
         </view>
         <view class="pick-text">
-             <input bindinput="bindSloganInput" maxlength="30" placeholder="一句话简单描述,不超过50字" maxLength="50" style="width: 100%;min-height: 1.0;height:auto;" />
+             <input bindinput="bindSloganInput" maxlength="50" bindblur="confirmSlogan" placeholder="一句话简单描述,不超过50字" maxLength="50" style="width: 100%;min-height: 1.0;height:auto;" />
         </view>
         <view class="img-box" bind:tap="uploadImg">
             <image  wx:if="{{!imageUrl}}" class="upload-icon" src="/images/upload.png"></image>
@@ -14,7 +14,7 @@
         </view>
         <view style="font-size: 12px;color: #ccc;margin-bottom:15px;">为保证良好的展示效果,请保证活动海报的长宽比为5:3</view>
         <view class="pick-text">
-            <textarea class="pick-textarea" bindinput="bindContentInput" maxLength="500" placeholder="参赛作品的详情,不超过500字" ></textarea>
+            <textarea class="pick-textarea" bindinput="bindContentInput" bindblur="confirmContent" maxLength="500" placeholder="参赛作品的详情,不超过500字" ></textarea>
         </view> 
         <view>
             <view class="pick-submit" bindtap="sumitVote">报名该投票</view>

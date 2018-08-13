@@ -99,7 +99,7 @@ Page({
             title: '创建成功~',
             icon: "none",
             success: function() {
-              wx.navigateTo({
+              wx.redirectTo({
                 url: '../../pages/activity/activity'
               });
             }
@@ -124,7 +124,7 @@ Page({
       sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: (res) => {
-        // console.log(res);
+        console.log(res);
         self.setData({
           imageUrl: res.tempFilePaths[0]
         });
@@ -139,7 +139,48 @@ Page({
         });
         return false;
       }
-    })
+    }) 
+  },
+  // 验证活动投票的名称
+  confirmTitle: function(e) {
+    this.confirm('title');
+  },
+  // 验证活动投票的详情
+  confirmContent: function (e) {
+    this.confirm('content');
+  },
+  // 验证请求
+  confirm: function(content) {
+    let activityVote = this.data.activityVote;
+    wx.request({ 
+      url: app.globalData.textUrl + '&s=' + activityVote[content], 
+      method: 'GET',
+      header: {
+      'content-type': 'application/json',
+      'sessionId': app.globalData.sessionId
+      },
+      success: (res) => {
+        let response = res;
+        // console.log(res);
+        if(response.data.code == 200 && response.data.data.hits.length == 0) {
+          return true;
+        } else {
+          wx.showToast({
+            title: '所填内容涉及敏感词汇',
+            icon: "none"
+          });
+          activityVote[content] = '';
+          this.setData({
+            activityVote: activityVote
+          });
+          return false;
+        }
+      },
+      fail: function(err) {
+        console.log(err);
+        return false;
+      }
+    });
   },
   uploadPicture: function (path) {
     wx.uploadFile({

@@ -170,10 +170,31 @@ Page({
   },
   // 分享
   onShareAppMessage: function(res){
+    wx.showShareMenu({
+      withShareTicket: true,
+    });
+    if (res.from === 'button') {
+      console.log(res.target)
+    }
     this.handleCancel();
     return {
       title: this.data.voteMess.title,
-      path: '/pages/normalDetail/normalDetail?id=' + this.data.id
+      path: '/pages/normalDetail/normalDetail?id=' + this.data.id,
+      success: function (res) {
+        console.log(res);
+        if(res.shareTickets && res.shareTickets.length>0) {
+          wx.getShareInfo({
+            shareTicket:res.shareTickets[0],
+            complete: function (res) {
+              console.log(res);
+            }
+          })
+        }
+      },
+      fail: function (res) {
+        // 转发失败
+        console.log(res)
+      }
     }
   }
 }); 

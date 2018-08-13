@@ -14,11 +14,11 @@
                         参与人数: {{voteMess.joinedUserSum}}
                     </view>
                 </view>
-                <view class="share-btn" bind:tap="handleOpen">
+                <button open-type="share" class="share-btn" style="background: transparent;border: none;width: 46px;position: absolute;right: 10px;top:20px;">
                     <view class="border">
-                    <i-icon type="share" size="20" color="#0186fa" /> 
+                        <i-icon type="share" size="20" color="#0186fa" /> 
                     </view> 
-                </view>
+                </button>
             </view>
             <view class="vote-title">
                 <view>{{voteMess.title}}</view>

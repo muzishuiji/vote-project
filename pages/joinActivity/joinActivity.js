@@ -29,7 +29,7 @@ Page({
     this.setData({
       activityVote: activityVote
     });
-  },
+  }, 
   // 更新活动投票slogan
   bindSloganInput: function(e) {
     var activityVote = this.data.activityVote;
@@ -46,7 +46,51 @@ Page({
       activityVote: activityVote
     });
   },
-  
+    // 验证活动投票的名称
+    confirmTitle: function(e) {
+      this.confirm('title');
+    },
+    // 验证活动slogan
+    confirmSlogan: function (e) {
+      this.confirm('slogan');
+    },
+    // 验证活动投票的详情
+    confirmContent: function (e) {
+      this.confirm('content');
+    },
+    // 验证请求
+    confirm: function(content) {
+      let activityVote = this.data.activityVote;
+      wx.request({ 
+        url: app.globalData.textUrl + '&s=' + activityVote[content], 
+        method: 'GET',
+        header: {
+        'content-type': 'application/json',
+        'sessionId': app.globalData.sessionId
+        },
+        success: (res) => {
+          let response = res;
+          // console.log(res);
+          if(response.data.code == 200 && response.data.data.hits.length == 0) {
+            return true;
+          } else {
+            wx.showToast({
+              title: '所填内容涉及敏感词汇',
+              icon: "none"
+            });
+            activityVote[content] = '';
+            this.setData({
+              activityVote: activityVote
+            });
+            return false;
+          }
+        },
+        fail: function(err) {
+          console.log(err);
+          return false;
+        }
+      });
+    },
   // 提交投票信息
   sumitVote: function() {
     if(!this.data.activityVote.title) {
@@ -92,10 +136,10 @@ Page({
         // console.log(res);
         if(response.data.code == 200) {
           wx.showToast({
-            title: '创建成功~',
+            title: '报名成功~',
             icon: "none",
             success: function() {
-              wx.navigateTo({
+              wx.redirectTo({
                 url: '../../pages/joinDetail/joinDetail?id=' + activityVote.activityId
               });
             }
