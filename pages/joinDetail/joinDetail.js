@@ -124,12 +124,13 @@ Page({
       this.getItemList(this.data.id);
     }
   },
-  onShow: function() {
+  onShow: function() { 
     var that = this;
   },
-  openDetail: function() {
+  openDetail: function(e) {
+    var index = e.currentTarget.dataset.index;
     wx.navigateTo({
-      url: '../joinItemDetail/joinItemDetail?id=' +  this.data.id + '&title=' + this.data.voteMess.title
+      url: '../joinItemDetail/joinItemDetail?id=' +  this.data.itemList[index].id + '&title=' + this.data.voteMess.title
     })
   },
   openJoin: function() {
@@ -142,6 +143,16 @@ Page({
     wx.navigateTo({
       url: '../joinActivity/joinActivity'
     });
+  },
+   //预览图片
+　callPreviewImage: function(e) {
+  　  wx.previewImage({
+  　　　 current: e.currentTarget.dataset.src,
+        urls: [e.currentTarget.dataset.src],
+  　　　 complete:function(){
+  　　　　　console.log('complete')
+  　　　 }
+  　　});
   },
   // 分享
   onShareAppMessage: function(res){

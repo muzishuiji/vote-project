@@ -8,7 +8,7 @@
       <view data-id="2" bind:tap="changeIndex" class="tab-select-item {{activeIndex == '2' ? 'active' : ''}}">活动评选中</view>
       <view data-id="1" bind:tap="changeIndex" class="tab-select-item {{activeIndex == '1' ? 'active' : ''}}">活动报名中</view>
     </view>
-  </view>
+  </view> 
   <view class="data-list" wx-if="{{activeIndex == '2'}}">
     <view class='data-item' wx:for="{{activityList}}" wx:key="{{index}}" data-id="{{item.id}}" data-index="{{index}}" bind:tap="openDetail">
         <view class='data-item-head'>
@@ -16,7 +16,7 @@
           <text class='gray'>{{item.nickName}}</text>
         </view>
         <view class="data-item-body">
-          <view class='item-picture'><image class="suoluetu" src="{{item.imageUrl}}"></image></view>
+          <view class='item-picture'><view class="suoluetu" style="background-image:url({{item.imageUrl}});"></view></view>
           <view class='item-title1'>{{item.title}}</view>
         </view>
         <view class='data-item-line'>
@@ -49,7 +49,7 @@
           <text class='gray'>{{item.nickName}}</text>
         </view>
         <view class="data-item-body">
-          <view class='item-picture'><image class="suoluetu" src="{{item.imageUrl}}"></image></view>
+          <view class='item-picture'><view class="suoluetu" style="background-image:url({{item.imageUrl}});"></view></view>
           <view class='item-title1'>{{item.title}}</view>
         </view>
         <view class='data-item-line'>

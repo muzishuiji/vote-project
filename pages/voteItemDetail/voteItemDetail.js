@@ -350,9 +350,21 @@ Page({
       }
     });
   }, 
+  //预览图片
+　callPreviewImage: function(e) {
+　  wx.previewImage({
+　　　 current: e.currentTarget.dataset.src,
+      urls: [e.currentTarget.dataset.src],
+　　　 complete:function(){
+　　　　　console.log('complete');
+　　　 }
+　　});
+　},   
   // 分享
   onShareAppMessage: function(res){
-    this.handleCancel1();
+    if(res.from === "button") {
+      console.log(res.target);
+    } 
     return {
       title: this.data.voteMess.title,
       path: '/pages/normalDetail/normalDetail?id=' +  this.data.id + '&title=' + this.data.activityName + '&paiming=' + this.data.paiming + '&itemId=' + this.data.itemId

@@ -30,7 +30,7 @@ Page({
       title: '努力加载中',
     });
     wx.request({
-      url: app.globalData.baseUrl + 'activity/' + _id, 
+      url: app.globalData.baseUrl + 'activity/item/' + _id, 
       method: 'GET',
       header: {
       'content-type': 'application/json',
@@ -62,5 +62,15 @@ Page({
   },
   onShow: function() {
     var that = this;
-  }
+  },
+   //预览图片
+　callPreviewImage: function(e) {
+　  wx.previewImage({
+　　　 current: e.currentTarget.dataset.src,
+      urls: [e.currentTarget.dataset.src],
+　　　 complete:function(){
+　　　　　console.log('complete')
+　　　 }
+　　});
+　} 
 })

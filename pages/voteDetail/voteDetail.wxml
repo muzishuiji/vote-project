@@ -1,14 +1,14 @@
 <!--voteDetail.wxml-->
 <view class="container">
   <view class="vote-image">
-    <image class="activity-bg" src="{{voteMess.imageUrl}}"></image>
+    <image class="activity-bg" data-src="{{voteMess.imageUrl}}" bind:tap="callPreviewImage" src="{{voteMess.imageUrl}}"></image>
   </view>
   <view class="activity-tab">
     <view class="mess-item">活动名称: {{voteMess.title}}</view>
     <view class="mess-item">活动详情: {{voteMess.content}}</view>
     <view class="mess-item">活动的最大参与人数: {{voteMess.maxJoin}}</view>
   </view>
-  <view class="data-list">
+  <view class="data-list"> 
     <view class="list-title">
       <view class="list-title-top"> 
         <image class="list-title-image" src="/images/list.png"></image>
@@ -22,14 +22,14 @@
           <text>{{index + 1}}</text>
         </view>
         <view class='data-item-left'>
-          <image class="data-item-img" src="{{item.imageUrl}}"></image>
+          <view class="data-item-img" style="background-image: url('{{item.imageUrl}}')"></view>
         </view>
         <view class='data-item-right'>
-          <view style="font-size: 12px;">
-            <view style="height: 32px;">{{item.title}}</view>
+          <view style="font-size: 14px;">
+            <view style="height: 36px;line-height: 18px;white-space: pre-wrap;">{{item.title}}</view>
           </view>
           <view class="pick-num">
-             {{item.upSum}}个赞
+             {{item.upSum}}个赞 
           </view>
          
         </view>

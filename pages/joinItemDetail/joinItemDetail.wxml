@@ -1,23 +1,20 @@
 <!--joinItemDetail.wxml-->
 <view class="container">
-  <view class="vote-title">
-    活动名称: {{activityName}}
+  <view class="vote-title" style="border-bottom: 1px solid #eeeeee;">
+    活动名称: <text class="blue">{{activityName}}</text>
   </view>
-  <view class="vote-title">
+  <view class="vote-title" style="margin-top: 10px;">
       参赛作品名称: {{voteMess.title}}
   </view>
-
+  <view class="vote-title">
+      参赛宣言(slogan): {{voteMess.slogan}}
+  </view>
   <view class="vote-image">
-    <image class="activity-bg" src="{{voteMess.imageUrl}}"></image>
-
+    <image class="activity-bg" data-src="{{voteMess.imageUrl}}" bind:tap="callPreviewImage" src="{{voteMess.imageUrl}}"></image>
   </view>
   <view class="activity-tab">
-      {{voteMess.content}}
+      内容详情: {{voteMess.content}}
   </view>
-  <view class="vote-title">
-    活动的最大参与人数: {{voteMess.maxJoin}}
-  </view>
-
   <view class="text-center" style="margin-top: 10px;">
     <text class="gray">活动投票暂未开始,请耐心等待奥~</text>
   </view>

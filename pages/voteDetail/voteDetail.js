@@ -179,15 +179,25 @@ Page({
     wx.navigateTo({
       url: '../voteItemDetail/voteItemDetail?id=' +  this.data.id + '&title=' + this.data.voteMess.title + '&paiming=' + index + '&itemId=' + _id
     });
-  },       
+  },   
+  //预览图片
+　callPreviewImage: function(e) {
+　  wx.previewImage({
+　　　 current: e.currentTarget.dataset.src,
+      urls: [e.currentTarget.dataset.src],
+　　　 complete:function(){
+　　　　　console.log('complete');
+　　　 }
+　　});
+　},    
   // 分享
   onShareAppMessage: function(res){
     if(res.from === "button") {
       console.log(res.target);
-    }
+    } 
     return {
       title: this.data.voteMess.title,
-      path: '/pages/normalDetail/normalDetail'
+      path: '/pages/voteDetail/voteDetail?id=' + this.data.id
     }
   }
 })

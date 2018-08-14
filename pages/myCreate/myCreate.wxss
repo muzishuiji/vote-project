@@ -98,17 +98,22 @@
 }
 .item-picture{
   flex: 0 0 60px;
- 
+  width: 60px;
+  height: 60px;
 } 
 .suoluetu {
-  width: 60px;
-  height: 45px;
-  margin-right: 10px;
+  width:100%;
+  height:100%;
+  background-size:cover;
+  background-position:50%;
 }
 .item-title{
   flex: 1;
   font-size: 14px;
   line-height: 22px;
+}
+.item-title1 {
+  padding-left: 8px;
 }
 .small-label {
   padding: 5px 10px 5px 20px;

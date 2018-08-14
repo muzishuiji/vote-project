@@ -5,11 +5,11 @@
   </view> 
   <view class="vote-top">
     <view class="vote-title">活动名称: {{activityName}}</view>
-    <view class="share-btn" bind:tap="handleOpen1">
-      <view class="border">
-        <i-icon type="share" size="20" color="#0186fa" /> 
-      </view> 
-    </view>
+    <button open-type="share" class="share-btn" style="background: transparent;border: none;width: 46px;position: absolute;right: 10px;top:10px;">
+        <view class="border">
+            <i-icon type="share" size="20" color="#0186fa" /> 
+        </view> 
+    </button>
   </view>
   
   <view class="vote-image">

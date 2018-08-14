@@ -176,7 +176,7 @@ Page({
       this.getDataList(_params);
     }
     
-  },  
+  },   
   // 获取投票详情
   openDetail:function(e) {  
     let index = e.currentTarget.dataset.index, that = this, _id = e.currentTarget.dataset.id;

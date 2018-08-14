@@ -1,7 +1,7 @@
 <!--joinDetail.wxml-->
 <view class="container">
   <view class="vote-image">
-    <image class="activity-bg" src="{{voteMess.imageUrl}}"></image>
+    <image class="activity-bg" data-src="{{voteMess.imageUrl}}"  bind:tap="callPreviewImage" src="{{voteMess.imageUrl}}"></image>
   </view>
   <view class="activity-tab">
     <view class="mess-item">活动名称: {{voteMess.title}}</view>
@@ -17,7 +17,7 @@
       <view class="list-title-text">参与榜</view>  
       <view class="list-title-line right"></view>  
     </view>
-    <view class='data-item' wx:for="{{itemList}}" wx:key="{{index}}" data-id="{{item._id}}" data-name="1" >
+    <view class='data-item' wx:for="{{itemList}}" wx:key="{{index}}"  data-name="1" >
         <view class='data-item-index'>
           <text>{{index + 1}}</text>
         </view>
@@ -26,10 +26,11 @@
         </view>
         <view class='data-item-right'>
           <view style="font-size: 14px;">
-            <view style="height: 2.2rem;">{{item.title}}</view>
-          </view>         
+            <view style="height: 36px;line-height: 18px;white-space: pre-wrap;">{{item.title}}</view>
+            <text class='gray'>{{item.slogan}}</text>
+          </view>     
         </view>
-        <view class="warn-btn" bind:tap="openDetail">
+        <view class="warn-btn" data-index="{{index}}" bind:tap="openDetail">
           详情
         </view>
     </view> 

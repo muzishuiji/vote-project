@@ -7,21 +7,30 @@ Page({
     activeIndex: '1',
     params1:{
       page:1,
-      pageSize: 10
+      pageSize: 10,
+      statuss: '2,3'
     },
     params2:{
+      page:1,
+      pageSize: 10,
+      statuss: '1'
+    },
+    params3:{
       page:1,
       pageSize: 10
     },
     voteList: [],
     activityList:[],
+    joinList:[],
     hasData1: true,
-    hasData2: true
+    hasData2: true,
+    hasData3: true
   },
   // 加载事件
   onLoad: function () {
     this.getDataList(this.data.params1, 'activity/list/myJoin', '1');
-    this.getDataList(this.data.params2, 'normal/myJoin', '2');
+    this.getDataList(this.data.params2, 'activity/list/myJoin', '2');
+    this.getDataList(this.data.params3, 'normal/myJoin', '3');
   },
   // 获取我创建的投票列表
   getDataList: function(_params, partUrl, sign) {
@@ -39,14 +48,27 @@ Page({
         wx.hideLoading();
         // console.log(res);
         if(response.data.code == 200) {
-          let dataList = flag == '1' ? [].concat(this.data.activityList, response.data.data.records) : [].concat(this.data.voteList, response.data.data.records);
+          let dataList = [];
+          if(flag == '1') {
+            dataList = [].concat(this.data.activityList, response.data.data.records); 
+          } else if(flag == '2') {
+            dataList = [].concat(this.data.joinList, response.data.data.records); 
+          } else {
+            dataList = [].concat(this.data.voteList, response.data.data.records);
+          }
           dataList.forEach((item) => {
-            item.leftTime = flag == '1' ? app.dealTime(item.electEndTime) : app.dealTime(item.endTime);
+            if(flag == '1') {
+              item.leftTime = app.dealTime(item.electEndTime);
+            } else if(flag == '2') {
+              item.leftTime = app.dealTime(item.signEndTime);
+            } else {
+              item.leftTime = app.dealTime(item.endTime);
+            }
             if(item.leftTime!= "投票截止") {
               item.state = "1"
             } else{
               item.state = "2"
-            }
+            } 
           });
           if(response.data.data.records.length < this.data.params1.pageSize) {
             if(flag == '1') {
@@ -54,10 +76,15 @@ Page({
                 activityList: dataList,
                 hasData1: false
               });
+            } else if(flag == '2') {
+              this.setData({
+                joinList: dataList,
+                hasData2: false
+              });
             } else {
               this.setData({
                 voteList: dataList,
-                hasData2: false
+                hasData3: false
               });
             }
             return true;
@@ -67,10 +94,15 @@ Page({
                 activityList: dataList,
                 hasData1: true
               });
+            } else if(flag == '2') {
+              this.setData({
+                joinList: dataList,
+                hasData2: true
+              });
             } else {
               this.setData({
                 voteList: dataList,
-                hasData2: true
+                hasData3: true
               });
             }
             return false;
@@ -79,15 +111,16 @@ Page({
         }
       },
       fail: (err) => {
-        console.log(err);
+        // console.log(err);
         wx.hideLoading();
         this.setData({
           hasData1: true,
-          hasData2: true
+          hasData2: true,
+          hasData3: true
         })
         wx.showToast({
-        title: '失败了,请检查网络设置~',
-        icon: "none"
+          title: '失败了,请检查网络设置~',
+          icon: "none"
         });
         return false;
       },
@@ -119,7 +152,17 @@ Page({
       this.setData({
         params2: _params
       });
-      this.getDataList(this.data.params2, 'normal/myJoin', '2');
+      this.getDataList(this.data.params2, 'activity/myJoin', '2');
+    } else {
+      wx.showLoading({
+        title: '努力加载中',
+      });
+      let _params = this.data.params3;
+      _params.page++;
+      this.setData({
+        params3: _params
+      });
+      this.getDataList(this.data.params3, 'normal/myJoin', '3');
     }
   },
   // 下拉刷新事件
@@ -132,14 +175,22 @@ Page({
         params1: _params
       });
       this.getDataList(this.data.params1, 'activity/myJoin', '1');
-    } else {
+    } else if(this.data.activeIndex === '2') {
       let _params = this.data.params2;
       _params.page = 1;
       this.setData({
-        voteList: [],
+        joinList: [],
         params2: _params
       });
-      this.getDataList(this.data.params2, 'normal/myJoin', '2');
+      this.getDataList(this.data.params2, 'activity/myJoin', '2');
+    } else {
+      let _params = this.data.params3;
+      _params.page = 1;
+      this.setData({
+        voteList: [],
+        params3: _params
+      });
+      this.getDataList(this.data.params3, 'normal/myJoin', '3');
     }
     
   },  
