@@ -4,8 +4,8 @@
 .container {
   position: relative;
   width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  height: auto;
+  min-height: 100vh;
   background: #f1f1f1;
 }
 .index-header {
@@ -55,11 +55,9 @@
 }
 
 .data-list {
-  height:calc(100vh - 60px);
-  overflow-y: auto;
   background: #f1f1f1;
   padding: 10px 15px;
-  margin-bottom:60px;
+  padding-bottom: 20px;
 }
 .data-item {
   background: #fff;

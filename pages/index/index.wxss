@@ -15,7 +15,7 @@
   height: 40px;
   line-height: 40px;
   border-radius: 20px;
-  margin-bottom:30px;
+  margin-bottom: 50px;
   text-align: center;
   color: #ffffff;
 }
@@ -24,7 +24,11 @@
 }
 
 .list-btn-group {
-  margin: 45% 10% 0 10%;
+  position: absolute;
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100vw - 40px);
   display: flex;
   justify-content: center;
 }

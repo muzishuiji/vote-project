@@ -132,11 +132,7 @@ Page({
         this.uploadPicture(res.tempFilePaths[0]);
       },
       fail: (err) => {
-        console.log(err);
-        wx.showToast({
-          title: '失败了,请检查网络设置~',
-          icon: "none"
-        });
+        // console.log(err);
         return false;
       }
     }) 
@@ -197,7 +193,13 @@ Page({
           });
         }
       },
-    
+      fail: (err) => {
+        wx.showToast({
+          title: '失败了,请检查网络设置',
+          icon: "none"
+        });
+        return false;
+      }
     })
   },
   // 报名日期改变

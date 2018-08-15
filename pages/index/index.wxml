@@ -16,9 +16,9 @@
     <view class="list-btn" data-id="1" bind:tap="openList">文字投票列表</view>
     <view class="list-btn" data-id="2" bind:tap="openList">活动投票列表</view>
   </view>
-  <view class="gray-tip">
+  <!-- <view class="gray-tip">
     特殊活动请联系微信号: lj_de_wei_xin
-  </view>
+  </view> -->
   <view class="foot-bar btn-area">
     <tab-bar activ-index="1"></tab-bar>
   </view>

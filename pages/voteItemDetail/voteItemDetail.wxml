@@ -23,7 +23,7 @@
         点赞
       </view> 
     </view>
-    <image class="activity-bg" src="{{voteMess.imageUrl}}"></image>
+    <view class="activity-bg" style="background-image: url('{{voteMess.imageUrl}}')"></view>
   </view>
   <view class="activity-tab">
         {{voteMess.content}}
@@ -55,9 +55,6 @@
         <text style="font-size: 12px;"> {{item.upSum}}</text>
       </view>
     </view>
-    <view class="call-for" bind:tap="handleOpen">
-      为他(她)打call
-    </view>
     <view class='text-center gray' wx:if="{{voteMess.commentList.length == 0}}">
         暂无评论,快快为喜欢的他(她)打call吧~~~
     </view>
@@ -76,5 +73,8 @@
       </view>
     </view>
   </view>
+  <view class="call-for" bind:tap="handleOpen">
+      为他(她)打call
+    </view>
   <i-action-sheet  visible="{{ sheetVisible }}" actions="{{ actions }}" show-cancel bind:cancel="handleCancel1" bind:click="handleClickItem1" />
 </view>

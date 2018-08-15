@@ -7,17 +7,17 @@ Page({
     activeIndex: '1',
     params1:{
       page:1,
-      pageSize: 10,
+      pageSize: 5,
       statuss: '2,3'
     },
     params2:{
       page:1,
-      pageSize: 10,
+      pageSize: 5,
       statuss: '1'
     },
     params3:{
       page:1,
-      pageSize: 10
+      pageSize: 5
     },
     visible: false,
     voteList: [],
@@ -209,7 +209,7 @@ Page({
       this.setData({
         params1: _params
       });
-      this.getDataList(this.data.params1, 'activity/my', '1');
+      this.getDataList(this.data.params1, 'activity/list/my', '1');
     } else if(this.data.activeIndex === '2' && this.data.hasData2) {
       wx.showLoading({
         title: '努力加载中',
@@ -219,8 +219,8 @@ Page({
       this.setData({
         params2: _params
       });
-      this.getDataList(this.data.params2, 'activity/my', '2');
-    } else {
+      this.getDataList(this.data.params2, 'activity/list/my', '2');
+    } else if(this.data.activeIndex === '3' && this.data.hasData3){
       wx.showLoading({
         title: '努力加载中',
       });
@@ -241,7 +241,7 @@ Page({
         activityList: [],
         params1: _params
       });
-      this.getDataList(this.data.params1, 'activity/my', '1');
+      this.getDataList(this.data.params1, 'activity/list/my', '1');
     } else if(this.data.activeIndex === '2') {
       let _params = this.data.params2;
       _params.page = 1;
@@ -249,7 +249,7 @@ Page({
         joinList: [],
         params2: _params
       });
-      this.getDataList(this.data.params2, 'activity/my', '2');
+      this.getDataList(this.data.params2, 'activity/list/my', '2');
     } else {
       let _params = this.data.params3;
       _params.page = 1;

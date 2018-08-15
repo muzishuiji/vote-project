@@ -10,7 +10,7 @@
       参赛宣言(slogan): {{voteMess.slogan}}
   </view>
   <view class="vote-image">
-    <image class="activity-bg" data-src="{{voteMess.imageUrl}}" bind:tap="callPreviewImage" src="{{voteMess.imageUrl}}"></image>
+    <view class="activity-bg" data-src="{{voteMess.imageUrl}}" bind:tap="callPreviewImage" style="background-image: url('{{voteMess.imageUrl}}')"></view>
   </view>
   <view class="activity-tab">
       内容详情: {{voteMess.content}}

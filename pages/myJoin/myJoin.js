@@ -7,17 +7,17 @@ Page({
     activeIndex: '1',
     params1:{
       page:1,
-      pageSize: 10,
+      pageSize: 5,
       statuss: '2,3'
     },
     params2:{
       page:1,
-      pageSize: 10,
+      pageSize: 5,
       statuss: '1'
     },
     params3:{
       page:1,
-      pageSize: 10
+      pageSize: 5
     },
     voteList: [],
     activityList:[],
@@ -31,6 +31,7 @@ Page({
     this.getDataList(this.data.params1, 'activity/list/myJoin', '1');
     this.getDataList(this.data.params2, 'activity/list/myJoin', '2');
     this.getDataList(this.data.params3, 'normal/myJoin', '3');
+
   },
   // 获取我创建的投票列表
   getDataList: function(_params, partUrl, sign) {
@@ -126,37 +127,31 @@ Page({
       },
       complete: () => {
         // complete
-        wx.stopPullDownRefresh() //停止下拉刷新
+        wx.stopPullDownRefresh(); //停止下拉刷新
         return true;
       } 
     });
   },
   // 上拉触底加载
   onReachBottom: function () {
+    console.log("hasData1", this.data.hasData1);
+    console.log("hasData2", this.data.hasData2);
+    console.log("hasData3", this.data.hasData3);
     if(this.data.activeIndex === '1' && this.data.hasData1) {
-      wx.showLoading({
-        title: '努力加载中',
-      });
       let _params = this.data.params1;
       _params.page++;
       this.setData({
         params1: _params
       });
-      this.getDataList(this.data.params1, 'activity/myJoin', '1');
+      this.getDataList(this.data.params1, 'activity/list/myJoin', '1');
     } else if(this.data.activeIndex === '2' && this.data.hasData2) {
-      wx.showLoading({
-        title: '努力加载中',
-      });
       let _params = this.data.params2;
       _params.page++;
       this.setData({
         params2: _params
       });
-      this.getDataList(this.data.params2, 'activity/myJoin', '2');
-    } else {
-      wx.showLoading({
-        title: '努力加载中',
-      });
+      this.getDataList(this.data.params2, 'activity/list/myJoin', '2');
+    } else if(this.data.activeIndex === '3' && this.data.hasData3) {
       let _params = this.data.params3;
       _params.page++;
       this.setData({
@@ -174,7 +169,7 @@ Page({
         activityList: [],
         params1: _params
       });
-      this.getDataList(this.data.params1, 'activity/myJoin', '1');
+      this.getDataList(this.data.params1, 'activity/list/myJoin', '1');
     } else if(this.data.activeIndex === '2') {
       let _params = this.data.params2;
       _params.page = 1;
@@ -182,7 +177,7 @@ Page({
         joinList: [],
         params2: _params
       });
-      this.getDataList(this.data.params2, 'activity/myJoin', '2');
+      this.getDataList(this.data.params2, 'activity/list/myJoin', '2');
     } else {
       let _params = this.data.params3;
       _params.page = 1;

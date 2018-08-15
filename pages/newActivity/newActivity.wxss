@@ -1,5 +1,4 @@
 .page__bd { 
-  height: 100vh;
   font-size: 14px;
   margin-left:15px;
   margin-right: 15px;
@@ -17,11 +16,6 @@ checkbox-group {
   display:flex;
 
 }
-.activity-avatar {
-  width: 100px;
-  height: 100px;
-  
-}
 .pick-cell {
   width: calc(100% - 40px);
   margin: 0 20px 15px 20px;
@@ -30,7 +24,7 @@ checkbox-group {
 .img-box {
   background: #ffffff;
   border-radius: 5px;
-  width: calc(100vw - 40px);
+  width: calc(100vw - 32px);
   padding-top: 60%;
   position: relative;
   border: 1px solid #e2e2e2;
@@ -45,6 +39,8 @@ checkbox-group {
   left: 0;
   width: 100%;
   height: 100%;
+  background-size: cover;
+  background-position: center;
 }
 .upload-icon {
   width: 100px;

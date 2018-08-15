@@ -22,7 +22,9 @@
 }
 .activity-bg {
   width: calc(100vw - 30px);
-  height: 160px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
 }
 .activity-tab {
   width: calc(100vw - 30px);

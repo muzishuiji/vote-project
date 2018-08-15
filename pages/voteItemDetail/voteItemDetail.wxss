@@ -106,7 +106,9 @@
 }
 .activity-bg {
   width: calc(100vw - 30px);
-  height: 160px;
+  height: 200px; 
+  background-size: cover;
+  background-position: center;
 }
 .item-state {
   position: absolute;
@@ -166,7 +168,8 @@
 }
 .action-sheet {
   width: 100vw;
-  height: 140px;
+  height: auto;
+  min-height: 140px;
   background: #ffffff;
   position: fixed;
   left: 0; 

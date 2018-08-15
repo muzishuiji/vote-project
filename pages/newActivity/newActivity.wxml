@@ -6,7 +6,7 @@
         </view>
         <view class="img-box" bind:tap="uploadImg">
             <image wx:if="{{!imageUrl}}" class="upload-icon" src="/images/upload.png"></image>
-            <image class="activity-avatar" src="{{imageUrl}}"></image>
+            <view class="activity-avatar" style="background-image: url('{{imageUrl}}')"></view>
         </view>
         <view style="font-size: 12px;color: #ccc;margin-bottom:15px;">为保证良好的展示效果,请保证活动海报的长宽比为5:3</view>
         <view class="pick-text">

@@ -41,12 +41,7 @@ App({
     })
   },
   onShow: function (options) {
-    console.log(options);
-    let scene = options.scene;
-    if(scene == 1044) {
-      let shareTicket = options.shareTicket;
-
-    }
+    // console.log(options);
   },
   // 时间处理函数
   dealTime: function(date) {

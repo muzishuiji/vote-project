@@ -4,6 +4,9 @@
 .container {
   position: relative;
   width: 100vw;
+  height: auto;
+  min-height: 100vh;
+  overflow-y: auto;
   background: #f1f1f1;
   color: #333333;
 }
@@ -55,7 +58,6 @@
 }
 
 .data-list {
-  background: #f1f1f1;
   padding: 10px;
 }
 .data-item {

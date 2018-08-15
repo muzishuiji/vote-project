@@ -1,7 +1,7 @@
 <!--joinDetail.wxml-->
 <view class="container">
   <view class="vote-image">
-    <image class="activity-bg" data-src="{{voteMess.imageUrl}}"  bind:tap="callPreviewImage" src="{{voteMess.imageUrl}}"></image>
+    <view class="activity-bg" data-src="{{voteMess.imageUrl}}"  bind:tap="callPreviewImage" style="background-image: url('{{voteMess.imageUrl}}')"></view>
   </view>
   <view class="activity-tab">
     <view class="mess-item">活动名称: {{voteMess.title}}</view>
