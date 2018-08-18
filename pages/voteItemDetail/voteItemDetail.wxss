@@ -106,9 +106,8 @@
 }
 .activity-bg {
   width: calc(100vw - 30px);
-  height: 200px; 
-  background-size: cover;
-  background-position: center;
+  margin: 0 auto;
+  height: 200px;
 }
 .item-state {
   position: absolute;

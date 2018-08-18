@@ -23,7 +23,8 @@
         点赞
       </view> 
     </view>
-    <view class="activity-bg" style="background-image: url('{{voteMess.imageUrl}}')"></view>
+    <!-- <view class="activity-bg" style="background-image: url('{{voteMess.imageUrl}}')"></view> -->
+    <image class="activity-bg" mode="aspectFill0" src="{{voteMess.imageUrl}}" />
   </view>
   <view class="activity-tab">
         {{voteMess.content}}

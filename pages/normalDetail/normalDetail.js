@@ -144,6 +144,7 @@ Page({
           voteMess.items.forEach(element => {
             element.percent = Math.round((element.voteSum / voteMess.joinedUserSum).toFixed(2) * 100);
           });
+          voteMess.items[index].users.push(app.globalData.userInfo);
           this.setData({
             voteMess: voteMess
           });
