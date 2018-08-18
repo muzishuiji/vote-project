@@ -208,11 +208,15 @@ Page({
     app.globalData.voteMess = this.data.voteList[index];
     if(this.data.activeIndex == '2') {
       wx.navigateTo({
-        url: '../../pages/normalDetail/normalDetail?id=' + _id
+        url: '../../pages/joinDetail/joinDetail?id=' + _id
       });
     } else if(this.data.activeIndex == '1') {
         wx.navigateTo({
         url: '../../pages/voteDetail/voteDetail?id=' + _id
+      });
+    } else {
+      wx.navigateTo({
+        url: '../../pages/normalDetail/normalDetail?id=' + _id
       });
     }
      
